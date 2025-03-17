@@ -1,32 +1,97 @@
 body{
-    background-color: white;
-    padding: 20px 0;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
+    background-color: white;
+    overflow-x: hidden;
 }
 
 header {
-    background-color: lightblue;
+    background-color: lightcyan;
     justify-content: space-between;
-    display: flex;
-    flex-direction: row;
-    padding: 10px;
-    top: 0;
     text-align: center;
     color: lightslategrey;
+    padding: 0;
     width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;;
 }
 
-header h2:first-child{
-    color:cyan;
-    text-align: right;
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.header-content h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.05%;
+    width: 25%;
+    /*border: blueviolet solid 1px;*/
+    font-family: Cambria, serif;
+    font-style: italic;
+    color:darkcyan;
+    text-align: start;
+}
+
+.header-content img{
+    margin-right: 10px;
+    border-radius: 60px;
+    width: 25%;
+    height: auto;
+    object-fit: cover;
+}
+
+.header-links {
+    display: flex;
+    gap: 15px;
+}
+
+.cuerpo{
+    padding-block: 30px;
+    border-radius: 20px;
+    margin-top: 80px;
+    margin-bottom: 60px;
+    padding: 20px;
+    width: 100%;
 }
 
 footer{
     background-color: #333;
     color: white;
-    padding: 10px 0;
     text-align: center;
-    position: absolute;
-    bottom: 0;
+    padding: 20px 0;
     width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
 }
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1480px;
+    padding: 0 20px;
+}
+
+.footer-content div:first-child{
+    flex: 1;
+    text-align: left;
+    margin-left: 20px;
+}
+
+
+.icon {
+    background-color: white;
+    color: #333;
+    border-radius: 5px;
+    padding: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/*<p>Appointments</p> <p>Profile</p> <p>Usuario</p>*/
