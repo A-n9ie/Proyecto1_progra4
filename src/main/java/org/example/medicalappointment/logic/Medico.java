@@ -1,0 +1,183 @@
+package org.example.medicalappointment.logic;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import org.hibernate.annotations.ColumnDefault;
+
+import java.math.BigDecimal;
+import java.time.LocalTime;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+@Entity
+@Table(name = "medicos")
+public class Medico {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Integer id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+
+    @Size(max = 20)
+    @NotNull
+    @Column(name = "cedula", nullable = false, length = 20)
+    private String cedula;
+
+    @Size(max = 30)
+    @NotNull
+    @Column(name = "nombre", nullable = false, length = 30)
+    private String nombre;
+
+    @ColumnDefault("0")
+    @Column(name = "aprobado")
+    private Boolean aprobado;
+
+    @Size(max = 30)
+    @Column(name = "especialidad", length = 30)
+    private String especialidad;
+
+    @Column(name = "costo_consulta", precision = 10, scale = 2)
+    private BigDecimal costoConsulta;
+
+    @Size(max = 80)
+    @Column(name = "lugar_atencion", length = 80)
+    private String lugarAtencion;
+
+    @Column(name = "horario_inicio")
+    private LocalTime horarioInicio;
+
+    @Column(name = "horario_fin")
+    private LocalTime horarioFin;
+
+    @Size(max = 20)
+    @Column(name = "frecuencia_citas", length = 20)
+    private String frecuenciaCitas;
+
+    @Size(max = 255)
+    @Column(name = "foto_url")
+    private String fotoUrl;
+
+    @Lob
+    @Column(name = "presentacion")
+    private String presentacion;
+
+    @OneToMany(mappedBy = "medico")
+    private Set<Cita> citas = new LinkedHashSet<>();
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Boolean getAprobado() {
+        return aprobado;
+    }
+
+    public void setAprobado(Boolean aprobado) {
+        this.aprobado = aprobado;
+    }
+
+    public String getEspecialidad() {
+        return especialidad;
+    }
+
+    public void setEspecialidad(String especialidad) {
+        this.especialidad = especialidad;
+    }
+
+    public BigDecimal getCostoConsulta() {
+        return costoConsulta;
+    }
+
+    public void setCostoConsulta(BigDecimal costoConsulta) {
+        this.costoConsulta = costoConsulta;
+    }
+
+    public String getLugarAtencion() {
+        return lugarAtencion;
+    }
+
+    public void setLugarAtencion(String lugarAtencion) {
+        this.lugarAtencion = lugarAtencion;
+    }
+
+    public LocalTime getHorarioInicio() {
+        return horarioInicio;
+    }
+
+    public void setHorarioInicio(LocalTime horarioInicio) {
+        this.horarioInicio = horarioInicio;
+    }
+
+    public LocalTime getHorarioFin() {
+        return horarioFin;
+    }
+
+    public void setHorarioFin(LocalTime horarioFin) {
+        this.horarioFin = horarioFin;
+    }
+
+    public String getFrecuenciaCitas() {
+        return frecuenciaCitas;
+    }
+
+    public void setFrecuenciaCitas(String frecuenciaCitas) {
+        this.frecuenciaCitas = frecuenciaCitas;
+    }
+
+    public String getFotoUrl() {
+        return fotoUrl;
+    }
+
+    public void setFotoUrl(String fotoUrl) {
+        this.fotoUrl = fotoUrl;
+    }
+
+    public String getPresentacion() {
+        return presentacion;
+    }
+
+    public void setPresentacion(String presentacion) {
+        this.presentacion = presentacion;
+    }
+
+    public Set<Cita> getCitas() {
+        return citas;
+    }
+
+    public void setCitas(Set<Cita> citas) {
+        this.citas = citas;
+    }
+
+}
