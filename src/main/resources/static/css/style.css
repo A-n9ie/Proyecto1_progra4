@@ -54,7 +54,7 @@ header {
 .cuerpo{
     padding-block: 30px;
     border-radius: 20px;
-    margin-top: 120px; /* Ajusta este valor según la altura del header */
+    margin-top: 120px;
     margin-bottom: 60px;
     padding: 20px;
     width: 100%;

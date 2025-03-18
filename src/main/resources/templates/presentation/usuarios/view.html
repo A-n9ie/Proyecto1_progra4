@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Usuarios</title>
-    <link rel="stylesheet" href="../../../static/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 
 </head>
 <body>
@@ -11,7 +11,7 @@
     Usuarios
 </header>
 <div class = "cuerpo" >
-    <table style="border: 1px solid blue">
+    <table>
         <tr> <th>Id</th> <th>Usuario</th> <th>Rol</th> <th>...</th> </tr>
         <tr th:each="user : ${usuarios}">
             <td th:text="${user.getId()}" />
