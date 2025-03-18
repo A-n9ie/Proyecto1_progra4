@@ -52,13 +52,46 @@ header {
 }
 
 .cuerpo{
+    font-family: Arial, sans-serif;
     padding-block: 30px;
     border-radius: 20px;
     margin-top: 120px;
     margin-bottom: 60px;
     padding: 20px;
     width: 100%;
+    background-color: lightslategrey;
 }
+/*------------------PRINCIPAL----------------------------*/
+.buscador{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.buscar_especialidad_lugar{
+    display: flex;
+}
+
+.buscar_especialidad_lugar input{
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 20px;
+    margin-right: 10px;
+    width: 150px;
+    outline: none;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
 /*-------------------REGISTRO--------------------------------*/
 .backgroundRegister{
     /*background-image: url("");*/
