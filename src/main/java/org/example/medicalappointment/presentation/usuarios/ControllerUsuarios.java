@@ -14,6 +14,6 @@ public class ControllerUsuarios {
     @GetMapping("/presentation/usuarios/show")
     public String show(Model model) {
         model.addAttribute("usuarios", serviceUser.usuariosFindAll());
-        return "presentation/usuarios/view";
+        return "presentation/usuarios/register";
     }
 }

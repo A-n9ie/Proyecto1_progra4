@@ -59,7 +59,53 @@ header {
     padding: 20px;
     width: 100%;
 }
+/*-------------------REGISTRO--------------------------------*/
+.backgroundRegister{
+    /*background-image: url("");*/
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000%;
+    padding: 20px;
+}
+.register{
+    h1{
+        color: #b292da;
+        font-family: Cambria, serif;
+        font-style: italic;
+    }
+    color: #424242;
 
+    border: darkcyan solid 1px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+div.campo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 15%;
+}
+
+div.campo>div{
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+div.campo>div:nth-child(1){
+    white-space-collapse: collapse;
+    text-align: left;
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+/*-------------------REGISTRO--------------------------------*/
 footer{
     background-color: #333;
     color: white;
@@ -84,7 +130,6 @@ footer{
     text-align: left;
     margin-left: 20px;
 }
-
 
 .icon {
     background-color: white;
