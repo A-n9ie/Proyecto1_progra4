@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fragments</title>
+</head>
+<body>
+
+<!-- Fragmento header -->
+<header th:fragment="header">
+  <div class="header-content">
+    <h2><img src="/images/dasdasd.jpg" height="768" width="1024"/>Medical Appointment</h2>
+
+    <p><i class="fas fa-phone-alt" style="font-size: 10px; color: orange;"></i> +506 5467 0937</p>
+
+    <div class="header-links">
+      <p>About...</p> <p>Search</p> <p>Login</p>
+    </div>
+  </div>
+</header>
+
+<!--xmlns:sec="http://www.w3.org/1999/xhtml"-->
+
+<!-- Fragmento footer -->
+<footer th:fragment="footer">
+  <div class="footer-content">
+    Total Soft Inc.
+    <div>
+      <a href="#" class="icon"><i class="fab fa-twitter"></i></a>
+      <a href="#" class="icon"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" class="icon"><i class="fab fa-instagram"></i></a>
+    </div>
+    <div>○2019 Tsf, Inc.</div>
+  </div>
+</footer>
+
+</body>
+</html>
