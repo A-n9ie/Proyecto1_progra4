@@ -7,33 +7,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-<header>
-  <div class="header-content">
-    <h2><img src="/images/dasdasd.jpg" height="768" width="1024"/>Medical Appointment</h2>
-
-    <p><i class="fas fa-phone-alt" style="font-size: 10px; color: orange;"></i> +506 5467 0937</p>
-
-    <div class="header-links">
-      <p>About...</p> <p>Search</p> <p>Login</p>
-    </div>
-  </div>
-</header>
+<header th:replace="~{/presentation/fragments/fragments.html :: header}"></header>
 
 <div class = "cuerpo" >
 
 </div>
 
-<footer>
-  <div class="footer-content">
-    Total Soft Inc.
-    <div>
-      <a href="#" class="icon"><i class="fab fa-twitter"></i></a>
-      <a href="#" class="icon"><i class="fab fa-facebook-f"></i></a>
-      <a href="#" class="icon"><i class="fab fa-instagram"></i></a>
-    </div>
-    <div>○2019 Tsf, Inc.</div>
-  </div>
-
-</footer>
+<footer th:replace="~{/presentation/fragments/fragments.html :: footer}"></footer>
 </body>
 </html>
