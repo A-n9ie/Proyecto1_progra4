@@ -7,10 +7,25 @@
 <body>
 <header th:replace="~{/presentation/fragments/fragments.html :: header}"></header>
 
-<div>
-    <h1>Bienvenido a Mi Aplicación</h1>
-    <p>Aquí va el contenido principal de la página.</p>
-</div>
+<main>
+    <div class="divFormLogin">
+        <form action="/login" method="post">
+            <div class="loginSeccion">&#128697; Login</div>
+            <div>
+                <div class="loginLabel">Id</div>
+                <div class="loginfield"><input type="text" id="username" name="username" /></div>
+            </div>
+            <div>
+                <div class="loginLabel">Clave</div>
+                <div class="loginField"><input type="password" id="password" name="password" required /></div>
+            </div>
+            <div class="loginSeccion"><input type="submit" name="login" value="Login" class="button"></div>
+        </form>
+    </div>
+    <div th:if="${param.error != null}" class="error">
+        <p>Credenciales incorrectas</p>
+    </div>
+</main>
 
 <footer th:replace="~{/presentation/fragments/fragments.html :: footer}"></footer>
 </body>
