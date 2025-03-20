@@ -23,4 +23,5 @@ public class ServiceDoctor {
     public Medico findMedico(String cedula) {
         return doctorRepository.findByCedula(cedula);
     }
+
 }

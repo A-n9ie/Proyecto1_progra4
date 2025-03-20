@@ -77,7 +77,7 @@ costo_consulta, lugar_atencion, horario_inicio, horario_fin, frecuencia_citas,
 insert into medicos (usuario_id, cedula, nombre, aprobado, especialidad, 
 costo_consulta, lugar_atencion, horario_inicio, horario_fin, frecuencia_citas,
  foto_url, presentacion) values (3, '333333333', 'Luis Alfoncso Kajero', true, 'Cardiology', 70000, 'Heart Care Center, Alajuela',
- '11:00:00', '19:00:00', '1 horas',  'https://www.google.com/search?sca_esv=88576adaa55fa00a&sxsrf=AHTn8zrs29HkHKy4YXBLbRB_sDj6lJHc5w:1742488839632&q=gato&udm=2&fbs=ABzOT_BnMAgCWdhr5zilP5f1cnRvK9uZj3HA_MTJAA6lXR8yQElaIApxtef1-RKg2CcwxXZXWlQ6hBCdDT6diQURAAwgUtj_wq4LLUgBoz7X4yTlMSTj86k-ePdnniocOpdLXQWvc6wAnJjTV-v2pT6HYUJZEjf9yBRKxVxZrE5mFrx0d9wqaA9LTeCOL_rQTkCNi3YyzEmCo-P68YIESiVHlrWXLL3G5w&sa=X&ved=2ahUKEwi7v77ijJmMAxU-SDABHYU8JYcQtKgLegQIHxAB&biw=1920&bih=919#vhid=IycprWj_vv_diM&vssid=mosaic', 'Profesional dedicado a la atención');
+ '11:00:00', '19:00:00', '1 horas',  '', 'Profesional dedicado a la atención');
  
  /* usuarios pacientes */
 insert into usuarios (usuario, clave, rol) values ('GLucas', '444', 'Paciente');

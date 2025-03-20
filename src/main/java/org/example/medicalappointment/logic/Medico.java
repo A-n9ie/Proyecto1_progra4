@@ -6,8 +6,12 @@ import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.math.BigDecimal;
+import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -181,12 +185,30 @@ public class Medico {
     }
 
 
-    public int getFrecuenciaEnMinutos() {
-        if (frecuenciaCitas.toLowerCase().contains("hora")) {
-            return 60;
+    public List<LocalTime> citasDisponibles() {
+        List<LocalTime> horasDisponibles = new ArrayList<>(); //lista de horas
+        LocalTime horaActual = horarioInicio;
+
+        int frecuenciaEnMinutos = frecuenciaEnMinutos(this.frecuenciaCitas);
+
+        while (!horaActual.isAfter(horarioFin)) {
+            horasDisponibles.add(horaActual);
+            horaActual = horaActual.plusMinutes(frecuenciaEnMinutos);
+        }
+
+        return horasDisponibles;
+    }
+
+    private int frecuenciaEnMinutos(String frecuencia) {
+        if (frecuencia.contains("minutos")) {
+            return Integer.parseInt(frecuencia.split(" ")[0]);
+        } else if (frecuencia.contains("horas")) {
+            return Integer.parseInt(frecuencia.split(" ")[0]) * 60;
         } else {
-            return Integer.parseInt(frecuenciaCitas.replaceAll("\\D", ""));
+            return 30;
         }
     }
+
+
 
 }

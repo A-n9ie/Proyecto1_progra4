@@ -27,4 +27,6 @@ public class ServiceUser {
     public Usuario getUser(String username) {
         return usuarioRepository.findByUsuario(username);
     }
+
+
 }

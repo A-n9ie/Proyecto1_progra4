@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
-<body>
+<body id="cuerpo_index">
     <header>
         <div class="header-content">
             <h2><img src="/images/dasdasd.jpg" height="768" width="1024"/>Medical Appointment</h2>
@@ -22,7 +22,7 @@
         </div>
     </header>
 
-    <div class="cuerpo">
+    <div id="cuerpo_div_index" class="cuerpo">
         <div>
             <div class="buscador">
                 <form class="buscar_especialidad_lugar">
@@ -46,6 +46,7 @@
                                     <h5 class="nombre_medico">
                                         <span th:text="${m.getNombre()}"></span>
                                         <span class="id_medico" th:text="${m.getId()}"></span>
+                                        <span th:text="${m.citasDisponibles()}"></span>
                                     </h5>
                                     <small class="especialidad_medico" th:text="${m.getEspecialidad()}"></small>
                                         </div>
