@@ -97,6 +97,16 @@ header {
     color: #555;
 }
 
+.medico{
+    background-color: white;
+    border-radius: 20px;
+}
+
+ul.lista_medicos_inscritos ul ul{
+    list-style: none
+}
+
+
 button {
     background-color: #007bff;
     color: white;

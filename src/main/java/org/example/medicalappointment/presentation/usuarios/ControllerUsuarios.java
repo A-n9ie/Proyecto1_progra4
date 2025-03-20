@@ -16,4 +16,5 @@ public class ControllerUsuarios {
         model.addAttribute("usuarios", serviceUser.usuariosFindAll());
         return "presentation/usuarios/register";
     }
+
 }
