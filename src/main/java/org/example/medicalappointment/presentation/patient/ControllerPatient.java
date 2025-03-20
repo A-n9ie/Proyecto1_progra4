@@ -15,13 +15,13 @@ public class ControllerPatient {
     @Autowired
     private ServicePatient servicePatient;
 
-    @GetMapping("/presentation/usuarios/show")
+    @GetMapping("/presentation/pacientes/show")
     public String show(Model model) {
         model.addAttribute("usuarios", servicePatient.pacientesFindAll());
         return "presentation/usuarios/register";
     }
 
-    @GetMapping("/presentation/usuarios/registerSys")
+    @GetMapping("/presentation/usuarios/registerSystem")
     public String register(Model model) {
         model.addAttribute("usuario", new Paciente());
         return "presentation/usuarios/register";
@@ -30,7 +30,7 @@ public class ControllerPatient {
     @PostMapping("/presentation/usuarios/patientRegister")
     public String patientRegister(@ModelAttribute Paciente paciente) {
         servicePatient.addPatient(paciente.getUsuario(), paciente.getCedula(), paciente.getNombre());
-        return "redirect:/presentation/usuarios/registerSys";
+        return "redirect:/presentation/usuarios/registerSystem";
     }
 
 

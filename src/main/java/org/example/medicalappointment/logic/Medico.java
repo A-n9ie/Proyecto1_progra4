@@ -180,4 +180,13 @@ public class Medico {
         this.citas = citas;
     }
 
+
+    public int getFrecuenciaEnMinutos() {
+        if (frecuenciaCitas.toLowerCase().contains("hora")) {
+            return 60;
+        } else {
+            return Integer.parseInt(frecuenciaCitas.replaceAll("\\D", ""));
+        }
+    }
+
 }

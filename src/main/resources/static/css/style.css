@@ -11,12 +11,13 @@ header {
     justify-content: space-between;
     text-align: center;
     color: lightslategrey;
-    padding: 0;
+    padding-top: 10px;
     width: 100%;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;;
+
 }
 
 .header-content {
@@ -59,8 +60,9 @@ header {
     margin-bottom: 60px;
     margin-left: 20px;
     margin-right: 20px;
-    padding: 0;
+    padding: 20px;
     width: 100%;
+    background-color: #ccc;
 }
 /*------------------PRINCIPAL----------------------------*/
 .buscador{
@@ -88,26 +90,62 @@ header {
 
 .buscar_especialidad_lugar span {
     background-color: #e0e0e0;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    border-left: 1px solid #ccc;
+    border: 1px solid #ccc;
     padding: 8px 12px;
     font-size: 14px;
     color: #555;
 }
 
-.lista_medicos{
-    background-color: red;
+.medicos{
+    margin-top: 10px;
     padding: 10px;
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    padding: 30px;
+}
+.medicos h5{
+    color: black;
+    font-weight: bold;
 }
 
-button {
+.separacion{
+    border-bottom: 1px solid #ccc;
+}
+
+.medicos p{
+    color: black;
+    font-size: 15px;
+    font-weight: normal;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+.id_medico{
+    color: #007bff;
+}
+
+.medicos img{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.informacion_medico{
+    display: flex;
+    align-items: center;
+}
+
+.buscador button{
     background-color: #007bff;
     color: white;
     border: none;
     padding: 10px 20px;
-    border-radius: 20px;
     cursor: pointer;
+    border-radius: 20px;
 }
 
 button:hover{
