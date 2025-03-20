@@ -21,6 +21,7 @@ public class ControllerUsuarios {
         return "presentation/usuarios/register";
     }
 
+//Modelo vacio para colocar al inicio de la pagina
     @GetMapping("/presentation/usuarios/registerSys")
     public String register(Model model) {
         model.addAttribute("usuario", new Usuario());
