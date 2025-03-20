@@ -9,58 +9,60 @@
 <body>
 <header th:replace="~{/presentation/fragments/fragments.html :: header}"></header>
 
-<div class = "cuerpo" >
+<form action="/presentation/usuarios/registerUsuario" method="POST">
+  <div class="cuerpo">
+    <div class="register">
+      <h1>Register</h1>
+      <img src="/images/3756698.png" height="512" width="512"/>
 
-  <div class = "register">
-    <h1>Registro de usuario</h1>
+      <div class="campo">
+        <div><i class="fas fa-id-card"></i></div>
+        <div><input type="text" name="id" placeholder="ID" required /></div>
+      </div>
 
-    <div class="campo" >
-      <div>Usuario</div>
-      <div><input type="text" name="usuario"></div>
-    </div>
+      <div class="campo">
+        <div><i class="fas fa-user"></i></div>
+        <div><input type="text" name="nombre" placeholder="Name" required /></div>
+      </div>
 
-    <div class="campo" >
-      <div>Contraseña</div>
-      <div><input type="text" name="clave"></div>
-    </div>
+      <div class="campo">
+        <div><i class="fas fa-user-circle"></i></div>
+        <div><input type="text" name="username" th:value="${usuario.username}" placeholder="UserName" required /></div>
+      </div>
 
-    <div class="campo" >
-      <div>
-        Rol <select id="funcion" name="rol">
-        <option value="1">Paciente</option>
-        <option value="2">Doctor</option>
-      </select>
+      <div class="campo">
+        <div><i class="fas fa-key"></i></div>
+        <div><input type="password" name="password" th:value="${usuario.password}" placeholder="Password" required /></div>
+      </div>
+
+      <div class="campo">
+        <div><i class="fas fa-lock"></i></div>
+        <div><input type="password" name="password_c" placeholder="Confirm Password" required /></div>
+      </div>
+
+      <div class="campo">
+        <div><i class="fas fa-user-tag"></i></div>
+        <div>
+          <select name="rol" required>
+            <option value="Paciente" th:selected="${usuario.rol == 'Paciente'}">Patient</option>
+            <option value="Doctor" th:selected="${usuario.rol == 'Doctor'}">Doctor</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="campo">
+        <div><i class="fas fa-folder"></i></div>
+        <label for="file-upload" class="upload">Photo</label>
+        <input type="file" id="file-upload" name="photo" style="display:none;">
+      </div>
+
+      <div class="campo">
+        <button type="submit">Register</button>
+
       </div>
     </div>
-
-    <div class="campo" >
-      <div>Id <select id="id" name="id1">
-        <option value="1">Cédula</option>
-        <option value="2">Dimex</option>
-      </select>
-      </div>
-      <div><input type="text" name="id2"></div>
-    </div>
-
-    <div class="campo" >
-      <div>Nombre</div>
-      <div><input type="text" name="nombre"></div>
-    </div>
-
   </div>
-
-</div>
-
-<!--<footer>-->
-<!--  <div class="footer-content">-->
-<!--    Total Soft Inc.-->
-<!--    <div>-->
-<!--      <a href="#" class="icon"><i class="fab fa-twitter"></i></a>-->
-<!--      <a href="#" class="icon"><i class="fab fa-facebook-f"></i></a>-->
-<!--      <a href="#" class="icon"><i class="fab fa-instagram"></i></a>-->
-<!--    </div>-->
-<!--    <div>○2019 Tsf, Inc.</div>-->
-<!--  </div>-->
+</form>
 
 <footer th:replace="~{/presentation/fragments/fragments.html :: footer}"></footer>
 </body>

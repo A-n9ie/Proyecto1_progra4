@@ -44,19 +44,19 @@ public class Usuario {
         this.id = id;
     }
 
-    public String getUsuario() {
+    public String getUsername() {
         return usuario;
     }
 
-    public void setUsuario(String usuario) {
+    public void setUsername(String usuario) {
         this.usuario = usuario;
     }
 
-    public String getClave() {
+    public String getPassword() {
         return clave;
     }
 
-    public void setClave(String clave) {
+    public void setPassword(String clave) {
         this.clave = clave;
     }
 

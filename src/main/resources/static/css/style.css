@@ -59,9 +59,8 @@ header {
     margin-bottom: 60px;
     margin-left: 20px;
     margin-right: 20px;
-    padding: 20px;
+    padding: 0;
     width: 100%;
-    background-color: #ccc;
 }
 /*------------------PRINCIPAL----------------------------*/
 .buscador{
@@ -125,20 +124,36 @@ button:hover{
     padding: 20px;
 }
 .register{
-    h1{
-        color: #b292da;
-        font-family: Cambria, serif;
-        font-style: italic;
-    }
+    margin-top: 0;
     color: #424242;
-
-    border: darkcyan solid 1px;
+    background-color: #efeeee;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    width: 40%;
-    padding: 20px;
+    width: 20%;
+    padding-top: 0.5%;
+    padding-bottom: 1%;
     border-radius: 15px;
+}
+
+.register img{
+    width: 30%;
+    height: auto;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.register button{
+    background-color: #f84d4d;
+    color: white;
+    margin-top: 5%;
+    padding: 5px 30px;;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 80%;
+    text-align: center;
 }
 
 div.campo {
@@ -161,7 +176,17 @@ div.campo>div:nth-child(1){
     font-weight: bold;
 }
 
-/*-------------------REGISTRO--------------------------------*/
+.upload {
+    background-color: #efeeee;
+    padding: 3px 6px;
+    border-radius: 2px;
+    cursor: pointer;
+    display: inline-block;
+    border: 2px solid black;
+    font-size: 13px;
+}
+
+/*-------------------FIN REGISTRO--------------------------------*/
 footer{
     background-color: #333;
     color: white;
