@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Medical Appointment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h2><img src="/images/dasdasd.jpg" height="768" width="1024"/>Medical Appointment</h2>
+
+            <p><i class="fas fa-phone-alt" style="font-size: 10px; color: orange;"></i> +506 5467 0937</p>
+
+            <div class="header-links">
+                <p>About...</p> <p>Search</p> <p>Login</p>
+                <p><a href="presentation/usuarios/registerSys">Registro</a></p>
+
+            </div>
+        </div>
+    </header>
+
+    <div class="cuerpo">
+        <div>
+            <div class="buscador">
+                <form class="buscar_especialidad_lugar">
+                    <span>Speciality</span>
+                    <input type="text" name="speciality" placeholder="">
+                    <span>City</span>
+                    <input type="text" name="city" placeholder="">
+                    <button type="submit">
+                        Search
+                    </button>
+                </form>
+        </div>
+        </div>
+            <div class="lista_medicos">
+        <table border="1">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Especialidad</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="m : ${medicos}">
+                <td th:text="${m.getId()}"></td>
+                <td th:text="${m.getNombre()}"></td>
+                <td th:text="${m.getEspecialidad()}"></td>
+                <td th:text="${m.getLugarAtencion()}"></td>
+            </tr>
+            </tbody>
+            </table>
+                <div class="col-md-6" th:each="m : ${medicos}">
+                    <div class="card mb-3 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <h5 class="card-title mb-0">
+                                        <span th:text="${m.getNombre()}"></span>
+                                        <span class="text-primary" th:text="${m.getId()}"></span>
+                                    </h5>
+                                    <small class="text-muted" th:text="${m.getEspecialidad()}"></small>
+                                </div>
+                            </div>
+                            <p class="mt-2">
+                                <i class="bi bi-geo-alt"></i>
+                                <span th:text="${m.getLugarAtencion()}"></span>
+                            </p>
+
+
+                        </div>
+
+    <footer>
+        <div class="footer-content">
+            Total Soft Inc.
+            <div>
+                <a href="#" class="icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="icon"><i class="fab fa-instagram"></i></a>
+            </div>
+            <div>○2019 Tsf, Inc.</div>
+        </div>
+
+    </footer>
+</body>
+</html>

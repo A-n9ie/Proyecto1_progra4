@@ -96,10 +96,10 @@ header {
     color: #555;
 }
 
-.card{
+.lista_medicos{
     background-color: red;
+    padding: 10px;
 }
-
 
 button {
     background-color: #007bff;

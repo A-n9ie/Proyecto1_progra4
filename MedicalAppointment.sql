@@ -1,4 +1,5 @@
 /* Creacion de la base de datos */
+drop database Medicalappointment;
 create database MedicalAppointment;
 
 use MedicalAppointment;
@@ -87,3 +88,5 @@ insert into pacientes (usuario_id, cedula, nombre, telefono, direccion, foto_url
  values (4, '4444444444', 'Georges Lucas', '555-1234', 'Alajuela', '');
 insert into pacientes (usuario_id, cedula, nombre, telefono, direccion, foto_url)
  values (5, '5555555555', 'Stan Lee', '665-1245', 'San Jose', '');
+ 
+ select * from medicos;
