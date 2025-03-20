@@ -34,58 +34,18 @@
         </div>
         </div>
 
-        <div class = "lista_medicos_div">
-            <ul class="lista_medicos_inscritos">
-                <li>
-                    <div class="medico">
-                <ul class="nombre_medico_lista">
-                    Bruce Banner
-                        <ul class="dias">
-                            <li class="dias_citas">
-                                19/03/2025
-                                <ul class="horas">
-                                    <li>3:00 pm</li>
-                                    <li>4:00 pm</li>
-                                </ul>
-                            </li>
-                            <li>
-                                20/03/2025
-                                <ul class="horas">
-                                    <li>3:00 pm</li>
-                                    <li>4:00 pm</li>
-                                </ul>
-                            </li>
-                        </ul>
-            </ul>
-                    </div>
-                </li>
-                <li>
-                    <div class="medico">
-                    <ul>
-                        Juan Jose Perez
-                        <ul class="dias">
-                            <li>
-                                19/03/2025
-                                <ul class="horas">
-                                    <li>3:00 pm</li>
-                                    <li>4:00 pm</li>
-                                </ul>
-                            </li>
-                            <li>
-                                20/03/2025
-                                <ul class="horas">
-                                    <li>3:00 pm</li>
-                                    <li>4:00 pm</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </ul>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-        <p><a href="/presentation/usuarios/show">Ver Usuarios</a></p>
+            <div th:each="medico : ${medicos}" class="card">
+                <h3>
+                    <strong th:text="${medico.getName()}"></strong>
+                    <span class="price"
+                          th:text="'₡' + ${medico.getCostoConsulta()}">
+                    </span>
+                </h3>
+                <p><strong>Especialidad:</strong> <span th:text="${medico.getEspecialidad()}"></span></p>
+                <p>
+                    <strong>Centro:</strong> <span th:text="${medico.getLugarAtencion()}"></span>
+                </p>
+            </div>
     </div>
 
     <footer>

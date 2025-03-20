@@ -14,6 +14,6 @@ public class ControllerDoctor {
     @GetMapping("/presentation/medicos/show")
     public String show(Model model) {
         model.addAttribute("medicos", serviceDoctor.medicosFindAll());
-        return "presentation/";
+        return "presentation/medicos/index";
     }
 }
