@@ -19,4 +19,8 @@ public class ServiceDoctor {
         doctor.setNombre(name);
         doctorRepository.save(doctor);
     }
+
+    public Medico findMedico(String cedula) {
+        return doctorRepository.findByCedula(cedula);
+    }
 }

@@ -36,8 +36,4 @@ public class ControllerPatient {
         servicePatient.addPatient(patient.getUsuario(), patient.getCedula(), patient.getNombre());
         return "redirect:/presentation/usuarios/registerSys";
     }
-
-
-
-
 }

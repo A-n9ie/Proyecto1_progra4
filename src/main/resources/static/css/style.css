@@ -54,13 +54,12 @@ header {
 
 .cuerpo{
     font-family: Arial, sans-serif;
-    padding-block: 30px;
+    padding-block: 20px;
     border-radius: 10px;
-    margin-top: 150px;
+    margin-top: 7%;
     margin-bottom: 60px;
     margin-left: 20px;
     margin-right: 20px;
-    padding: 20px;
     width: 100%;
 }
 /*------------------PRINCIPAL----------------------------*/
@@ -152,14 +151,6 @@ button:hover{
 }
 
 /*-------------------REGISTRO--------------------------------*/
-.backgroundRegister{
-    /*background-image: url("");*/
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    width: 1000%;
-    padding: 20px;
-}
 .register{
     margin-top: 0;
     color: #424242;
@@ -168,7 +159,7 @@ button:hover{
     margin-left: auto;
     margin-right: auto;
     width: 20%;
-    padding-top: 0.5%;
+    padding-top: 0.3%;
     padding-bottom: 1%;
     border-radius: 15px;
 }
@@ -221,6 +212,15 @@ div.campo>div:nth-child(1){
     display: inline-block;
     border: 2px solid black;
     font-size: 13px;
+}
+
+.error-message{
+    color: red;
+    font-size: 12px;
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 /*-------------------FIN REGISTRO--------------------------------*/

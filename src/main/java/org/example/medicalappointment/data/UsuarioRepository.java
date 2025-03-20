@@ -7,5 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UsuarioRepository extends CrudRepository<Usuario, Integer> {
     Usuario findTopByOrderByIdDesc();
+
+    Usuario findByUsuario(String username);
 }
 

@@ -24,8 +24,11 @@ public class ControllerDoctor {
 
     @GetMapping("/presentation/medico/doctorRegister")
     public String doctorRegister(@ModelAttribute("doctor") Medico doctor) {
-        System.out.println("medico registrandose");
-        System.out.println("dato usuario: " + doctor.getUsuario().getId());
+
+        if(serviceDoctor.findMedico(doctor.getCedula()) != null) {
+
+        }
+
         if (doctor.getUsuario() == null || doctor.getCedula() == null || doctor.getNombre() == null) {
             return "errorPage";
         }

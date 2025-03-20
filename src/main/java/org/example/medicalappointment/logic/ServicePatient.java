@@ -19,4 +19,8 @@ public class ServicePatient {
         paciente.setNombre(name);
         patientRepository.save(paciente);
     }
+
+    public Paciente FindPaciente(String cedula) {
+        return patientRepository.findByCedula(cedula);
+    }
 }

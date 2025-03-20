@@ -23,4 +23,8 @@ public class ServiceUser {
     public Usuario getLastUser() {
         return usuarioRepository.findTopByOrderByIdDesc();
     }
+
+    public Usuario getUser(String username) {
+        return usuarioRepository.findByUsuario(username);
+    }
 }

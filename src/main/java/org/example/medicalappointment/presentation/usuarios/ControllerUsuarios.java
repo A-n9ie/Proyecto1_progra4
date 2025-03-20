@@ -38,8 +38,14 @@ public class ControllerUsuarios {
                                   @RequestParam("nombre") String nombre,
                                   RedirectAttributes redirectAttributes) {
         if (!usuario.getPassword().equals(passwordConfirm)) {
-            return "presentation/usuarios/register";
+            redirectAttributes.addFlashAttribute("error", "Password does not match");
+            return "redirect:/presentation/usuarios/registerSys";
         }
+        if(serviceUser.getUser(usuario.getUsername()) != null) {
+            redirectAttributes.addFlashAttribute("error", "Username already exists");
+            return "redirect:/presentation/usuarios/registerSys";
+        }
+
         serviceUser.addUser(usuario.getUsername(), usuario.getPassword(), usuario.getRol());
 
         usuario = serviceUser.getLastUser();
@@ -62,8 +68,4 @@ public class ControllerUsuarios {
             return "redirect:/presentation/patient/patientRegister";
         }
     }
-
-
-
-
 }
