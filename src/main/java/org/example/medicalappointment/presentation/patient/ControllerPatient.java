@@ -27,11 +27,17 @@ public class ControllerPatient {
         return "presentation/usuarios/register";
     }
 
-    @PostMapping("/presentation/usuarios/patientRegister")
-    public String patientRegister(@ModelAttribute Paciente paciente) {
-        servicePatient.addPatient(paciente.getUsuario(), paciente.getCedula(), paciente.getNombre());
-        return "redirect:/presentation/usuarios/registerSystem";
+    @GetMapping("/presentation/patient/patientRegister")
+    public String patientRegister(@ModelAttribute("paciente") Paciente patient) {
+        if (patient.getUsuario() == null || patient.getCedula() == null || patient.getNombre() == null) {
+            return "errorPage";
+        }
+
+        servicePatient.addPatient(patient.getUsuario(), patient.getCedula(), patient.getNombre());
+        return "redirect:/presentation/usuarios/registerSys";
     }
+
+
 
 
 }

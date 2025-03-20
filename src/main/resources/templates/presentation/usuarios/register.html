@@ -17,7 +17,7 @@
 
       <div class="campo">
         <div><i class="fas fa-id-card"></i></div>
-        <div><input type="text" name="id" placeholder="ID" required /></div>
+        <div><input type="text" name="cedula" placeholder="ID" required /></div>
       </div>
 
       <div class="campo">
@@ -45,7 +45,7 @@
         <div>
           <select name="rol" required>
             <option value="Paciente" th:selected="${usuario.rol == 'Paciente'}">Patient</option>
-            <option value="Doctor" th:selected="${usuario.rol == 'Doctor'}">Doctor</option>
+            <option value="Medico" th:selected="${usuario.rol == 'Medico'}">Doctor</option>
           </select>
         </div>
       </div>

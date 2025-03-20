@@ -19,4 +19,8 @@ public class ServiceUser {
         usuario.setRol(rol);
         usuarioRepository.save(usuario);
     }
+
+    public Usuario getLastUser() {
+        return usuarioRepository.findTopByOrderByIdDesc();
+    }
 }

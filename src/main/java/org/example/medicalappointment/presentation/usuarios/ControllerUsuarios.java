@@ -1,5 +1,7 @@
 package org.example.medicalappointment.presentation.usuarios;
 
+import org.example.medicalappointment.logic.Medico;
+import org.example.medicalappointment.logic.Paciente;
 import org.example.medicalappointment.logic.ServiceUser;
 import org.example.medicalappointment.logic.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @org.springframework.stereotype.Controller("usuarios")
 
@@ -29,13 +32,38 @@ public class ControllerUsuarios {
     }
 
     @PostMapping("/presentation/usuarios/registerUsuario")
-    public String registerUsuario(@ModelAttribute Usuario usuario, @RequestParam("password_c") String passwordConfirm) {
+    public String registerUsuario(@ModelAttribute Usuario usuario,
+                                  @RequestParam("password_c") String passwordConfirm,
+                                  @RequestParam("cedula") String cedula,
+                                  @RequestParam("nombre") String nombre,
+                                  RedirectAttributes redirectAttributes) {
         if (!usuario.getPassword().equals(passwordConfirm)) {
             return "presentation/usuarios/register";
         }
         serviceUser.addUser(usuario.getUsername(), usuario.getPassword(), usuario.getRol());
-        return "redirect:/presentation/usuarios/registerSys";
+
+        usuario = serviceUser.getLastUser();
+
+        if ("Medico".equals(usuario.getRol())) {
+            Medico doctor = new Medico();
+            doctor.setCedula(cedula);
+            doctor.setNombre(nombre);
+            doctor.setUsuario(usuario);
+
+            redirectAttributes.addFlashAttribute("doctor", doctor);
+            return "redirect:/presentation/medico/doctorRegister";
+        } else {
+            Paciente patient = new Paciente();
+            patient.setCedula(cedula);
+            patient.setNombre(nombre);
+            patient.setUsuario(usuario);
+
+            redirectAttributes.addFlashAttribute("paciente", patient);
+            return "redirect:/presentation/patient/patientRegister";
+        }
     }
+
+
 
 
 }
