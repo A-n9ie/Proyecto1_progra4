@@ -37,35 +37,41 @@ public class ControllerUsuarios {
                                   @RequestParam("cedula") String cedula,
                                   @RequestParam("nombre") String nombre,
                                   RedirectAttributes redirectAttributes) {
+
         if (!usuario.getPassword().equals(passwordConfirm)) {
             redirectAttributes.addFlashAttribute("error", "Password does not match");
             return "redirect:/presentation/usuarios/registerSys";
-        }
-        if(serviceUser.getUser(usuario.getUsername()) != null) {
+        } else if(serviceUser.getUser(usuario.getUsername()) != null) {
             redirectAttributes.addFlashAttribute("error", "Username already exists");
             return "redirect:/presentation/usuarios/registerSys";
+        } else if(serviceUser.getPaciente(cedula) != null && usuario.getRol().equals("Paciente")) {
+            redirectAttributes.addFlashAttribute("error", "Patient already exists");
+            return "redirect:/presentation/usuarios/registerSys";
+        } else if (serviceUser.getMedico(cedula) != null  && usuario.getRol().equals("Medico") ) {
+            redirectAttributes.addFlashAttribute("error", "Doctor already exists");
+            return "redirect:/presentation/usuarios/registerSys";
         }
+        else {
+            serviceUser.addUser(usuario.getUsername(), usuario.getPassword(), usuario.getRol());
 
-        serviceUser.addUser(usuario.getUsername(), usuario.getPassword(), usuario.getRol());
+            usuario = serviceUser.getLastUser();
 
-        usuario = serviceUser.getLastUser();
-
-        if ("Medico".equals(usuario.getRol())) {
-            Medico doctor = new Medico();
-            doctor.setCedula(cedula);
-            doctor.setNombre(nombre);
-            doctor.setUsuario(usuario);
-
-            redirectAttributes.addFlashAttribute("doctor", doctor);
-            return "redirect:/presentation/medico/doctorRegister";
-        } else {
-            Paciente patient = new Paciente();
-            patient.setCedula(cedula);
-            patient.setNombre(nombre);
-            patient.setUsuario(usuario);
-
-            redirectAttributes.addFlashAttribute("paciente", patient);
-            return "redirect:/presentation/patient/patientRegister";
+            if ("Medico".equals(usuario.getRol())) {
+                Medico doctor = new Medico();
+                doctor.setCedula(cedula);
+                doctor.setNombre(nombre);
+                doctor.setUsuario(usuario);
+                redirectAttributes.addFlashAttribute("doctor", doctor);
+                return "redirect:/presentation/medico/doctorRegister";
+            } else {
+                Paciente patient = new Paciente();
+                patient.setCedula(cedula);
+                patient.setNombre(nombre);
+                patient.setUsuario(usuario);
+                redirectAttributes.addFlashAttribute("paciente", patient);
+                return "redirect:/presentation/patient/patientRegister";
+            }
         }
     }
+
 }

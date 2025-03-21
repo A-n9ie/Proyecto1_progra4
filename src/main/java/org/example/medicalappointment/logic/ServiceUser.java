@@ -1,5 +1,7 @@
 package org.example.medicalappointment.logic;
 
+import org.example.medicalappointment.data.DoctorRepository;
+import org.example.medicalappointment.data.PatientRepository;
 import org.example.medicalappointment.data.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -7,6 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class ServiceUser {
     @Autowired
     private UsuarioRepository usuarioRepository;
+    @Autowired
+    private PatientRepository patientRepository;
+    @Autowired
+    private DoctorRepository doctorRepository;
 
     public Iterable<Usuario> usuariosFindAll() {
         return usuarioRepository.findAll();
@@ -29,4 +35,11 @@ public class ServiceUser {
     }
 
 
+    public Paciente getPaciente(String cedula) {
+        return patientRepository.findByCedula(cedula);
+    }
+
+    public Medico getMedico(String cedula) {
+        return doctorRepository.findByCedula(cedula);
+    }
 }

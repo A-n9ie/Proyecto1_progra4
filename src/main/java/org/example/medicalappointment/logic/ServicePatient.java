@@ -20,7 +20,6 @@ public class ServicePatient {
         patientRepository.save(paciente);
     }
 
-    public Paciente FindPaciente(String cedula) {
-        return patientRepository.findByCedula(cedula);
-    }
+    public Paciente findPatient(String cedula) {return patientRepository.findByCedula(cedula);}
+
 }
