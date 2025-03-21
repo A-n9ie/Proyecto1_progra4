@@ -30,6 +30,13 @@ CREATE TABLE medicos (
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id) 
 );
 
+CREATE TABLE horarios_medicos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    medico_id INT,
+    dia ENUM('Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'),
+    FOREIGN KEY (medico_id) REFERENCES medicos(id)
+);
+
 CREATE TABLE pacientes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     usuario_id INT,
@@ -89,4 +96,24 @@ insert into pacientes (usuario_id, cedula, nombre, telefono, direccion, foto_url
 insert into pacientes (usuario_id, cedula, nombre, telefono, direccion, foto_url)
  values (5, '5555555555', 'Stan Lee', '665-1245', 'San Jose', '');
  
- select * from medicos;
+
+insert into horarios_medicos (medico_id, dia) 
+values (1, 'Lunes');
+insert into horarios_medicos (medico_id, dia) 
+values (1, 'Martes');
+insert into horarios_medicos (medico_id, dia) 
+values (1, 'Miercoles');
+insert into horarios_medicos (medico_id, dia) 
+values (1, 'Jueves');
+insert into horarios_medicos (medico_id, dia) 
+values (1, 'Viernes');
+
+insert into horarios_medicos (medico_id, dia) 
+values (2, 'Martes');
+insert into horarios_medicos (medico_id, dia) 
+values (2, 'Jueves');
+
+insert into horarios_medicos (medico_id, dia) 
+values (3, 'Sabado');
+insert into horarios_medicos (medico_id, dia) 
+values (3, 'Domingo');
