@@ -28,7 +28,7 @@ public class ControllerUsuarios {
     @GetMapping("/presentation/usuarios/registerSys")
     public String register(Model model) {
         model.addAttribute("usuario", new Usuario());
-        return "presentation/usuarios/register";
+        return "presentation/doctor/profile";
     }
 
     @PostMapping("/presentation/usuarios/registerUsuario")

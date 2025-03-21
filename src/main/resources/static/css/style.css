@@ -177,12 +177,13 @@ header {
     margin-top: 0;
     color: #424242;
     background-color: #efeeee;
+    border: 1px solid #333333;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    width: 20%;
-    padding-top: 0.3%;
-    padding-bottom: 1%;
+    width: 25%;
+    padding-top: 0.1%;
+    padding-bottom: 0.7%;
     border-radius: 15px;
 }
 
@@ -199,7 +200,7 @@ header {
     margin-top: 5%;
     padding: 5px 30px;;
     border: none;
-    border-radius: 0px;
+    border-radius: 0;
     cursor: pointer;
     font-size: 16px;
     width: 80%;
@@ -245,7 +246,41 @@ div.campo>div:nth-child(1){
     margin-bottom: 0;
 }
 
+.register i{
+    border-radius: 2px;
+    background-color: white;
+    border: 1px solid #777777;
+    padding: 15%;
+}
+
 /*-------------------FIN REGISTRO--------------------------------*/
+/*---------------------PERFIL--------------------------------*/
+.col_datos {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid blue;
+    background-color: #efeeee;
+    width: 90%;
+    height: auto;
+    padding: 10px;
+}
+
+.datos {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid violet;
+    background-color: whitesmoke;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.datos img{
+    width: 30%;
+    height: auto;
+    border-radius: 40%;
+    object-fit: cover;
+}
+/*-------------------FIN PERFIL--------------------------------*/
 footer{
     background-color: #333;
     color: white;
