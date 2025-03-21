@@ -279,4 +279,42 @@ footer{
     transition: background-color 0.3s, color 0.3s;
 }
 
+/*Login CSS*/
+
+
+
+
+.divFormLogin {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.LoginBody{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.buttonLogin {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1em;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.buttonLogin:hover {
+    background-color: #0056b3;
+}
+
 /*<p>Appointments</p> <p>Profile</p> <p>Usuario</p>*/

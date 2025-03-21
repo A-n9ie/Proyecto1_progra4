@@ -74,4 +74,41 @@ public class ControllerUsuarios {
         }
     }
 
+
+//    Login
+
+    @GetMapping("/presentation/usuarios/login")
+    public String showLoginPage() {
+        return "presentation/usuarios/login";
+    }
+
+    @PostMapping("/presentation/usuarios/login")
+    public String login(@RequestParam("username") String username,
+                        @RequestParam("password") String password,
+                        RedirectAttributes redirectAttributes) {
+
+
+        Usuario usuario = serviceUser.getUser(username);
+
+        if (usuario == null) {
+            redirectAttributes.addFlashAttribute("error", "Usuario no encontrado");
+            return "redirect:/presentation/usuarios/login";
+        }
+
+
+        if (!usuario.getPassword().equals(password)) {
+            redirectAttributes.addFlashAttribute("error", "Credenciales incorrectas");
+            return "redirect:/presentation/usuarios/login";
+        }
+
+
+        if ("Medico".equals(usuario.getRol())) {
+            return "redirect:/presentation/principal/index"; //Hay que ver a donde tiene que llevarlos
+        } else if ("Paciente".equals(usuario.getRol())) {
+            return "redirect:/presentation/principal/index"; //Hay que ver a donde tiene que llevarlos
+        }
+
+        redirectAttributes.addFlashAttribute("error", "Rol no reconocido");
+        return "redirect:/presentation/usuarios/login";
+    }
 }

@@ -2,15 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
-<body>
+
+<body class="LoginBody">
+
 <header th:replace="~{/presentation/fragments/fragments.html :: header}"></header>
 
-<main>
     <div class="divFormLogin">
         <form action="/login" method="post">
-            <div class="loginSeccion">&#128697; Login</div>
+            <div class="loginSeccion">
+                <img src="../../../static/images/login-icon.png" height="2048" width="2048"/><img src="" alt="Login" class="iconLogin">
+                Login
+            </div>
             <div>
                 <div class="loginLabel">Id</div>
                 <div class="loginfield"><input type="text" id="username" name="username" /></div>
@@ -19,14 +25,15 @@
                 <div class="loginLabel">Clave</div>
                 <div class="loginField"><input type="password" id="password" name="password" required /></div>
             </div>
-            <div class="loginSeccion"><input type="submit" name="login" value="Login" class="button"></div>
+            <div class="loginSeccion"><input type="submit" name="login" value="Login" class="buttonLogin"></div>
         </form>
     </div>
-    <div th:if="${param.error != null}" class="error">
+    <div th:if="${param.error != null}" class="errorLogin">
         <p>Credenciales incorrectas</p>
     </div>
-</main>
 
 <footer th:replace="~{/presentation/fragments/fragments.html :: footer}"></footer>
+
+
 </body>
 </html>
