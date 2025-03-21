@@ -14,18 +14,22 @@
     <div class="divFormLogin">
         <form action="/login" method="post">
             <div class="loginSeccion">
-                <img src="../../../static/images/login-icon.png" height="2048" width="2048"/><img src="" alt="Login" class="iconLogin">
-                Login
+               <img src="/images/login-icon.png" alt="Login" class="iconLogin">
+                <div class="TituloLogin">Login</div>
             </div>
-            <div>
+            <div class="loginFieldsContainer">
                 <div class="loginLabel">Id</div>
-                <div class="loginfield"><input type="text" id="username" name="username" /></div>
+                <div class="loginField">
+                    <input type="text" id="username" name="username" />
+                </div>
             </div>
-            <div>
+            <div class="loginFieldsContainer">
                 <div class="loginLabel">Clave</div>
-                <div class="loginField"><input type="password" id="password" name="password" required /></div>
+                <div class="loginField">
+                    <input type="password" id="password" name="password" required />
+                </div>
             </div>
-            <div class="loginSeccion"><input type="submit" name="login" value="Login" class="buttonLogin"></div>
+            <div class="loginSeccion"><input type="submit" name="log in" value="Login" class="buttonLogin"></div>
         </form>
     </div>
     <div th:if="${param.error != null}" class="errorLogin">
