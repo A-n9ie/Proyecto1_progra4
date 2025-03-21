@@ -104,19 +104,22 @@ header {
 
 .medicos{
     margin-top: 10px;
-    padding: 20px;
     border-radius: 10px;
     background-color: white;
     display: flex;
-    align-items: center;
 }
+
+.informacion_medico{
+    background-color: white;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+}
+
 .medicos h5{
     color: black;
     font-weight: bold;
-}
-
-.separacion{
-    border-bottom: 1px solid #ccc;
 }
 
 .medicos p{
@@ -139,23 +142,35 @@ header {
     margin-right: 10px;
 }
 
-.informacion_medico{
-    display: flex;
-    align-items: center;
+.citas_disponibles{
+    display: grid;
+    grid-template-columns: repeat(5, auto);
 }
 
-.buscador button{
+.info_citas{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    padding: 10px;
+}
+
+#cuerpo_div_index button{
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 5px;
     cursor: pointer;
     border-radius: 20px;
+    margin: 5px;
+    display: flex;
+    justify-content: space-between;
 }
 
-button:hover{
+#cuerpo_div_index button:hover{
     background-color: lightslategrey ;
 }
+
 
 /*-------------------REGISTRO--------------------------------*/
 .register{

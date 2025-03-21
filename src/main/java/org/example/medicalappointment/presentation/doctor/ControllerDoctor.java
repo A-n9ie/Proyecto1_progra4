@@ -6,17 +6,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
 @org.springframework.stereotype.Controller("medicos")
+
 //@RequestMapping("/")
 public class ControllerDoctor {
     @Autowired
     private ServiceDoctor serviceDoctor;
 
+
     @GetMapping("")
     public String show(Model model) {
+        int id=2;
         model.addAttribute("medicos", serviceDoctor.medicosFindAll());
+        model.addAttribute("medicosHorarios", serviceDoctor.diasAtencion(id));
         return "/presentation/principal/index";
     }
 
@@ -24,7 +29,6 @@ public class ControllerDoctor {
     public String doctorRegister(@ModelAttribute("doctor") Medico doctor) {
 
         if(serviceDoctor.findMedico(doctor.getCedula()) != null) {
-
         }
 
         if (doctor.getUsuario() == null || doctor.getCedula() == null || doctor.getNombre() == null) {
@@ -34,7 +38,5 @@ public class ControllerDoctor {
         serviceDoctor.addDoctor(doctor.getUsuario(), doctor.getCedula(), doctor.getNombre());
         return "redirect:/presentation/usuarios/registerSys";
     }
-
-
 
 }
