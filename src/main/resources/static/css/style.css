@@ -180,14 +180,14 @@ header {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    width: 20%;
-    padding-top: 0.3%;
+    width: 25%;
+    padding-top: 0.05%;
     padding-bottom: 1%;
     border-radius: 15px;
 }
 
 .register img{
-    width: 30%;
+    width: 20%;
     height: auto;
     border-radius: 50%;
     object-fit: cover;
@@ -274,7 +274,7 @@ div.campo>div:nth-child(1){
 }
 
 .datos img{
-    width: 30%;
+    width: 20%;
     height: auto;
     border-radius: 40%;
     object-fit: cover;

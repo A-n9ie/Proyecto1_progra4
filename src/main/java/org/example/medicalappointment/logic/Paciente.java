@@ -1,6 +1,7 @@
 package org.example.medicalappointment.logic;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -9,7 +10,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "pacientes")
-public class Paciente {
+public class Paciente extends Persona {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -22,6 +23,7 @@ public class Paciente {
     @Size(max = 20)
     @NotNull
     @Column(name = "cedula", nullable = false, length = 20)
+    @NotBlank(message = "ID is required and cannot be empty")
     private String cedula;
 
     @Size(max = 30)
@@ -31,6 +33,7 @@ public class Paciente {
 
     @Size(max = 20)
     @Column(name = "telefono", length = 20)
+    @NotBlank(message = "Name is required")
     private String telefono;
 
     @Size(max = 255)
@@ -43,6 +46,10 @@ public class Paciente {
 
     @OneToMany(mappedBy = "paciente")
     private Set<Cita> citas = new LinkedHashSet<>();
+
+    public Paciente(Persona persona) {super(persona);}
+
+    public Paciente() {super();}
 
     public Integer getId() {
         return id;

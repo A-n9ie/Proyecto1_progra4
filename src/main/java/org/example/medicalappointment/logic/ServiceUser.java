@@ -1,7 +1,5 @@
 package org.example.medicalappointment.logic;
 
-import org.example.medicalappointment.data.DoctorRepository;
-import org.example.medicalappointment.data.PatientRepository;
 import org.example.medicalappointment.data.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -9,21 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class ServiceUser {
     @Autowired
     private UsuarioRepository usuarioRepository;
-    @Autowired
-    private PatientRepository patientRepository;
-    @Autowired
-    private DoctorRepository doctorRepository;
 
     public Iterable<Usuario> usuariosFindAll() {
         return usuarioRepository.findAll();
-    }
-
-    public void addUser(String username, String password, String rol) {
-        Usuario usuario = new Usuario();
-        usuario.setUsername(username);
-        usuario.setPassword(password);
-        usuario.setRol(rol);
-        usuarioRepository.save(usuario);
     }
 
     public Usuario getLastUser() {
@@ -34,12 +20,13 @@ public class ServiceUser {
         return usuarioRepository.findByUsuario(username);
     }
 
-
-    public Paciente getPaciente(String cedula) {
-        return patientRepository.findByCedula(cedula);
-    }
-
-    public Medico getMedico(String cedula) {
-        return doctorRepository.findByCedula(cedula);
+    public void addUser(Usuario user, String password) {
+        if (getUser(user.getUsername()) != null) {
+            throw new IllegalArgumentException("User already exists");
+        }
+        if(!user.getPassword().equals(password)) {
+            throw new IllegalArgumentException("Wrong password");
+        }
+        usuarioRepository.save(user);
     }
 }

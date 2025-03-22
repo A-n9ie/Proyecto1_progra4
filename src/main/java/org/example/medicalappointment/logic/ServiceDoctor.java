@@ -22,15 +22,15 @@ public class ServiceDoctor {
         return doctorRepository.findAll();
     }
 
-    public void addDoctor(Usuario user, String id, String name) {
-        Medico doctor = new Medico();
+    public void addDoctor(Usuario user, Medico doctor) {
+        if(findDoctor(doctor.getCedula()) != null) {
+            throw new IllegalArgumentException("Doctor already exists");
+        }
         doctor.setUsuario(user);
-        doctor.setCedula(id);
-        doctor.setNombre(name);
         doctorRepository.save(doctor);
     }
 
-    public Medico findMedico(String cedula) {
+    public Medico findDoctor(String cedula) {
         return doctorRepository.findByCedula(cedula);
     }
 

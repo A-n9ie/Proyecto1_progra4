@@ -1,8 +1,7 @@
 package org.example.medicalappointment.logic;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.math.BigDecimal;
@@ -13,7 +12,7 @@ import java.util.*;
 
 @Entity
 @Table(name = "medicos")
-public class Medico {
+public class Medico extends Persona {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -26,11 +25,13 @@ public class Medico {
     @Size(max = 20)
     @NotNull
     @Column(name = "cedula", nullable = false, length = 20)
+    @NotBlank(message = "ID is required and cannot be empty")
     private String cedula;
 
     @Size(max = 30)
     @NotNull
     @Column(name = "nombre", nullable = false, length = 30)
+    @NotBlank(message = "Name is required")
     private String nombre;
 
     @ColumnDefault("0")
@@ -68,6 +69,10 @@ public class Medico {
 
     @OneToMany(mappedBy = "medico")
     private Set<Cita> citas = new LinkedHashSet<>();
+
+    public Medico(Persona persona) {super(persona);}
+
+    public Medico() {super();}
 
     public Integer getId() {
         return id;

@@ -1,15 +1,11 @@
 package org.example.medicalappointment.presentation.usuarios;
 
-import org.example.medicalappointment.logic.Medico;
-import org.example.medicalappointment.logic.Paciente;
-import org.example.medicalappointment.logic.ServiceUser;
-import org.example.medicalappointment.logic.Usuario;
+import org.example.medicalappointment.logic.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import jakarta.validation.*;
+import org.springframework.validation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @org.springframework.stereotype.Controller("usuarios")
@@ -28,49 +24,36 @@ public class ControllerUsuarios {
     @GetMapping("/presentation/usuarios/registerSys")
     public String register(Model model) {
         model.addAttribute("usuario", new Usuario());
-        return "presentation/doctor/profile";
+        model.addAttribute("persona", new Persona());
+        return "presentation/usuarios/register";
     }
 
-    @PostMapping("/presentation/usuarios/registerUsuario")
-    public String registerUsuario(@ModelAttribute Usuario usuario,
-                                  @RequestParam("password_c") String passwordConfirm,
-                                  @RequestParam("cedula") String cedula,
-                                  @RequestParam("nombre") String nombre,
-                                  RedirectAttributes redirectAttributes) {
-
-        if (!usuario.getPassword().equals(passwordConfirm)) {
-            redirectAttributes.addFlashAttribute("error", "Password does not match");
-            return "redirect:/presentation/usuarios/registerSys";
-        } else if(serviceUser.getUser(usuario.getUsername()) != null) {
-            redirectAttributes.addFlashAttribute("error", "Username already exists");
-            return "redirect:/presentation/usuarios/registerSys";
-        } else if(serviceUser.getPaciente(cedula) != null && usuario.getRol().equals("Paciente")) {
-            redirectAttributes.addFlashAttribute("error", "Patient already exists");
-            return "redirect:/presentation/usuarios/registerSys";
-        } else if (serviceUser.getMedico(cedula) != null  && usuario.getRol().equals("Medico") ) {
-            redirectAttributes.addFlashAttribute("error", "Doctor already exists");
+    @PostMapping("/presentation/usuarios/create")
+    public String create(@Valid @ModelAttribute Usuario usuario,
+                         @Valid @ModelAttribute Persona persona,
+                         BindingResult result,
+                         @RequestParam("password_c") String passwordConfirm,
+                         RedirectAttributes redirectAttributes) {
+        if (result.hasErrors()) {
+            redirectAttributes.addFlashAttribute("error", "Error in the input data");
             return "redirect:/presentation/usuarios/registerSys";
         }
-        else {
-            serviceUser.addUser(usuario.getUsername(), usuario.getPassword(), usuario.getRol());
-
+        try {
+            serviceUser.addUser(usuario, passwordConfirm);
             usuario = serviceUser.getLastUser();
 
             if ("Medico".equals(usuario.getRol())) {
-                Medico doctor = new Medico();
-                doctor.setCedula(cedula);
-                doctor.setNombre(nombre);
-                doctor.setUsuario(usuario);
+                Medico doctor = new Medico(persona);
                 redirectAttributes.addFlashAttribute("doctor", doctor);
-                return "redirect:/presentation/medico/doctorRegister";
+                return "redirect:/presentation/medico/create";
             } else {
-                Paciente patient = new Paciente();
-                patient.setCedula(cedula);
-                patient.setNombre(nombre);
-                patient.setUsuario(usuario);
+                Paciente patient = new Paciente(persona);
                 redirectAttributes.addFlashAttribute("paciente", patient);
-                return "redirect:/presentation/patient/patientRegister";
+                return "redirect:/presentation/patient/create";
             }
+        } catch (Exception e) {
+            result.addError(new FieldError ("usuario", "username", e.getMessage()));
+            return "redirect:/presentation/usuarios/registerSys";
         }
     }
 
@@ -112,3 +95,4 @@ public class ControllerUsuarios {
         return "redirect:/presentation/usuarios/login";
     }
 }
+

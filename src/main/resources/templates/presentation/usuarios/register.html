@@ -9,48 +9,73 @@
 <body>
 <header th:replace="~{/presentation/fragments/fragments.html :: header}"></header>
 
-<form action="/presentation/usuarios/registerUsuario" method="POST">
+<form action="/presentation/usuarios/create" method="POST">
   <div class="cuerpo">
     <div class="register">
       <h1>Register</h1>
       <img src="/images/3756698.png" height="512" width="512"/>
 
+      <!-- Mostrar mensaje de error general -->
       <div th:if="${error}" class="error-message">
         <p th:text="${error}"></p>
       </div>
 
+      <!-- Campos del formulario -->
       <div class="campo">
         <div><i class="fas fa-id-card"></i></div>
-        <div><input type="text" name="cedula" placeholder="ID" required /></div>
+        <div>
+          <input type="text" th:field="*{persona.cedula}" placeholder="ID" required />
+          <div th:if="${#fields.hasErrors('persona.cedula')}" class="error-message">
+            <p th:text="${#fields.errors('persona.cedula')}"></p>
+          </div>
+        </div>
       </div>
 
       <div class="campo">
         <div><i class="fas fa-user"></i></div>
-        <div><input type="text" name="nombre" placeholder="Name" required /></div>
+        <div>
+          <input type="text" th:field="*{persona.nombre}" placeholder="Name" required />
+          <div th:if="${#fields.hasErrors('persona.nombre')}" class="error-message">
+            <p th:text="${#fields.errors('persona.nombre')}"></p>
+          </div>
+        </div>
       </div>
 
       <div class="campo">
         <div><i class="fas fa-user-circle"></i></div>
-        <div><input type="text" name="username" th:value="${usuario.username}" placeholder="UserName" required /></div>
+        <div>
+          <input type="text" th:field="*{usuario.username}" placeholder="UserName" required />
+          <div th:if="${#fields.hasErrors('usuario.username')}" class="error-message">
+            <p th:text="${#fields.errors('usuario.username')}"></p>
+          </div>
+        </div>
       </div>
 
       <div class="campo">
         <div><i class="fas fa-key"></i></div>
-        <div><input type="password" name="password" th:value="${usuario.password}" placeholder="Password" required /></div>
+        <div>
+          <input type="password" th:field="*{usuario.password}" placeholder="Password" required />
+          <div th:if="${#fields.hasErrors('usuario.password')}" class="error-message">
+            <p th:text="${#fields.errors('usuario.password')}"></p>
+          </div>
+        </div>
       </div>
 
-      <div class="campo">
-        <div><i class="fas fa-lock"></i></div>
-        <div><input type="password" name="password_c" placeholder="Confirm Password" required /></div>
-      </div>
+        <div class="campo">
+          <div><i class="fas fa-lock"></i></div>
+          <div><input type="password" name="password_c" placeholder="Confirm Password" required /></div>
+        </div>
 
       <div class="campo">
         <div><i class="fas fa-user-tag"></i></div>
         <div>
-          <select name="rol" required>
+          <select th:field="*{usuario.rol}" required>
             <option value="Paciente" th:selected="${usuario.rol == 'Paciente'}">Patient</option>
             <option value="Medico" th:selected="${usuario.rol == 'Medico'}">Doctor</option>
           </select>
+          <div th:if="${#fields.hasErrors('usuario.rol')}" class="error-message">
+            <p th:text="${#fields.errors('usuario.rol')}"></p>
+          </div>
         </div>
       </div>
 
@@ -70,3 +95,5 @@
 <footer th:replace="~{/presentation/fragments/fragments.html :: footer}"></footer>
 </body>
 </html>
+
+

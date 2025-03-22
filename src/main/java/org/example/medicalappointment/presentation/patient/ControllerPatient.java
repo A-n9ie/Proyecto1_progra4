@@ -4,10 +4,9 @@ import org.example.medicalappointment.logic.Paciente;
 import org.example.medicalappointment.logic.ServicePatient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.*;
+import jakarta.validation.*;
 
 @org.springframework.stereotype.Controller("pacientes")
 
@@ -27,13 +26,17 @@ public class ControllerPatient {
         return "presentation/usuarios/register";
     }
 
-    @GetMapping("/presentation/patient/patientRegister")
-    public String patientRegister(@ModelAttribute("paciente") Paciente patient) {
+    @GetMapping("/presentation/patient/create")
+    public String create(@Valid @ModelAttribute("paciente") Paciente patient, BindingResult result) {
         if (patient.getUsuario() == null || patient.getCedula() == null || patient.getNombre() == null) {
             return "errorPage";
         }
-
-        servicePatient.addPatient(patient.getUsuario(), patient.getCedula(), patient.getNombre());
-        return "redirect:/presentation/usuarios/registerSys";
+        try {
+            servicePatient.addPatient(patient.getUsuario(), patient);
+            return "redirect:/presentation/usuarios/registerSys";
+        } catch (Exception e) {
+            result.addError(new FieldError("paciente", "cedula", e.getMessage()));
+            return "redirect:/presentation/usuarios/registerSys";
+        }
     }
 }

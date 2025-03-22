@@ -1,8 +1,8 @@
 package org.example.medicalappointment.logic;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
+
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -18,16 +18,19 @@ public class Usuario {
     @Size(max = 20)
     @NotNull
     @Column(name = "usuario", nullable = false, length = 20)
+    @NotBlank(message = "User is required and cannot be empty")
     private String usuario;
 
     @Size(max = 255)
     @NotNull
     @Column(name = "clave", nullable = false)
+    @NotBlank(message = "Password is required and cannot be empty")
     private String clave;
 
     @NotNull
     @Lob
     @Column(name = "rol", nullable = false)
+    @NotBlank(message = "Rol is required")
     private String rol;
 
     @OneToMany(mappedBy = "usuario")
