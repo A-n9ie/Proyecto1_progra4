@@ -86,9 +86,9 @@ public class ControllerUsuarios {
 
 
         if ("Medico".equals(usuario.getRol())) {
-            return "redirect:/presentation/principal/index"; //Hay que ver a donde tiene que llevarlos
+            return "redirect:/"; //Hay que ver a donde tiene que llevarlos
         } else if ("Paciente".equals(usuario.getRol())) {
-            return "redirect:/presentation/principal/index"; //Hay que ver a donde tiene que llevarlos
+            return "redirect:/"; //Hay que ver a donde tiene que llevarlos
         }
 
         redirectAttributes.addFlashAttribute("error", "Rol no reconocido");

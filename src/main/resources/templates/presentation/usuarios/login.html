@@ -12,28 +12,32 @@
 <header th:replace="~{/presentation/fragments/fragments.html :: header}"></header>
 
     <div class="divFormLogin">
-        <form action="/login" method="post">
+        <form action="/presentation/usuarios/login" method="post">
             <div class="loginSeccion">
                <img src="/images/login-icon.png" alt="Login" class="iconLogin">
                 <div class="TituloLogin">Login</div>
             </div>
             <div class="loginFieldsContainer">
-                <div class="loginLabel">Id</div>
+<!--                <div class="loginLabel">Id</div>-->
                 <div class="loginField">
-                    <input type="text" id="username" name="username" />
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="username" name="username" placeholder="ID"/>
                 </div>
             </div>
             <div class="loginFieldsContainer">
-                <div class="loginLabel">Clave</div>
+<!--                <div class="loginLabel">Clave</div>-->
                 <div class="loginField">
-                    <input type="password" id="password" name="password" required />
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" name="password" required placeholder="Password"/>
                 </div>
             </div>
             <div class="loginSeccion"><input type="submit" name="log in" value="Login" class="buttonLogin"></div>
         </form>
+        <div class="RegisterHere">Don't have an account yet?<p><a th:href="@{/presentation/usuarios/registerSys}">Sign up here.</a></p></div>
     </div>
+
     <div th:if="${param.error != null}" class="errorLogin">
-        <p>Credenciales incorrectas</p>
+        <p th:text="${error}"></p>
     </div>
 
 <footer th:replace="~{/presentation/fragments/fragments.html :: footer}"></footer>

@@ -357,21 +357,23 @@ footer{
 
 .loginFieldsContainer {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin-bottom: 15px;
 }
 
-.loginLabel {
-    width: 80px;
-    text-align: right;
-    margin-right: 10px;
-}
 
 .loginField {
-    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    width: 80%;
+    max-width: 300px;
+    justify-content: center;
 }
 
+.loginField i{
+    margin-right: 12px;
+}
 .loginField input {
     width: 60%;
     padding: 8px;
@@ -394,6 +396,11 @@ input[type="text"], input[type="password"] {
     margin-top: 10px;
     margin-bottom: 10px;
     font-weight: bold;
+}
+
+.RegisterHere{
+    text-align: center;
+    margin-top: 20px;
 }
 
 /*---------------------------------------------------------------------------- Fin Login CSS----------------------------------------------------------------------------*/
