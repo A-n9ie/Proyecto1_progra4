@@ -245,7 +245,41 @@ div.campo>div:nth-child(1){
     margin-bottom: 0;
 }
 
+.register i{
+    border-radius: 2px;
+    background-color: white;
+    border: 1px solid #777777;
+    padding: 15%;
+}
+
 /*-------------------FIN REGISTRO--------------------------------*/
+/*---------------------PERFIL--------------------------------*/
+.col_datos {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid blue;
+    background-color: #efeeee;
+    width: 90%;
+    height: auto;
+    padding: 10px;
+}
+
+.datos {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid violet;
+    background-color: whitesmoke;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.datos img{
+    width: 30%;
+    height: auto;
+    border-radius: 40%;
+    object-fit: cover;
+}
+/*-------------------FIN PERFIL--------------------------------*/
 footer{
     background-color: #333;
     color: white;
