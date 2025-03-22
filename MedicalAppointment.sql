@@ -71,14 +71,6 @@ insert into usuarios (usuario, clave, rol)
 values ('JPerez', '222', 'Medico');
 insert into usuarios (usuario, clave, rol) 
 values ('LKjero', '333', 'Medico');
-insert into usuarios (usuario, clave, rol) 
-values ('LKjero', '333', 'Medico');
-
-insert into usuarios (usuario, clave, rol) 
-values ('LKjero', '333', 'Medico');
-
-insert into usuarios (usuario, clave, rol) 
-values ('LKjero', '333', 'Medico');
 
 
 
@@ -94,21 +86,6 @@ costo_consulta, lugar_atencion, horario_inicio, horario_fin, frecuencia_citas,
 insert into medicos (usuario_id, cedula, nombre, aprobado, especialidad, 
 costo_consulta, lugar_atencion, horario_inicio, horario_fin, frecuencia_citas,
  foto_url, presentacion) values (3, '333333333', 'Luis Alfoncso Kajero', true, 'Cardiology', 70000, 'Heart Care Center, Alajuela',
- '11:00:00', '19:00:00', '1 horas',  '', 'Profesional dedicado a la atención');
- 
- insert into medicos (usuario_id, cedula, nombre, aprobado, especialidad, 
-costo_consulta, lugar_atencion, horario_inicio, horario_fin, frecuencia_citas,
- foto_url, presentacion) values (4, '333333331', 'Luis Alfoncso Kajero', true, 'Cardiology', 70000, 'Heart Care Center, Alajuela',
- '11:00:00', '19:00:00', '1 horas',  '', 'Profesional dedicado a la atención');
- 
- insert into medicos (usuario_id, cedula, nombre, aprobado, especialidad, 
-costo_consulta, lugar_atencion, horario_inicio, horario_fin, frecuencia_citas,
- foto_url, presentacion) values (5, '333333332', 'Luis Alfoncso Kajero', true, 'Cardiology', 70000, 'Heart Care Center, Alajuela',
- '11:00:00', '19:00:00', '1 horas',  '', 'Profesional dedicado a la atención');
- 
- insert into medicos (usuario_id, cedula, nombre, aprobado, especialidad, 
-costo_consulta, lugar_atencion, horario_inicio, horario_fin, frecuencia_citas,
- foto_url, presentacion) values (6, '333333333', 'Luis Alfoncso Kajero', true, 'Cardiology', 70000, 'Heart Care Center, Alajuela',
  '11:00:00', '19:00:00', '1 horas',  '', 'Profesional dedicado a la atención');
  
  /* usuarios pacientes */
