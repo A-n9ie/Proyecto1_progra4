@@ -45,30 +45,40 @@ public class HorariosMedico {
         this.dia = dia;
     }
 
-        public static LocalDate obtenerFechaDiaSemana(String diaSemana) {
-            // Obtener la fecha actual
+    @Override
+    public String toString() {
+        return "HorariosMedico{" +
+                "id=" + id +
+                ", medico=" + medico +
+                ", dia='" + dia + '\'' +
+                '}';
+    }
+
+    public int obtenerDiaDeLaSemana() {
+        try {
+            DayOfWeek dayOfWeek = DayOfWeek.valueOf(dia.toUpperCase());
+            return dayOfWeek.getValue();
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Día inválido: " + dia);
+        }
+    }
+
+    public static LocalDate obtenerFechaDiaSemana(String diaSemana) {
+
             LocalDate hoy = LocalDate.now();
-
-            // Obtener el número del día actual
-            int diaActual = hoy.getDayOfWeek().getValue(); // 1 = Lunes, 7 = Domingo
-
-            // Convertir el nombre del día en el valor correspondiente
+            int diaActual = hoy.getDayOfWeek().getValue();
             DayOfWeek diaDeseado = DayOfWeek.valueOf(diaSemana.toUpperCase());
-
-            // Obtener el número del día deseado (1 = Lunes, 7 = Domingo)
             int diaDeseadoValor = diaDeseado.getValue();
-
-            // Calcular los días que faltan para el día deseado
             int diasDiferencia = diaDeseadoValor - diaActual;
-
-            // Si el día deseado es en la semana siguiente, ajustamos la diferencia
             if (diasDiferencia <= 0) {
                 diasDiferencia += 7;
             }
-
-            // Calcular la fecha del día deseado
             LocalDate fechaDeseada = hoy.plusDays(diasDiferencia);
             return fechaDeseada;
+        }
+
+        public LocalDate getDiaDeLaSemanaDisponible(){
+        return obtenerFechaDiaSemana(dia);
         }
 
 

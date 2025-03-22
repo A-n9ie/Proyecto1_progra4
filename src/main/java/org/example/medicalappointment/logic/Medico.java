@@ -181,6 +181,12 @@ public class Medico {
         this.citas = citas;
     }
 
+    @Override
+    public String toString() {
+        return "Medico{" +
+                "id=" + id +
+                '}';
+    }
 
     public List<LocalTime> citasDisponibles() {
         List<LocalTime> horasDisponibles = new ArrayList<>(); //lista de horas

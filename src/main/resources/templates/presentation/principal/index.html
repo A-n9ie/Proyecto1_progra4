@@ -36,39 +36,43 @@
                 </form>
         </div>
         </div>
-                <div class="medicos" th:each="m : ${medicos}">
-                    <div class="cada_medico">
-                            <div class="info_citas">
-                                <div class="informacion_medico">
-                                    <img th:src="${m.getFotoUrl()}" alt="medico"/>
-                                    <div class="informacion_personal">
-                                        <div class="separacion">
-                                    <h5 class="nombre_medico">
-                                        <span th:text="${m.getNombre()}"></span>
-                                        <span class="id_medico" th:text="${m.getId()}"></span>
-                                    </h5>
-                                    <small class="especialidad_medico" th:text="${m.getEspecialidad()}"></small>
-                                        </div>
+        <div class="medicos" th:each="m : ${medicos}">
+            <div class="cada_medico">
+                <div class="info_citas">
+                    <div class="informacion_medico">
+                        <img th:src="${m.getFotoUrl()}" alt="medico"/>
+                        <div class="informacion_personal">
+                            <div class="separacion">
+                                <h5 class="nombre_medico">
+                                    <span th:text="${m.getNombre()}"></span>
+                                    <span class="id_medico" th:text="${m.getId()}"></span>
+                                </h5>
+                                <small class="especialidad_medico" th:text="${m.getEspecialidad()}"></small>
+                            </div>
                             <p class="lugar_atencion">
                                 <span th:text="${m.getLugarAtencion()}"></span>
                             </p>
                         </div>
+
+                        <div th:each="medicoEntry : ${medicosHorarios}">
+                            <div th:if="${medicoEntry.key == m.getId()}">
+                                <h3 th:text="'Días de atención para el médico ' + ${medicoEntry.key}">ID del Médico</h3>
+                                <div th:each="dia : ${medicoEntry.value}">
+                                    <p th:text="${dia}">Día</p>
+                                    <div class="citas_disponibles">
+                                        <div th:each="hora : ${m.citasDisponibles()}">
+                                            <button th:text="${hora}"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                                <div class="dias_disponibles" th:each="dia: ${medicosHorarios}">
-                                        <h6 th:text="${dia.getDia()}"></h6>
-                                        <div class="citas_disponibles">
-                                    <div th:each="hora : ${m.citasDisponibles()}">
-                                        <button th:text="${hora}"></button>
-                                    </div>
-                                </div>
-                                    </div>
-                                </div>
-
-
                 </div>
             </div>
         </div>
-    </div>
+
 
 
     <footer>
