@@ -22,4 +22,6 @@ public class ServicePatient {
 
     public Paciente findPatient(String cedula) {return patientRepository.findByCedula(cedula);}
 
+    public Paciente getPatientByUser(Usuario user){return patientRepository.findByUsuario(user);}
+
 }

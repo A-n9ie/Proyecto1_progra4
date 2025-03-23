@@ -57,6 +57,19 @@ public class ControllerUsuarios {
         }
     }
 
+    @GetMapping("/presentation/usuarios/profile")
+    public String profile(RedirectAttributes redirect) {
+        Usuario usuario = serviceUser.getUser("BBanner");
+        if (usuario.getRol().equals("Medico")) {
+            redirect.addFlashAttribute("usuario", usuario);
+            return "redirect:/presentation/doctor/profile";
+        }
+        else{
+            redirect.addFlashAttribute("usuario", usuario);
+            return "redirect:/presentation/patient/profile";
+        }
+    }
+
 
 //    Login
 

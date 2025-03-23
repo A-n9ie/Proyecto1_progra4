@@ -3,6 +3,7 @@ package org.example.medicalappointment.presentation.doctor;
 import org.example.medicalappointment.data.HorarioRepository;
 import org.example.medicalappointment.logic.Medico;
 import org.example.medicalappointment.logic.ServiceDoctor;
+import org.example.medicalappointment.logic.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.*;
@@ -27,7 +28,7 @@ public class ControllerDoctor {
         return "/presentation/principal/index";
     }
 
-    @GetMapping("/presentation/medico/create")
+    @GetMapping("/presentation/doctor/create")
     public String create(@Valid @ModelAttribute("doctor") Medico doctor, BindingResult result) {
         if (doctor.getUsuario() == null || doctor.getCedula() == null || doctor.getNombre() == null) {
             return "errorPage";
@@ -40,5 +41,14 @@ public class ControllerDoctor {
             return "redirect:/presentation/usuarios/registerSys";
         }
     }
+
+    @GetMapping("/presentation/doctor/profile")
+    public String profile(@ModelAttribute("usuario") Usuario user, Model model) {
+        Medico doctor = serviceDoctor.getDoctorbyUser(user);
+        model.addAttribute("persona", doctor);
+        return "presentation/usuarios/profile";
+    }
+
+
 
 }

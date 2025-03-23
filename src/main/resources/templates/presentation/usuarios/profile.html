@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil de Usuario</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+<header th:replace="~{/presentation/fragments/fragments.html :: header}"></header>
+
+<div id="cuerpo_div_index" class="cuerpo">
+    <div class="datos">
+        <div class="col_datos">
+
+            <img src="/images/3756698.png" height="512" width="512"/>
+
+            <div class="datos">
+                <div class="col_datos">
+                    <label>Username:</label>
+                    <p th:text="${persona.getUsuario().getUsername()}">Username</p>
+                </div>
+            </div>
+
+            <div class="datos">
+                <div class="col_datos">
+                    <label>ID:</label>
+                    <p th:text="${persona.cedula}">ID</p>
+                </div>
+                <div class="col_datos">
+                    <label>Name:</label>
+                    <p th:text="${persona.nombre}">Nombre Completo</p>
+                </div>
+            </div>
+
+            <div th:if="${persona.getUsuario().rol == 'Medico'}">
+                <div class="datos">
+                    <div class="col_datos">
+                        <label>Speciality:</label>
+                        <p th:text="${persona.especialidad}">Especialidad</p>
+                    </div>
+                    <div class="col_datos">
+                        <label>Consultation fee:</label>
+                        <p th:text="${persona.costoConsulta}">Costo</p>
+                    </div>
+                </div>
+                <div class="datos">
+                    <div class="col_datos">
+                        <label>Location:</label>
+                        <p th:text="${persona.lugarAtencion}">Lugar</p>
+                    </div>
+                </div>
+                <div class="col_datos">
+                    <label>Service hours:</label>
+                    <div class="datos">
+                        <div class="col_datos">
+                            <label>Start time:</label>
+                            <p th:text="${persona.horarioInicio}">Inicio</p>
+                        </div>
+                        <div class="col_datos">
+                            <label>End time:</label>
+                            <p th:text="${persona.horarioFin}">Fin</p>
+                        </div>
+                    </div>
+                    <div class="datos">
+                        <label>Frequency:</label>
+                        <p th:text="${persona.frecuenciaCitas}">Frecuencia</p>
+                    </div>
+                    <div class="datos">
+                        <label>Days:</label>
+                        <p> <!-- th:text="${p.diasTrabajo}" > --> Días</p>
+                    </div>
+                </div>
+            </div>
+
+            <div th:if="${persona.getUsuario().rol == 'Paciente'}">
+                <div class="datos">
+                    <div class="col_datos">
+                        <label>Phone number:</label>
+                        <p th:text="${persona.telefono}">Teléfono</p>
+                    </div>
+                    <div class="col_datos">
+                        <label>Direction:</label>
+                        <p th:text="${persona.direccion}">Dirección</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{/presentation/fragments/fragments.html :: footer}"></footer>
+
+</body>
+</html>

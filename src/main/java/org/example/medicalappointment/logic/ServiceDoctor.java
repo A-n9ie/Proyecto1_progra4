@@ -34,6 +34,7 @@ public class ServiceDoctor {
         return doctorRepository.findByCedula(cedula);
     }
 
+    public Medico getDoctorbyUser(Usuario usuario) {return doctorRepository.findByUsuario(usuario);}
 
     public Iterable<HorariosMedico> horariosMedicosFindAll() {
         return horarioRepository.findAll();

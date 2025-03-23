@@ -2,6 +2,7 @@ package org.example.medicalappointment.presentation.patient;
 
 import org.example.medicalappointment.logic.Paciente;
 import org.example.medicalappointment.logic.ServicePatient;
+import org.example.medicalappointment.logic.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -38,5 +39,12 @@ public class ControllerPatient {
             result.addError(new FieldError("paciente", "cedula", e.getMessage()));
             return "redirect:/presentation/usuarios/registerSys";
         }
+    }
+
+    @GetMapping("/presentation/patient/profile")
+    public String profile(@ModelAttribute("usuario") Usuario user, Model model) {
+        Paciente patient = servicePatient.getPatientByUser(user);
+        model.addAttribute("persona", patient);
+        return "presentation/usuarios/profile";
     }
 }
