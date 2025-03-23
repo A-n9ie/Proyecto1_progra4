@@ -22,6 +22,10 @@ public class ServiceDoctor {
         return doctorRepository.findAll();
     }
 
+    public Medico findDoctorById(Integer id) {
+        return doctorRepository.findById(id).orElse(null);
+    }
+
     public void addDoctor(Usuario user, Medico doctor) {
         if(findDoctor(doctor.getCedula()) != null) {
             throw new IllegalArgumentException("Doctor already exists");
@@ -86,6 +90,34 @@ public class ServiceDoctor {
         horarioRepository.save(horariosMedico);
     }
 
+    public Map<Integer, List<String>> obtenerHorariosDeMedicoEspecifico(Integer medicoId) {
+        // Obtener todos los horarios médicos
+        List<HorariosMedico> horarios = (List<HorariosMedico>) horariosMedicosFindAll();
 
+        // Crear un mapa donde la clave es el ID del médico
+        // y el valor es una lista de días de la semana
+        Map<Integer, List<String>> medicosConHorarios = new HashMap<>();
+
+        // Procesar cada horario
+        for (HorariosMedico horario : horarios) {
+            // Comprobar si el horario corresponde al médico específico
+            if (horario.getMedico().getId().equals(medicoId)) {
+                String dia = horario.getDia();  // El día en el que el médico tiene disponible su horario
+
+                // Si el médico aún no está en el mapa, lo agregamos con una lista vacía de días
+                medicosConHorarios.putIfAbsent(medicoId, new ArrayList<>());
+
+                // Obtenemos la lista de días para el médico
+                List<String> diasDelMedico = medicosConHorarios.get(medicoId);
+
+                // Si el día aún no está en la lista, lo agregamos
+                if (!diasDelMedico.contains(dia)) {
+                    diasDelMedico.add(dia);
+                }
+            }
+        }
+
+        return medicosConHorarios;
+    }
 
 }

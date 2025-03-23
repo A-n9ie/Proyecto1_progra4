@@ -2,16 +2,80 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
-  <link rel="stylesheet" href="/css/style.css">
+  <title>Schedule Appointment</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
+
 <header th:replace="~{/presentation/fragments/fragments.html :: header}"></header>
 
-<div class = "cuerpo" >
-horario extendido
+<!--<div id="cuerpo_div_index" class="cuerpo">-->
+<!--  <h3>Schedule with Dr. <span th:text="${medico.getNombre()}"></span></h3>-->
+<!--  <p>Speciality: <span th:text="${medico.getEspecialidad()}"></span></p>-->
+<!--  <p>Location: <span th:text="${medico.getLugarAtencion()}"></span></p>-->
+
+<!--  <div>-->
+<!--    <h4>Available Appointments:</h4>-->
+<!--    <div th:each="horario : ${medicoHorarios}">-->
+<!--      <p th:text="${horario}"></p>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--<div id="cuerpo_div_Schedule" class="cuerpoSchedule">-->
+<!--  &lt;!&ndash; Información del Médico &ndash;&gt;-->
+<!--  <div class="doctorUnico">-->
+<!--    <img th:src="${medico.getFotoUrl()}" alt="Doctor's Photo" class="doctorImageSchedule"/>-->
+<!--    <div class="doctorDetalles">-->
+<!--      <h3 class="titulo_schedule">Schedule for Dr. <span th:text="${medico.getNombre()}"></span></h3>-->
+<!--      <p class="especialidad">-->
+<!--         <span th:text="${medico.getEspecialidad()}"></span>-->
+<!--      </p>-->
+<!--      <p class="lugar_atencion">-->
+<!--        <span th:text="${medico.getLugarAtencion()}"></span>-->
+<!--      </p>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  &lt;!&ndash; Disponibilidad de citas &ndash;&gt;-->
+<!--  <div class="disponibilidadExtendido">-->
+<!--    <h4>Dias de Atencion:</h4>-->
+<!--    <div th:each="horario : ${medicoHorarios}">-->
+<!--      <p th:text="${horario}"></p>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  &lt;!&ndash; Botón para Siguiente&ndash;&gt;-->
+<!--  <div class="DivBotonSchedule">-->
+<!--    <button class="BotonNextSchedule">-->
+<!--      <a th:href="@{/presentation/patient/schedule/{id}(id=${medico.id})}">-->
+<!--        Next-->
+<!--      </a>-->
+<!--    </button>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div id="cuerpo_div_index" class="cuerpo">
+  <h3>Schedule with Dr. <span th:text="${medico.getNombre()}"></span></h3>
+  <p>Speciality: <span th:text="${medico.getEspecialidad()}"></span></p>
+  <p>Location: <span th:text="${medico.getLugarAtencion()}"></span></p>
+
+  <div>
+    <h4>Available Appointments:</h4>
+    <!-- Mostrar solo los días disponibles del médico -->
+    <div th:each="horario : ${medicoHorarios[medico.id]}">
+      <p th:text="${horario}"></p>
+      <!-- Mostrar las horas disponibles de ese día -->
+      <div th:each="hora : ${medico.citasDisponibles()}">
+        <button th:text="${hora}"></button>
+      </div>
+    </div>
+  </div>
 </div>
+
+
 
 <footer th:replace="~{/presentation/fragments/fragments.html :: footer}"></footer>
 </body>

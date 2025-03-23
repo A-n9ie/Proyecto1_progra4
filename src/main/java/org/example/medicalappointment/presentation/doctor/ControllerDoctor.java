@@ -10,6 +10,9 @@ import org.springframework.validation.*;
 import jakarta.validation.*;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
+
 
 @org.springframework.stereotype.Controller("medicos")
 
@@ -26,6 +29,14 @@ public class ControllerDoctor {
         model.addAttribute("medicos", serviceDoctor.medicosFindAll());
         model.addAttribute("medicosHorarios", serviceDoctor.obtenerMedicosConHorarios2());
         return "/presentation/principal/index";
+    }
+
+    //    Horario extendido
+    @GetMapping("Schedule/{id}")
+    public String showOne(@PathVariable Integer id, Model model) {
+        model.addAttribute("medico", serviceDoctor.findDoctorById(id));
+        model.addAttribute("medicoHorarios", serviceDoctor.obtenerMedicosConHorarios2());
+        return "/presentation/patient/schedule";
     }
 
     @GetMapping("/presentation/doctor/create")
@@ -49,6 +60,28 @@ public class ControllerDoctor {
         return "presentation/usuarios/profile";
     }
 
+
+    //    Horario extendido
+    @GetMapping("/presentation/patient/schedule/{id}")
+    public String showSchedule(@PathVariable Integer id, Model model) {
+        // Encuentra el médico por ID
+        Medico medico = serviceDoctor.findDoctorById(id);
+
+        if (medico == null) {
+            // Si el médico no se encuentra, redirige o muestra un error
+            return "redirect:/error";
+        }
+
+        // Llamar al método para obtener los horarios del médico específico
+        Map<Integer, List<String>> horarios = serviceDoctor.obtenerHorariosDeMedicoEspecifico(id);
+
+        // Agregar el médico y sus días de horarios al modelo
+        model.addAttribute("medico", medico);
+        model.addAttribute("medicoHorarios", horarios);
+
+        // Devolver la vista de Schedule
+        return "/presentation/patient/schedule";
+    }
 
 
 }
