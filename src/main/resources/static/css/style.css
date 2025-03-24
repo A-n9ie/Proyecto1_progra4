@@ -171,6 +171,17 @@ header {
     background-color: lightslategrey ;
 }
 
+.dias_disponibles{
+    flex-direction: row;
+}
+
+.oculto {
+    display: none;
+}
+
+.toggleDias:checked ~ div .oculto {
+    display: block;
+}
 
 /*-------------------REGISTRO--------------------------------*/
 .register{

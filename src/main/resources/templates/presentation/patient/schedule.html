@@ -56,7 +56,6 @@
 <!--    </button>-->
 <!--  </div>-->
 <!--</div>-->
-
 <div id="cuerpo_div_index" class="cuerpo">
   <h3>Schedule with Dr. <span th:text="${medico.getNombre()}"></span></h3>
   <p>Speciality: <span th:text="${medico.getEspecialidad()}"></span></p>
@@ -64,15 +63,27 @@
 
   <div>
     <h4>Available Appointments:</h4>
-    <!-- Mostrar solo los días disponibles del médico -->
-    <div th:each="horario : ${medicoHorarios[medico.id]}">
-      <p th:text="${horario}"></p>
-      <!-- Mostrar las horas disponibles de ese día -->
-      <div th:each="hora : ${medico.citasDisponibles()}">
-        <button th:text="${hora}"></button>
+    <!-- Filtrar los días disponibles correctamente -->
+    <div th:each="dia : ${medicoHorarios}">
+      <p th:text="${dia}"></p>
+      <div class="citas_disponibles">
+        <div th:each="hora : ${medico.citasDisponibles()}">
+          <button th:text="${hora}"></button>
+        </div>
       </div>
     </div>
+
+    <div class="pagination">
+      <a th:if="${page > 0}" th:href="@{/presentation/patient/schedule/{id}(id=${medico.id}, page=${page - 1})}">
+        ← Anterior
+      </a>
+
+      <a th:if="${(page + 1) * pageSize < totalDias}" th:href="@{/presentation/patient/schedule/{id}(id=${medico.id}, page=${page + 1})}">
+        Siguiente →
+      </a>
+    </div>
   </div>
+</div>
 </div>
 
 

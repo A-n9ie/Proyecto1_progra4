@@ -42,17 +42,21 @@
                         </p>
                     </div>
 
-                    <div th:each="medicoEntry : ${medicosHorarios}">
+                    <div class = "dias_disponibles" th:each="medicoEntry : ${medicosHorarios}">
                         <div th:if="${medicoEntry.key == m.getId()}">
-                            <h3 th:text="'Días de atención para el médico ' + ${medicoEntry.key}">ID del Médico</h3>
-                            <div th:each="dia : ${medicoEntry.value}">
-                                <p th:text="${dia}">Día</p>
-                                <div class="citas_disponibles">
-                                    <div th:each="hora : ${m.citasDisponibles()}">
-                                        <button th:text="${hora}"></button>
+                            <div th:id="'ver-mas-' + ${m.getId()}" class="dias-container">
+                                <div th:each="dia, iter : ${medicoEntry.value}">
+                                    <div th:classappend="${iter.index >= 2} ? 'oculto' : ''">
+                                        <p th:text="${dia}"></p>
+                                        <div class="citas_disponibles">
+                                            <div th:each="hora : ${m.citasDisponibles()}">
+                                                <button th:text="${hora}"></button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
 

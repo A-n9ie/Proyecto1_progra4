@@ -11,8 +11,11 @@ import jakarta.validation.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 @org.springframework.stereotype.Controller("medicos")
@@ -25,19 +28,11 @@ public class ControllerDoctor {
     private HorarioRepository horarioRepository;
 
 
-    @GetMapping("")
+    @GetMapping()
     public String show(Model model) {
         model.addAttribute("medicos", serviceDoctor.medicosFindAll());
-        model.addAttribute("medicosHorarios", serviceDoctor.obtenerMedicosConHorarios2());
+        model.addAttribute("medicosHorarios", serviceDoctor.obtenerMedicosConHorarios());
         return "/presentation/principal/index";
-    }
-
-    //    Horario extendido
-    @GetMapping("Schedule/{id}")
-    public String showOne(@PathVariable Integer id, Model model) {
-        model.addAttribute("medico", serviceDoctor.findDoctorById(id));
-        model.addAttribute("medicoHorarios", serviceDoctor.obtenerMedicosConHorarios2());
-        return "/presentation/patient/schedule";
     }
 
     @GetMapping("/presentation/doctor/create")
@@ -61,26 +56,34 @@ public class ControllerDoctor {
         return "presentation/usuarios/profile";
     }
 
-
-    //    Horario extendido
     @GetMapping("/presentation/patient/schedule/{id}")
-    public String showSchedule(@PathVariable Integer id, Model model) {
-        // Encuentra el médico por ID
+    public String showSchedule(@PathVariable Integer id, @RequestParam(defaultValue = "0") int page, Model model) {
         Medico medico = serviceDoctor.findDoctorById(id);
-
         if (medico == null) {
-            // Si el médico no se encuentra, redirige o muestra un error
             return "redirect:/error";
         }
 
-        // Llamar al método para obtener los horarios del médico específico
         Map<Integer, List<String>> horarios = serviceDoctor.obtenerHorariosDeMedicoEspecifico(id);
 
-        // Agregar el médico y sus días de horarios al modelo
-        model.addAttribute("medico", medico);
-        model.addAttribute("medicoHorarios", horarios);
+        List<String> fechas = horarios.get(medico.getId());
+        if (fechas == null) {
+            return "redirect:/error";  // Redirige a una página de error si no tiene horarios
+        }
 
-        // Devolver la vista de Schedule
+        int pageSize = 2;
+        int totalDias = fechas.size();
+
+        List<String> diasPaginados = fechas.stream()
+                .skip(page * pageSize)
+                .limit(pageSize)
+                .collect(Collectors.toList());
+
+        model.addAttribute("medico", medico);
+        model.addAttribute("medicoHorarios", diasPaginados);
+        model.addAttribute("page", page);
+        model.addAttribute("totalDias", totalDias);
+        model.addAttribute("pageSize", pageSize);
+
         return "/presentation/patient/schedule";
     }
 

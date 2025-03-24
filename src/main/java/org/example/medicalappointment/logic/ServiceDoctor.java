@@ -4,6 +4,7 @@ import org.example.medicalappointment.data.DoctorRepository;
 import org.example.medicalappointment.data.HorarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -44,46 +45,53 @@ public class ServiceDoctor {
         return horarioRepository.findAll();
     }
 
-    public List<MedicosConHorarios> obtenerMedicosConHorarios1() {
+    public Map<Integer, List<String>> obtenerMedicosConHorarios() {
+        //Lista de horarios
         List<HorariosMedico> horarios = (List<HorariosMedico>) horariosMedicosFindAll();
-        List<MedicosConHorarios> medicosConHorarios = new ArrayList<>();
-
-        horarios.stream()
-                .collect(Collectors.groupingBy(horario -> horario.getMedico().getId()))
-                .forEach((medicoId, horariosMedico) -> {
-                    MedicosConHorarios medicoConHorarios = new MedicosConHorarios(medicoId, horariosMedico);
-                    medicosConHorarios.add(medicoConHorarios);
-                });
-
-        return medicosConHorarios;
-    }
-
-    public Map<Integer, List<String>> obtenerMedicosConHorarios2() {
-        // Obtener todos los horarios médicos
-        List<HorariosMedico> horarios = (List<HorariosMedico>) horariosMedicosFindAll();
-
-        // Crear un mapa donde la clave es el ID del médico
-        // y el valor es una lista de días de la semana
+       //id, lista de horarios
         Map<Integer, List<String>> medicosConHorarios = new HashMap<>();
 
-        // Procesar cada horario
+       //hoy
+        LocalDate fechaBase = LocalDate.now();
+        //dia, id
+        Map<String, Integer> diasDeLaSemana = new HashMap<>();
+        diasDeLaSemana.put("Lunes", 1);
+        diasDeLaSemana.put("Martes", 2);
+        diasDeLaSemana.put("Miercoles", 3);
+        diasDeLaSemana.put("Jueves", 4);
+        diasDeLaSemana.put("Viernes", 5);
+        diasDeLaSemana.put("Sabado", 6);
+        diasDeLaSemana.put("Domingo", 7);
+
         for (HorariosMedico horario : horarios) {
+            //sacr el id del medico
             Integer medicoId = horario.getMedico().getId();
-            String dia = horario.getDia(); // Asumimos que 'dia' es un string que representa el día de la semana
+            String dia = horario.getDia();
 
-            // Si el médico aún no está en el mapa, lo agregamos con una lista vacía de días
+            LocalDate fechaDia = calcularFechaParaDiaSemana(fechaBase, diasDeLaSemana.get(dia));
+
+            // Agregar la fecha al mapa
             medicosConHorarios.putIfAbsent(medicoId, new ArrayList<>());
-
-            // Obtenemos la lista de días para el médico
             List<String> diasDelMedico = medicosConHorarios.get(medicoId);
 
-            // Si el día aún no está en la lista, lo agregamos
-            if (!diasDelMedico.contains(dia)) {
-                diasDelMedico.add(dia);
+            if (!diasDelMedico.contains(fechaDia.toString())) {
+                diasDelMedico.add(fechaDia.toString());  // Guardamos la fecha como un String (formato ISO)
             }
         }
 
         return medicosConHorarios;
+    }
+
+    private LocalDate calcularFechaParaDiaSemana(LocalDate fechaBase, int diaSemana) {
+        //hoy
+        LocalDate fecha = fechaBase;
+
+        int diasHastaDia = diaSemana - fecha.getDayOfWeek().getValue();
+        if (diasHastaDia < 0) {
+            diasHastaDia += 7;
+        }
+
+        return fecha.plusDays(diasHastaDia);
     }
 
     public void agregarHorario(HorariosMedico horariosMedico) {
@@ -91,28 +99,36 @@ public class ServiceDoctor {
     }
 
     public Map<Integer, List<String>> obtenerHorariosDeMedicoEspecifico(Integer medicoId) {
-        // Obtener todos los horarios médicos
+
         List<HorariosMedico> horarios = (List<HorariosMedico>) horariosMedicosFindAll();
 
-        // Crear un mapa donde la clave es el ID del médico
-        // y el valor es una lista de días de la semana
         Map<Integer, List<String>> medicosConHorarios = new HashMap<>();
 
-        // Procesar cada horario
-        for (HorariosMedico horario : horarios) {
-            // Comprobar si el horario corresponde al médico específico
-            if (horario.getMedico().getId().equals(medicoId)) {
-                String dia = horario.getDia();  // El día en el que el médico tiene disponible su horario
+        LocalDate fechaBase = LocalDate.now();
 
-                // Si el médico aún no está en el mapa, lo agregamos con una lista vacía de días
+        // Map de días de la semana
+        Map<String, Integer> diasDeLaSemana = new HashMap<>();
+        diasDeLaSemana.put("Lunes", 1);
+        diasDeLaSemana.put("Martes", 2);
+        diasDeLaSemana.put("Miercoles", 3);
+        diasDeLaSemana.put("Jueves", 4);
+        diasDeLaSemana.put("Viernes", 5);
+        diasDeLaSemana.put("Sabado", 6);
+        diasDeLaSemana.put("Domingo", 7);
+
+        for (HorariosMedico horario : horarios) {
+            if (horario.getMedico().getId().equals(medicoId)) {
+                String dia = horario.getDia();
+
+                LocalDate fechaDia = calcularFechaParaDiaSemana(fechaBase, diasDeLaSemana.get(dia));
                 medicosConHorarios.putIfAbsent(medicoId, new ArrayList<>());
 
                 // Obtenemos la lista de días para el médico
-                List<String> diasDelMedico = medicosConHorarios.get(medicoId);
+                List<String> fechasDelMedico = medicosConHorarios.get(medicoId);
 
                 // Si el día aún no está en la lista, lo agregamos
-                if (!diasDelMedico.contains(dia)) {
-                    diasDelMedico.add(dia);
+                if (!fechasDelMedico.contains(fechaDia.toString())) {
+                    fechasDelMedico.add(fechaDia.toString());
                 }
             }
         }
