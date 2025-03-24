@@ -61,10 +61,10 @@
 
   <div class="ScheduleHorario">
     <!-- Mostrar solo los días disponibles del médico -->
-    <div th:each="horario : ${medicoHorarios[medico.id]}">
+    <div th:each="dia : ${medicoHorarios[medico.id]}">
       <div class="DiaHorario">
         <!-- Mostrar el nombre del día -->
-        <p th:text="${horario}"></p>
+        <p th:text="${dia}"></p>
 
         <!-- Mostrar las horas disponibles de ese día -->
         <div class="HorasDeExtendido">
