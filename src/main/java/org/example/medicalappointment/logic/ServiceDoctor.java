@@ -28,9 +28,6 @@ public class ServiceDoctor {
     }
 
     public void addDoctor(Medico doctor) {
-        if(findDoctor(doctor.getCedula()) != null) {
-            throw new IllegalArgumentException("Doctor already exists");
-        }
         doctorRepository.save(doctor);
     }
 

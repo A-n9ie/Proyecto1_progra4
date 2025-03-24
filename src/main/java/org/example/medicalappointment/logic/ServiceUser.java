@@ -25,8 +25,9 @@ public class ServiceUser {
             throw new IllegalArgumentException("User already exists");
         }
         if(!user.getClave().equals(password)) {
-            throw new IllegalArgumentException("Wrong password");
+            throw new IllegalArgumentException("Password doesn't match");
         }
+        //FALTA ENCRIPTAR LA CONTRASEÑA
         usuarioRepository.save(user);
     }
 }

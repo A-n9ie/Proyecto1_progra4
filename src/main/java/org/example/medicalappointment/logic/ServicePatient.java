@@ -13,9 +13,6 @@ public class ServicePatient {
     }
 
     public void addPatient(Paciente paciente) {
-        if(findPatient(paciente.getCedula()) != null) {
-            throw new IllegalArgumentException("Patient already exists");
-        }
         patientRepository.save(paciente);
     }
 

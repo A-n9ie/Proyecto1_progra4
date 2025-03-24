@@ -38,14 +38,13 @@ public class ControllerUsuarios {
                          @Valid @ModelAttribute Persona persona,
                          BindingResult result,
                          @RequestParam("password_c") String passwordConfirm,
-                         RedirectAttributes redirectAttributes, Model model) {
+                         Model model) {
         if (result.hasErrors()) {
             model.addAttribute("error", "Error in the input data");
             return "presentation/usuarios/register";
         }
 
         try {
-            System.out.println(persona.getCedula());
             if ("Medico".equals(usuario.getRol()) && serviceDoctor.findDoctor(persona.getCedula()) != null) {
                 throw new IllegalArgumentException("Doctor already exists");
             }
@@ -71,7 +70,7 @@ public class ControllerUsuarios {
             model.addAttribute("error", e.getMessage());
             return "presentation/usuarios/register";
         }
-        return "presentation/usuarios/register";
+        return "presentation/usuarios/login";
     }
 
     @GetMapping("/presentation/usuarios/profile")
