@@ -459,7 +459,7 @@ input[type="text"], input[type="password"] {
     border: none;
     border-radius: 50px;
     cursor: pointer;
-    margin-top: -250px;
+    margin-top: -150px;
 }
 
 .Prev:hover {
@@ -479,24 +479,30 @@ input[type="text"], input[type="password"] {
 }
 
 .InfoGeneral {
+    margin-right: 8px;
     display: flex;
     flex-direction: column;
     gap: 2px; /* Reducir espacio entre info */
 }
 
 .InfoDoc h3 {
+    white-space: nowrap;
     margin: 0;
     font-size: 18px; /* Tamaño ajustado */
 }
 
 .InfoDoc p {
+
+    white-space: nowrap;
     margin: 0;
     font-size: 14px;
 }
 
 .InfoDoc2 p {
+    margin-top: 10px;
     font-size: 12px;
     font-weight: bold;
+    white-space: nowrap;
 }
 
 .ScheduleHorario {
@@ -507,6 +513,8 @@ input[type="text"], input[type="password"] {
 }
 
 .DiaHorario {
+
+    white-space: nowrap;
     display: flex;
     flex-direction: column;  /* Los días tendrán sus horas debajo */
     align-items: center;  /* Centra los elementos dentro de cada día */
@@ -523,13 +531,13 @@ input[type="text"], input[type="password"] {
     width: 100%;
 }
 
-.ScheduleButton {
+.ScheduleButton2 {
     padding: 6px 8px;
     border: none;
     background-color: #007bff;
     color: white;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 10px;
     width: 70px;
     text-align: center;
 }
