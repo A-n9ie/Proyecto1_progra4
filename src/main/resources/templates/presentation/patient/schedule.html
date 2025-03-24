@@ -11,6 +11,7 @@
 
 <header th:replace="~{/presentation/fragments/fragments.html :: header}"></header>
 
+
 <!--<div id="cuerpo_div_index" class="cuerpo">-->
 <!--  <h3>Schedule with Dr. <span th:text="${medico.getNombre()}"></span></h3>-->
 <!--  <p>Speciality: <span th:text="${medico.getEspecialidad()}"></span></p>-->
@@ -18,72 +19,65 @@
 
 <!--  <div>-->
 <!--    <h4>Available Appointments:</h4>-->
-<!--    <div th:each="horario : ${medicoHorarios}">-->
-<!--      <p th:text="${horario}"></p>-->
+<!--    &lt;!&ndash; Filtrar los días disponibles correctamente &ndash;&gt;-->
+<!--    <div th:each="dia : ${medicoHorarios}">-->
+<!--      <p th:text="${dia}"></p>-->
+<!--      <div class="citas_disponibles">-->
+<!--        <div th:each="hora : ${medico.citasDisponibles()}">-->
+<!--          <button th:text="${hora}"></button>-->
+<!--        </div>-->
+<!--      </div>-->
 <!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
 
-<!--<div id="cuerpo_div_Schedule" class="cuerpoSchedule">-->
-<!--  &lt;!&ndash; Información del Médico &ndash;&gt;-->
-<!--  <div class="doctorUnico">-->
-<!--    <img th:src="${medico.getFotoUrl()}" alt="Doctor's Photo" class="doctorImageSchedule"/>-->
-<!--    <div class="doctorDetalles">-->
-<!--      <h3 class="titulo_schedule">Schedule for Dr. <span th:text="${medico.getNombre()}"></span></h3>-->
-<!--      <p class="especialidad">-->
-<!--         <span th:text="${medico.getEspecialidad()}"></span>-->
-<!--      </p>-->
-<!--      <p class="lugar_atencion">-->
-<!--        <span th:text="${medico.getLugarAtencion()}"></span>-->
-<!--      </p>-->
-<!--    </div>-->
-<!--  </div>-->
-
-<!--  &lt;!&ndash; Disponibilidad de citas &ndash;&gt;-->
-<!--  <div class="disponibilidadExtendido">-->
-<!--    <h4>Dias de Atencion:</h4>-->
-<!--    <div th:each="horario : ${medicoHorarios}">-->
-<!--      <p th:text="${horario}"></p>-->
-<!--    </div>-->
-<!--  </div>-->
-
-<!--  &lt;!&ndash; Botón para Siguiente&ndash;&gt;-->
-<!--  <div class="DivBotonSchedule">-->
-<!--    <button class="BotonNextSchedule">-->
-<!--      <a th:href="@{/presentation/patient/schedule/{id}(id=${medico.id})}">-->
-<!--        Next-->
+<!--    <div class="pagination">-->
+<!--      <a th:if="${page > 0}" th:href="@{/presentation/patient/schedule/{id}(id=${medico.id}, page=${page - 1})}">-->
+<!--        ← Anterior-->
 <!--      </a>-->
-<!--    </button>-->
+
+<!--      <a th:if="${(page + 1) * pageSize < totalDias}" th:href="@{/presentation/patient/schedule/{id}(id=${medico.id}, page=${page + 1})}">-->
+<!--        Siguiente →-->
+<!--      </a>-->
+<!--    </div>-->
 <!--  </div>-->
 <!--</div>-->
-<div id="cuerpo_div_index" class="cuerpo">
-  <h3>Schedule with Dr. <span th:text="${medico.getNombre()}"></span></h3>
-  <p>Speciality: <span th:text="${medico.getEspecialidad()}"></span></p>
-  <p>Location: <span th:text="${medico.getLugarAtencion()}"></span></p>
+<!--</div>-->
 
-  <div>
-    <h4>Available Appointments:</h4>
-    <!-- Filtrar los días disponibles correctamente -->
-    <div th:each="dia : ${medicoHorarios}">
-      <p th:text="${dia}"></p>
-      <div class="citas_disponibles">
-        <div th:each="hora : ${medico.citasDisponibles()}">
-          <button th:text="${hora}"></button>
+<div class="cuerpoSchedule">
+
+  <button class="Prev">Prev</button>
+
+  <div class="FotoDoc">Aqui va una foto</div>
+
+  <div class="InfoGeneral">
+
+    <div class="InfoDoc">
+      <h3><span th:text="${medico.getNombre()}"></span></h3>
+      <p><span th:text="${medico.getEspecialidad()}"></span></p>
+    </div>
+
+    <div class="InfoDoc2"><p><span th:text="${medico.getLugarAtencion()}"></span></p></div>
+
+  </div>
+
+  <div class="ScheduleHorario">
+    <!-- Mostrar solo los días disponibles del médico -->
+    <div th:each="horario : ${medicoHorarios[medico.id]}">
+      <div class="DiaHorario">
+        <!-- Mostrar el nombre del día -->
+        <p th:text="${horario}"></p>
+
+        <!-- Mostrar las horas disponibles de ese día -->
+        <div class="HorasDeExtendido">
+          <div th:each="hora : ${medico.citasDisponibles()}">
+            <button class="ScheduleButton" th:text="${hora}"></button>
+          </div>
         </div>
       </div>
     </div>
-
-    <div class="pagination">
-      <a th:if="${page > 0}" th:href="@{/presentation/patient/schedule/{id}(id=${medico.id}, page=${page - 1})}">
-        ← Anterior
-      </a>
-
-      <a th:if="${(page + 1) * pageSize < totalDias}" th:href="@{/presentation/patient/schedule/{id}(id=${medico.id}, page=${page + 1})}">
-        Siguiente →
-      </a>
-    </div>
   </div>
-</div>
+
+  <button class="Prev">Next</button>
+
 </div>
 
 

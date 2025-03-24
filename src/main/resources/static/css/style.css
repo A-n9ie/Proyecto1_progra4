@@ -416,6 +416,128 @@ input[type="text"], input[type="password"] {
 
 /*---------------------------------------------------------------------------- Fin Login CSS----------------------------------------------------------------------------*/
 
+/*---------------------------------------------------------------------------- Schedule ----------------------------------------------------------------------------*/
 
+.ScheduleBody {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: white;
+}
+
+.cuerpoSchedule {
+    display: flex;
+    align-items: center; /* Alinear verticalmente */
+    gap: 15px; /* Reducir separación */
+    width: 100%; /* Hacer que ocupe todo el ancho */
+    padding: 20px;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.ScheduleButton {
+    padding: 10px 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.ScheduleButton:hover {
+    background-color: #0056b3;
+}
+
+.Prev {
+    padding: 10px 20px;
+    background-color: royalblue;
+    color: White;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: -250px;
+}
+
+.Prev:hover {
+    background-color: darkcyan;
+}
+
+.FotoDoc {
+    width: 100px;
+    height: 100px;
+    background-color: lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.InfoGeneral {
+    display: flex;
+    flex-direction: column;
+    gap: 2px; /* Reducir espacio entre info */
+}
+
+.InfoDoc h3 {
+    margin: 0;
+    font-size: 18px; /* Tamaño ajustado */
+}
+
+.InfoDoc p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.InfoDoc2 p {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.ScheduleHorario {
+    display: flex;
+    flex-wrap: wrap;  /* Permite que los días y horas se ajusten si no caben */
+    gap: 10px;  /* Reducir espacio entre los días */
+    width: 100%;
+}
+
+.DiaHorario {
+    display: flex;
+    flex-direction: column;  /* Los días tendrán sus horas debajo */
+    align-items: center;  /* Centra los elementos dentro de cada día */
+    text-align: center;
+    width: 30%; /* Los días ocuparán el 30% del contenedor */
+    margin: 0; /* Asegura que no haya margen extra entre los días */
+}
+
+.HorasDeExtendido {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.ScheduleButton {
+    padding: 6px 8px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 70px;
+    text-align: center;
+}
+
+.ScheduleButton:hover {
+    background-color: #0056b3;
+}
+
+/*---------------------------------------------------------------------------- Fin Schedule ----------------------------------------------------------------------------*/
 
 /*<p>Appointments</p> <p>Profile</p> <p>Usuario</p>*/
