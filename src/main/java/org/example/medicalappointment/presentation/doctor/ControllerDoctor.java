@@ -35,20 +35,6 @@ public class ControllerDoctor {
         return "/presentation/principal/index";
     }
 
-    @GetMapping("/presentation/doctor/create")
-    public String create(@Valid @ModelAttribute("doctor") Medico doctor, BindingResult result) {
-        if (doctor.getUsuario() == null || doctor.getCedula() == null || doctor.getNombre() == null) {
-            return "errorPage";
-        }
-        try {
-            serviceDoctor.addDoctor(doctor.getUsuario(), doctor);
-            return "redirect:/presentation/usuarios/registerSys";
-        } catch (Exception e) {
-            result.addError(new FieldError("doctor", "cedula", e.getMessage()));
-            return "redirect:/presentation/usuarios/registerSys";
-        }
-    }
-
     @GetMapping("/presentation/doctor/profile")
     public String profile(@ModelAttribute("usuario") Usuario user, Model model) {
         Medico doctor = serviceDoctor.getDoctorbyUser(user);

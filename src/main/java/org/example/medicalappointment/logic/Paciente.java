@@ -10,7 +10,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "pacientes")
-public class Paciente extends Persona {
+public class Paciente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -33,7 +33,6 @@ public class Paciente extends Persona {
 
     @Size(max = 20)
     @Column(name = "telefono", length = 20)
-    @NotBlank(message = "Name is required")
     private String telefono;
 
     @Size(max = 255)
@@ -47,7 +46,13 @@ public class Paciente extends Persona {
     @OneToMany(mappedBy = "paciente")
     private Set<Cita> citas = new LinkedHashSet<>();
 
-    public Paciente(Persona persona) {super(persona);}
+    //public Paciente(Persona persona) {super(persona);}
+
+    public Paciente(String nombre, String cedula, Usuario usuario){
+        this.nombre = nombre;
+        this.cedula = cedula;
+        this.usuario = usuario;
+    }
 
     public Paciente() {super();}
 

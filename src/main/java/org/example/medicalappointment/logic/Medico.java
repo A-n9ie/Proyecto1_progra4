@@ -12,7 +12,7 @@ import java.util.*;
 
 @Entity
 @Table(name = "medicos")
-public class Medico extends Persona {
+public class Medico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -70,9 +70,15 @@ public class Medico extends Persona {
     @OneToMany(mappedBy = "medico")
     private Set<Cita> citas = new LinkedHashSet<>();
 
-    public Medico(Persona persona) {super(persona);}
+    //public Medico(Persona persona) {super(persona);}
 
     public Medico() {super();}
+
+    public Medico(String nombre, String cedula, Usuario usuario){
+        this.nombre = nombre;
+        this.cedula = cedula;
+        this.usuario = usuario;
+    }
 
     public Integer getId() {
         return id;

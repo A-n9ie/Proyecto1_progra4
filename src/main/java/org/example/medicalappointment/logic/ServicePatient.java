@@ -12,11 +12,10 @@ public class ServicePatient {
         return patientRepository.findAll();
     }
 
-    public void addPatient(Usuario user, Paciente paciente) {
+    public void addPatient(Paciente paciente) {
         if(findPatient(paciente.getCedula()) != null) {
             throw new IllegalArgumentException("Patient already exists");
         }
-        paciente.setUsuario(user);
         patientRepository.save(paciente);
     }
 

@@ -31,6 +31,7 @@ public class Persona {
     public Persona(Persona persona) {
         this.nombre = persona.getNombre();
         this.cedula = persona.getCedula();
+        this.usuario = persona.getUsuario();
     }
 
     // Getters y setters

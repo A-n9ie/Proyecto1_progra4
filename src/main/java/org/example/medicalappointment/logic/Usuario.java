@@ -47,11 +47,11 @@ public class Usuario {
         this.id = id;
     }
 
-    public String getUsuario() {
+    public String getUsername() {
         return usuario;
     }
 
-    public void setUsuario(String usuario) {
+    public void setUsername(String usuario) {
         this.usuario = usuario;
     }
 

@@ -21,20 +21,6 @@ public class ControllerPatient {
         return "presentation/usuarios/register";
     }
 
-    @GetMapping("/presentation/patient/create")
-    public String create(@Valid @ModelAttribute("paciente") Paciente patient, BindingResult result) {
-        if (patient.getUsuario() == null || patient.getCedula() == null || patient.getNombre() == null) {
-            return "errorPage";
-        }
-        try {
-            servicePatient.addPatient(patient.getUsuario(), patient);
-            return "redirect:/presentation/usuarios/registerSys";
-        } catch (Exception e) {
-            result.addError(new FieldError("paciente", "cedula", e.getMessage()));
-            return "redirect:/presentation/usuarios/registerSys";
-        }
-    }
-
     @GetMapping("/presentation/patient/profile")
     public String profile(@ModelAttribute("usuario") Usuario user, Model model) {
         Paciente patient = servicePatient.getPatientByUser(user);

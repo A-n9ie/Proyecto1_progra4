@@ -18,7 +18,7 @@ public class UserDetailsImp implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_" + usuario.getRol()));
+        authorities.add(new SimpleGrantedAuthority(usuario.getRol()));
         return authorities;
     }
 
@@ -26,7 +26,7 @@ public class UserDetailsImp implements UserDetails {
     public String getPassword() {return usuario.getClave();}
 
     @Override
-    public String getUsername() {return usuario.getUsuario();}
+    public String getUsername() {return usuario.getUsername();}
 
     @Override
     public boolean isAccountNonExpired() {return true;}

@@ -21,7 +21,7 @@ public class ServiceUser {
     }
 
     public void addUser(Usuario user, String password) {
-        if (getUser(user.getUsuario()) != null) {
+        if (getUser(user.getUsername()) != null) {
             throw new IllegalArgumentException("User already exists");
         }
         if(!user.getClave().equals(password)) {

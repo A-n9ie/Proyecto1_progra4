@@ -17,11 +17,7 @@ public class SecurityConfig {
         http
                 //ALL
                 .authorizeHttpRequests(customizer -> customizer
-                        .requestMatchers("/","/presentation/patient/schedule/{id}",
-                        "/presentation/usuarios/create","/presentation/doctor/create",
-                                "/presentation/patient/create","templates/presentation/patient/schedule",
-                                "/presentation/usuarios/registerSys","templates/presentation/usuarios/register",
-                                "/css/**","/images/**").permitAll()
+                        .requestMatchers("/**").permitAll()
                         //ADMIN
                         .requestMatchers("/presentation/usuarios/management/").hasAuthority("Administrador")
                         .anyRequest().authenticated()

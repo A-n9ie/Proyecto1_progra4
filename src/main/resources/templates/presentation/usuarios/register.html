@@ -44,9 +44,9 @@
       <div class="campo">
         <div><i class="fas fa-user-circle"></i></div>
         <div>
-          <input type="text" th:field="*{usuario.usuario}" placeholder="UserName" required />
-          <div th:if="${#fields.hasErrors('usuario.usuario')}" class="error-message">
-            <p th:text="${#fields.errors('usuario.usuario')}"></p>
+          <input type="text" th:field="*{usuario.username}" placeholder="UserName" required />
+          <div th:if="${#fields.hasErrors('usuario.username')}" class="error-message">
+            <p th:text="${#fields.errors('usuario.username')}"></p>
           </div>
         </div>
       </div>

@@ -27,11 +27,10 @@ public class ServiceDoctor {
         return doctorRepository.findById(id).orElse(null);
     }
 
-    public void addDoctor(Usuario user, Medico doctor) {
+    public void addDoctor(Medico doctor) {
         if(findDoctor(doctor.getCedula()) != null) {
             throw new IllegalArgumentException("Doctor already exists");
         }
-        doctor.setUsuario(user);
         doctorRepository.save(doctor);
     }
 
