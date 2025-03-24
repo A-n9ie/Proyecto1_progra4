@@ -21,12 +21,6 @@ public class ControllerPatient {
         return "presentation/usuarios/register";
     }
 
-    @GetMapping("/presentation/usuarios/registerSystem")
-    public String register(Model model) {
-        model.addAttribute("usuario", new Paciente());
-        return "presentation/usuarios/register";
-    }
-
     @GetMapping("/presentation/patient/create")
     public String create(@Valid @ModelAttribute("paciente") Paciente patient, BindingResult result) {
         if (patient.getUsuario() == null || patient.getCedula() == null || patient.getNombre() == null) {
