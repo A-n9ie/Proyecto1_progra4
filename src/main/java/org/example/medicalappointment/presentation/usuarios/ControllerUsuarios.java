@@ -70,7 +70,6 @@ public class ControllerUsuarios {
         }
     }
 
-
 //    Login
 
     @GetMapping("/presentation/usuarios/login")
@@ -92,7 +91,7 @@ public class ControllerUsuarios {
         }
 
 
-        if (!usuario.getPassword().equals(password)) {
+        if (!usuario.getClave().equals(password)) {
             redirectAttributes.addFlashAttribute("error", "Credenciales incorrectas");
             return "redirect:/presentation/usuarios/login";
         }

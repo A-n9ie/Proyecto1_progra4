@@ -19,6 +19,10 @@ public class Persona {
     @NotBlank(message = "ID is required and cannot be empty")
     protected String cedula;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id")
+    protected Usuario usuario;
+
     public Persona() {
         this.nombre = "";
         this.cedula = "";
@@ -38,11 +42,13 @@ public class Persona {
         this.nombre = nombre;
     }
 
-    public String getCedula() {
-        return cedula;
-    }
+    public String getCedula() {return cedula;}
 
     public void setCedula(String cedula) {
         this.cedula = cedula;
     }
+
+    public Usuario getUsuario() {return this.usuario;}
+
+    public void setUsuario(Usuario usuario) {this.usuario = usuario;}
 }

@@ -21,10 +21,10 @@ public class ServiceUser {
     }
 
     public void addUser(Usuario user, String password) {
-        if (getUser(user.getUsername()) != null) {
+        if (getUser(user.getUsuario()) != null) {
             throw new IllegalArgumentException("User already exists");
         }
-        if(!user.getPassword().equals(password)) {
+        if(!user.getClave().equals(password)) {
             throw new IllegalArgumentException("Wrong password");
         }
         usuarioRepository.save(user);

@@ -47,19 +47,19 @@ public class Usuario {
         this.id = id;
     }
 
-    public String getUsername() {
+    public String getUsuario() {
         return usuario;
     }
 
-    public void setUsername(String usuario) {
+    public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
 
-    public String getPassword() {
+    public String getClave() {
         return clave;
     }
 
-    public void setPassword(String clave) {
+    public void setClave(String clave) {
         this.clave = clave;
     }
 
