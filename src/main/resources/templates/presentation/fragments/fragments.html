@@ -23,6 +23,31 @@
   </div>
 </header>
 
+
+<nav th:fragment="nav" xmlns:sec="http://www.w3.org/1999/xhtml">
+  <ul class="Menu">
+    <li><a href="/nadaAun">Algo</a></li>
+    <th:block sec:authorize="hasAuthority('ADM')">
+      <li><a href="/Algo">Perfil</a></li>
+    </th:block>
+    <th:block sec:authorize="isAnonymous()">
+      <li><a th:href="@{/presentation/usuarios/login}">Login</a></li>
+    </th:block>
+    <th:block sec:authorize="isAuthenticated()">
+      <li class="dropdown">
+        <!-- El input es invisible pero usaremos su estado para mostrar el menú -->
+        <input type="checkbox" id="dropdown-toggle" class="dropdown-toggle">
+        <label for="dropdown-toggle" class="dropbtn">&#128697;</label>
+        <ul class="dropdown-content">
+          <li>-- <span sec:authentication="name"></span> --</li>
+          <li><a href="/presentation/perfil/show">Perfil</a></li>
+          <li><a href="/logout">Logout</a></li>
+        </ul>
+      </li>
+    </th:block>
+  </ul>
+</nav>
+
 <!--xmlns:sec="http://www.w3.org/1999/xhtml"-->
 
 <!-- Fragmento footer -->

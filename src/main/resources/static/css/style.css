@@ -82,6 +82,57 @@ header {
     margin-left: 0;
     margin-right: 290px;
 }
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Ocultamos el checkbox */
+.dropdown-toggle {
+    display: none;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    z-index: 1;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-content li {
+    padding: 8px 16px;
+    text-decoration: none;
+    display: block;
+    color: black;
+}
+
+.dropdown-content li:hover {
+    background-color: #ddd;
+}
+
+/* Mostrar el menú cuando el checkbox está marcado */
+.dropdown-toggle:checked + .dropbtn + .dropdown-content {
+    display: block;
+}
+
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-toggle:checked + .dropbtn {
+    background-color: #3e8e41;
+}
+
 /*------------------PRINCIPAL----------------------------*/
 
 #cuerpo_div_index{
