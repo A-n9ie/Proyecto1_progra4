@@ -220,27 +220,43 @@ header {
 
 /*-------------------REGISTRO--------------------------------*/
 .register{
-    margin-top: 0;
-    color: #424242;
-    background-color: #efeeee;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    width: 25%;
-    padding-top: 0.05%;
-    padding-bottom: 1%;
-    border-radius: 15px;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: ghostwhite;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+
 }
 
-.register img{
-    width: 20%;
+.cuerpoReg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    padding-top: 20px; /* Añade espacio entre el header y el formulario */
+}
+
+.CabezeraR {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.register img {
+    width: 30%;
     height: auto;
     border-radius: 50%;
     object-fit: cover;
+    display: block;
+    margin: 10px auto;
 }
 
 .register button{
-    background-color: #f84d4d;
+    background-color: cadetblue;
     color: white;
     margin-top: 5%;
     padding: 5px 30px;;
@@ -297,6 +313,17 @@ div.campo>div:nth-child(1){
     border: 1px solid #777777;
     padding: 15%;
 }
+
+.RegisterBody{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: white;
+    overflow: hidden;
+}
+
+
 
 /*-------------------FIN REGISTRO--------------------------------*/
 /*---------------------PERFIL--------------------------------*/
