@@ -93,7 +93,7 @@ public class ControllerUsuarios {
         return "presentation/usuarios/login";
     }
 
-    @PostMapping("/presentation/usuarios/login")
+    @PostMapping("/login")
     public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password,
                         RedirectAttributes redirectAttributes) {
