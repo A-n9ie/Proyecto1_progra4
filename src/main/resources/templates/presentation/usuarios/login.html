@@ -36,9 +36,10 @@
         <div class="RegisterHere">Don't have an account yet?<p><a th:href="@{/presentation/usuarios/registerSys}">Sign up here.</a></p></div>
     </div>
 
-    <div th:if="${param.error != null}" class="errorLogin">
-        <p th:text="${error}"></p>
-    </div>
+<div th:if="${error}" class="toast">
+    <p th:text="${error}"></p>
+</div>
+
 
 <footer th:replace="~{/presentation/fragments/fragments.html :: footer}"></footer>
 

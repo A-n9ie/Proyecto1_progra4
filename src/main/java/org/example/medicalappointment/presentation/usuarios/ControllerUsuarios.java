@@ -99,16 +99,20 @@ public class ControllerUsuarios {
                         RedirectAttributes redirectAttributes) {
 
 
-        Usuario usuario = serviceUser.getUser(username);
-
-        if (usuario == null) {
-            redirectAttributes.addFlashAttribute("error", "Usuario no encontrado");
+        if (username == null || username.isEmpty()) {
+            redirectAttributes.addFlashAttribute("error", "El campo de usuario no puede estar vacío");
             return "redirect:/presentation/usuarios/login";
         }
 
+        if (password == null || password.isEmpty()) {
+            redirectAttributes.addFlashAttribute("error", "El campo de contraseña no puede estar vacío");
+            return "redirect:/presentation/usuarios/login";
+        }
 
-        if (!usuario.getClave().equals(password)) {
-            redirectAttributes.addFlashAttribute("error", "Credenciales incorrectas");
+        Usuario usuario = serviceUser.getUser(username);
+
+        if (usuario == null || !usuario.getClave().equals(password)) {
+            redirectAttributes.addFlashAttribute("error", "Usuario o contraseña incorrectos");
             return "redirect:/presentation/usuarios/login";
         }
 
