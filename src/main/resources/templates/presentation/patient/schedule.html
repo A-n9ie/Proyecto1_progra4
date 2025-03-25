@@ -57,15 +57,10 @@
     <div class="InfoDoc2"><p><span th:text="${medico.getLugarAtencion()}"></span></p></div>
 
   </div>
-
   <div class="ScheduleHorario">
-    <!-- Mostrar solo los días disponibles del médico -->
     <div th:each="horario : ${medicoHorarios}">
       <div class="DiaHorario">
-        <!-- Mostrar el nombre del día -->
         <p th:text="${horario}"></p>
-
-        <!-- Mostrar las horas disponibles de ese día -->
         <div class="HorasDeExtendido">
           <div th:each="hora : ${medico.citasDisponibles()}">
             <button class="ScheduleButton2" th:text="${hora}"></button>

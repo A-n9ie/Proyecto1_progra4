@@ -20,4 +20,5 @@ public class ServicePatient {
 
     public Paciente getPatientByUser(Usuario user){return patientRepository.findByUsuario(user);}
 
+
 }
