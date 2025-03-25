@@ -219,22 +219,39 @@ header {
 }
 
 /*-------------------REGISTRO--------------------------------*/
+
 .register{
     width: 100%;
-    max-width: 400px;
+    /*max-width: 500px;*/
     padding: 20px;
-    background-color: ghostwhite;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
 
+.RegisterBody{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
 }
 
 .cuerpoReg {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Ocupa toda la altura de la pantalla */
-    padding-top: 20px; /* Añade espacio entre el header y el formulario */
+    flex-direction: column;
+    box-sizing: border-box;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 160px;
+    flex-grow: 1;
+
 }
 
 .CabezeraR {
@@ -243,11 +260,10 @@ header {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
 }
 
 .register img {
-    width: 30%;
+    width: 25%;
     height: auto;
     border-radius: 50%;
     object-fit: cover;
@@ -264,7 +280,6 @@ header {
     border-radius: 0px;
     cursor: pointer;
     font-size: 16px;
-    width: 80%;
     text-align: center;
 }
 
@@ -272,16 +287,18 @@ div.campo {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding-left: 15%;
+    justify-content: center;
+    padding-left: 0;
 }
 
-div.campo>div{
+div.campo>div {
     display: inline-block;
     margin-top: 10px;
     margin-bottom: 5px;
+    text-align: center;
 }
 
-div.campo>div:nth-child(1){
+div.campo>div:nth-child(1) {
     white-space-collapse: collapse;
     text-align: left;
     margin-right: 5px;
@@ -294,9 +311,10 @@ div.campo>div:nth-child(1){
     border-radius: 2px;
     cursor: pointer;
     display: inline-block;
-    border: 2px solid black;
+    border: 2px black;
     font-size: 13px;
 }
+
 
 .error-message{
     color: red;
@@ -307,22 +325,10 @@ div.campo>div:nth-child(1){
     margin-bottom: 0;
 }
 
-.register i{
-    border-radius: 2px;
-    background-color: white;
-    border: 1px solid #777777;
-    padding: 15%;
+div.campo input,
+div.campo select {
+    width: 90%;
 }
-
-.RegisterBody{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: white;
-    overflow: hidden;
-}
-
 
 
 /*-------------------FIN REGISTRO--------------------------------*/
