@@ -168,6 +168,13 @@ header {
     width: 200px;
     outline: none;
 }
+.citas_disponibles form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-size: 15px;
+    margin-left: 10%;
+}
 
 .buscar_especialidad_lugar span {
     margin-left: 10px;
@@ -235,14 +242,6 @@ header {
     display: flex;
     align-items: center;
     padding: 20px;
-}
-
-.citas_disponibles{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    font-size: 15px;
-    margin-left: 5px;
 }
 
 .dias_disponibles {

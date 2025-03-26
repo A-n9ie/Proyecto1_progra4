@@ -34,7 +34,7 @@ public class ControllerPatient {
     }
 
     @PostMapping("/presentation/patient/book/save")
-    public String saveAppointment(@RequestParam String fecha_cita, @RequestParam String hora_cita,
+    public String saveAppointment(@RequestParam("dia") String fecha_cita, @RequestParam("hora") String hora_cita,
                                   @RequestParam Integer medicoId, @ModelAttribute("usuario") Usuario usuario, Model model) {
 
         LocalDate fecha = LocalDate.parse(fecha_cita, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
