@@ -54,13 +54,10 @@ header {
 
 .cuerpo{
     font-family: Arial, sans-serif;
-    padding-block: 20px;
-    border-radius: 10px;
-    margin-top: 7%;
-    margin-bottom: 60px;
-    margin-left: 20px;
-    margin-right: 20px;
-    width: 100%;
+    border: 2px solid violet;
+    padding-top: 5%;
+    padding-bottom: 40%;
+    width: auto;
 }
 
 .AnioInf {
@@ -139,7 +136,7 @@ header {
     background-color: #ccc;
     margin: 120px auto;
     padding: 5px;
-    width: 1000px;
+    width: 80%;
 }
 
 .busca_lugar_especialidad {
@@ -291,49 +288,19 @@ header {
 /*-------------------REGISTRO--------------------------------*/
 
 .register{
-    width: 100%;
-    /*max-width: 500px;*/
-    padding: 20px;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 10px;
-}
-
-.RegisterBody{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    overflow: hidden;
-}
-
-.cuerpoReg {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    box-sizing: border-box;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 160px;
-    flex-grow: 1;
-
-}
-
-.CabezeraR {
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
+    max-width: 300px;
+    padding: 5%;
+    margin-top: 15%;
+    box-shadow: 0 -4px 8px rgba(1, 0, 0, 0.1), 0 4px 8px rgba(1, 0, 0, 0.1);
+    background: whitesmoke;
+    border-radius: 8px;
 }
 
 .register img {
-    width: 25%;
+    width: 20%;
     height: auto;
     border-radius: 50%;
     object-fit: cover;
@@ -347,7 +314,7 @@ header {
     margin-top: 5%;
     padding: 5px 30px;;
     border: none;
-    border-radius: 0px;
+    border-radius: 0;
     cursor: pointer;
     font-size: 16px;
     text-align: center;
@@ -356,7 +323,7 @@ header {
 div.campo {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 2%;
     justify-content: center;
     padding-left: 0;
 }
@@ -381,8 +348,8 @@ div.campo>div:nth-child(1) {
     border-radius: 2px;
     cursor: pointer;
     display: inline-block;
-    border: 2px black;
-    font-size: 13px;
+    border: 1px black;
+    font-size: 100%;
 }
 
 
@@ -395,11 +362,17 @@ div.campo>div:nth-child(1) {
     margin-bottom: 0;
 }
 
-div.campo input,
-div.campo select {
-    width: 90%;
+div.campo input {
+    width: 65%;
+    margin-left: 0;
 }
 
+.register i{
+    border-radius: 2px;
+    background-color: white;
+    border: 1px solid #777777;
+    padding: 15%;
+}
 
 /*-------------------FIN REGISTRO--------------------------------*/
 /*---------------------PERFIL--------------------------------*/

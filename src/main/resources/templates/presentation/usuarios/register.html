@@ -6,23 +6,23 @@
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
-<body class="RegisterBody">
+<body class="LoginBody">
 <header th:replace="~{/presentation/fragments/fragments.html :: header}"></header>
 
-<div>
+<div class="LoginBody">
+
 <form action="/presentation/usuarios/create" method="POST">
-  <div class="cuerpoReg">
+
     <div class="register">
-      <div class="CabezeraR">
+      <div>
         <img src="/images/Registro%20Icon2.png" height="512" width="512"/>
-      <h1>Register</h1>
+      REGISTER
       </div>
-      <!-- Mostrar mensaje de error general -->
       <div th:if="${error}" class="error-message">
         <p th:text="${error}"></p>
       </div>
 
-      <!-- Campos del formulario -->
+      <div>
       <div class="campo">
         <div><i class="fas fa-id-card"></i></div>
         <div>
@@ -65,8 +65,11 @@
 
         <div class="campo">
           <div><i class="fas fa-lock"></i></div>
+          <div>
           <div><input type="password" name="password_c" placeholder="Confirm Password" required /></div>
         </div>
+        </div>
+      </div>
 
       <div class="campo">
         <div><i class="fas fa-user-tag"></i></div>
@@ -83,15 +86,16 @@
 
       <div class="campo">
         <div><i class="fas fa-folder"></i></div>
+        <div>
         <label for="file-upload" class="upload">Photo</label>
         <input type="file" id="file-upload" name="photo" style="display:none;">
+        </div>
       </div>
 
       <div class="campo">
         <button type="submit">Register</button>
       </div>
     </div>
-  </div>
 </form>
 </div>
 
