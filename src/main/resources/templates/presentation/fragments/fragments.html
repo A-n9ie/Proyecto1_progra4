@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
   <meta charset="UTF-8">
   <title>Fragments</title>
@@ -20,35 +20,89 @@
 
     <div class="header-links">
       <p>About </p> <p>Search</p>
-      <p><a th:href="@{/presentation/usuarios/login}">Login</a></p>
+<!--      <p><a th:href="@{/presentation/usuarios/login}">Login</a></p>-->
+      <th:block sec:authorize="isAnonymous()">
+        <p><a th:href="@{/presentation/usuarios/login}">Login</a></p>
+      </th:block>
+
+      <!-- Mostrar el nav si el usuario está autenticado -->
+      <th:block sec:authorize="isAuthenticated()">
+        <nav th:fragment="nav" xmlns:sec="http://www.w3.org/1999/xhtml">
+          <ul class="Menu">
+<!--            <li><a href="/nadaAun">Algo</a></li>-->
+<!--            <th:block sec:authorize="hasAuthority('ADM')">-->
+<!--              <li><a href="/Algo">Perfil</a></li>-->
+<!--            </th:block>-->
+            <li class="dropdown">
+              <input type="checkbox" id="dropdown-toggle" class="dropdown-toggle">
+              <label for="dropdown-toggle" class="dropbtn">&#128697;</label>
+              <ul class="dropdown-content">
+                <li>-- <span sec:authentication="name"></span> --</li>
+                <li><a href="/presentation/perfil/show">Perfil</a></li>
+                <li><a href="/logout">Logout</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </th:block>
+
     </div>
   </div>
 </header>
 
+<!--<nav th:fragment="nav" xmlns:sec="http://www.w3.org/1999/xhtml">-->
+<!--  <ul class="Menu">-->
+<!--    <li><a href="/nadaAun">Algo</a></li>-->
 
-<nav th:fragment="nav" xmlns:sec="http://www.w3.org/1999/xhtml">
-  <ul class="Menu">
-    <li><a href="/nadaAun">Algo</a></li>
-    <th:block sec:authorize="hasAuthority('ADM')">
-      <li><a href="/Algo">Perfil</a></li>
-    </th:block>
-    <th:block sec:authorize="isAnonymous()">
-      <li><a th:href="@{/presentation/usuarios/login}">Login</a></li>
-    </th:block>
-    <th:block sec:authorize="isAuthenticated()">
-      <li class="dropdown">
-        <!-- El input es invisible pero usaremos su estado para mostrar el menú -->
-        <input type="checkbox" id="dropdown-toggle" class="dropdown-toggle">
-        <label for="dropdown-toggle" class="dropbtn">&#128697;</label>
-        <ul class="dropdown-content">
-          <li>-- <span sec:authentication="name"></span> --</li>
-          <li><a href="/presentation/perfil/show">Perfil</a></li>
-          <li><a href="/logout">Logout</a></li>
-        </ul>
-      </li>
-    </th:block>
-  </ul>
-</nav>
+<!--    &lt;!&ndash; Solo visible para usuarios con autoridad 'ADM' &ndash;&gt;-->
+<!--    <th:block sec:authorize="hasAuthority('ADM')">-->
+<!--      <li><a href="/Algo">Perfil</a></li>-->
+<!--    </th:block>-->
+
+<!--    &lt;!&ndash; Solo visible para usuarios no autenticados &ndash;&gt;-->
+<!--    <th:block sec:authorize="isAnonymous()">-->
+<!--      <li><a th:href="@{/presentation/usuarios/login}">Login</a></li>-->
+<!--    </th:block>-->
+
+<!--    &lt;!&ndash; Solo visible para usuarios autenticados &ndash;&gt;-->
+<!--    <th:block sec:authorize="isAuthenticated()">-->
+<!--      <li class="dropdown">-->
+<!--        <input type="checkbox" id="dropdown-toggle" class="dropdown-toggle">-->
+<!--        <label for="dropdown-toggle" class="dropbtn">&#128697;</label>-->
+<!--        <ul class="dropdown-content">-->
+<!--          <li>&#45;&#45; <span sec:authentication="name"></span> &#45;&#45;</li>-->
+<!--          <li><a href="/presentation/perfil/show">Perfil</a></li>-->
+<!--          <li><a href="/logout">Logout</a></li>-->
+<!--        </ul>-->
+<!--      </li>-->
+<!--    </th:block>-->
+<!--  </ul>-->
+<!--</nav>-->
+
+
+<!--<nav th:fragment="nav" xmlns:sec="http://www.w3.org/1999/xhtml">-->
+<!--  <ul class="Menu">-->
+<!--    <li><a href="/nadaAun">Algo</a></li>-->
+<!--    <th:block sec:authorize="hasAuthority('ADM')">-->
+<!--      <li><a href="/Algo">Perfil</a></li>-->
+<!--    </th:block>-->
+<!--    <th:block sec:authorize="isAnonymous()">-->
+<!--      <li><a th:href="@{/presentation/usuarios/login}">Login</a></li>-->
+<!--    </th:block>-->
+<!--    <th:block sec:authorize="isAuthenticated()">-->
+<!--      <li class="dropdown">-->
+<!--        &lt;!&ndash; El input es invisible pero usaremos su estado para mostrar el menú &ndash;&gt;-->
+<!--        <input type="checkbox" id="dropdown-toggle" class="dropdown-toggle">-->
+<!--        <label for="dropdown-toggle" class="dropbtn">&#128697;</label>-->
+<!--        <ul class="dropdown-content">-->
+<!--          <li>&#45;&#45; <span sec:authentication="name"></span> &#45;&#45;</li>-->
+<!--          <li><a href="/presentation/perfil/show">Perfil</a></li>-->
+<!--          <li><a href="/logout">Logout</a></li>-->
+<!--        </ul>-->
+<!--      </li>-->
+<!--    </th:block>-->
+<!--  </ul>-->
+<!--</nav>-->
 
 <!--xmlns:sec="http://www.w3.org/1999/xhtml"-->
 
