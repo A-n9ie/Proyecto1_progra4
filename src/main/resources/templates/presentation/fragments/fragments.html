@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8">
   <title>Fragments</title>
@@ -27,7 +27,7 @@
 
       <!-- Mostrar el nav si el usuario está autenticado -->
       <th:block sec:authorize="isAuthenticated()">
-        <nav th:fragment="nav" xmlns:sec="http://www.w3.org/1999/xhtml">
+        <nav>
           <ul class="Menu">
 <!--            <li><a href="/nadaAun">Algo</a></li>-->
 <!--            <th:block sec:authorize="hasAuthority('ADM')">-->
