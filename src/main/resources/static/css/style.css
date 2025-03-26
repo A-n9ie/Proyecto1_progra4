@@ -585,18 +585,19 @@ input[type="text"], input[type="password"] {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: white;
+    background-color: ghostwhite;
 }
 
 .cuerpoSchedule {
     display: flex;
-    align-items: center; /* Alinear verticalmente */
-    gap: 15px; /* Reducir separación */
-    width: 100%; /* Hacer que ocupe todo el ancho */
+    align-items: center;
+    gap: 15px;
+    width: 100%;
     padding: 20px;
     background-color: whitesmoke;
-    border-radius: 10px;
+    /*border-radius: 10px;*/
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid lightseagreen;
 }
 
 .ScheduleButton {
@@ -606,6 +607,7 @@ input[type="text"], input[type="password"] {
     color: white;
     cursor: pointer;
     border-radius: 5px;
+
 }
 
 .ScheduleButton:hover {
@@ -663,24 +665,30 @@ input[type="text"], input[type="password"] {
     font-size: 12px;
     font-weight: bold;
     white-space: nowrap;
+    color: darkorange;
 }
 
 .ScheduleHorario {
     display: flex;
-    flex-wrap: wrap;  /* Permite que los días y horas se ajusten si no caben */
-    gap: 10px;  /* Reducir espacio entre los días */
+    flex-wrap: wrap;
+    gap: 10px;
     width: 100%;
 }
 
-.DiaHorario {
 
-    white-space: nowrap;
+.DiaHorario {
     display: flex;
-    flex-direction: column;  /* Los días tendrán sus horas debajo */
-    align-items: center;  /* Centra los elementos dentro de cada día */
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    width: 30%; /* Los días ocuparán el 30% del contenedor */
-    margin: 0; /* Asegura que no haya margen extra entre los días */
+    width: 50%;
+    margin: 0;
+}
+
+.FechaSchedule{
+    text-align: center;
+    color: darkorange;
+    font-size: 20px;
 }
 
 .HorasDeExtendido {

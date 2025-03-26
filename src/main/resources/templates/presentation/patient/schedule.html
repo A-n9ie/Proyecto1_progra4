@@ -30,7 +30,7 @@
   <div class="ScheduleHorario">
     <div th:each="horario : ${medicoHorarios}">
       <div class="DiaHorario">
-        <p th:text="${horario}"></p>
+        <p class="FechaSchedule" th:text="${horario}"></p>
         <div class="HorasDeExtendido">
           <div th:each="hora : ${medico.citasDisponibles()}">
             <button class="ScheduleButton2" th:text="${hora}"></button>
