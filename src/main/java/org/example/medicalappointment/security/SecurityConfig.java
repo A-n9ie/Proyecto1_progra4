@@ -32,7 +32,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())  // Nueva forma de deshabilitar CSRF en Spring Security 6.1+
                 .authorizeHttpRequests(customizer -> customizer
-                        .requestMatchers("/", "/", "/login", "/register", "/css/**", "/images/**").permitAll()
+                        .requestMatchers("/", "/", "/login", "/register", "/css/**", "/images/**","/presentation/patient/schedule/{id}").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(custumizer -> custumizer
@@ -42,9 +42,9 @@ public class SecurityConfig {
                         .permitAll()
                 )
                 .logout(custumizer -> custumizer
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/presentation/usuarios/login?logout=true")
-                        .permitAll()
+                                .permitAll()
+                        .logoutSuccessUrl("/")
+
                 )
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
