@@ -6,6 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.stereotype.*;
 
+
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
@@ -15,7 +22,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         try{
             Usuario user = usuarioRepository.findByUsuario(username);
-            return new UserDetailsImp(user);
+            return User.builder()
+                    .username(user.getUsername())
+                    .password(user.getClave())
+                    .roles()
+                    .build();
         } catch (Exception e) {
             throw new UsernameNotFoundException("Username " + username + " not found");
         }

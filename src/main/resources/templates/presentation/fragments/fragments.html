@@ -33,7 +33,7 @@
               <input type="checkbox" id="dropdown-toggle" class="dropdown-toggle">
               <label for="dropdown-toggle" class="dropbtn">&#128697;</label>
               <ul class="dropdown-content">
-                <li>-- <span sec:authentication="name"></span> --</li>
+                <li>-- <span sec:authentication="name"  th:text="${username}"> </span> --</li>
                 <li><a href="/presentation/perfil/show">Perfil</a></li>
                 <li><a href="/logout">Logout</a></li>
               </ul>

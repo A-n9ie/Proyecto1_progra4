@@ -1,7 +1,11 @@
 package org.example.medicalappointment.presentation.usuarios;
 
+import jakarta.servlet.http.HttpSession;
 import org.example.medicalappointment.logic.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.*;
@@ -93,6 +97,32 @@ public class ControllerUsuarios {
         return "presentation/usuarios/login";
     }
 
+   /* @GetMapping("/login")
+    public String login() {
+        return "login";
+    }*/
+
+    @GetMapping("/home")
+    public String home(HttpSession session, Model model) {
+        // Obtener el usuario autenticado desde SecurityContext
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = "";
+
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        }
+
+        // Guardar en la sesión si no está presente
+        if (session.getAttribute("username") == null) {
+            session.setAttribute("username", username);
+        }
+
+        // Pasar el nombre de usuario a la vista
+        model.addAttribute("username", username);
+        return "/presentation/fragments/fragments";
+    }
+
+
 
 //Este metodo no sirve y deberia ser el spring que lo haga, o ver como logear bien
     @PostMapping("/login")
@@ -113,7 +143,10 @@ public class ControllerUsuarios {
 
         Usuario usuario = serviceUser.getUser(username);
 
-        if (usuario == null || !usuario.getClave().equals(password)) {
+
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+        if (usuario == null || (!usuario.getClave().equals(password) && !passwordEncoder.matches(password, usuario.getClave()))) {
             redirectAttributes.addFlashAttribute("error", "Usuario o contraseña incorrectos");
             return "redirect:/presentation/usuarios/login";
         }

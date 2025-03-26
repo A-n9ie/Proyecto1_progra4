@@ -2,6 +2,7 @@ package org.example.medicalappointment.logic;
 
 import org.example.medicalappointment.data.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @org.springframework.stereotype.Service("serviceUser")
 public class ServiceUser {
@@ -27,7 +28,8 @@ public class ServiceUser {
         if(!user.getClave().equals(password)) {
             throw new IllegalArgumentException("Password doesn't match");
         }
-        //FALTA ENCRIPTAR LA CONTRASEÑA
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        user.setClave(passwordEncoder.encode(user.getClave()));
         usuarioRepository.save(user);
     }
 }
