@@ -29,10 +29,6 @@
       <th:block sec:authorize="isAuthenticated()">
         <nav>
           <ul class="Menu">
-<!--            <li><a href="/nadaAun">Algo</a></li>-->
-<!--            <th:block sec:authorize="hasAuthority('ADM')">-->
-<!--              <li><a href="/Algo">Perfil</a></li>-->
-<!--            </th:block>-->
             <li class="dropdown">
               <input type="checkbox" id="dropdown-toggle" class="dropdown-toggle">
               <label for="dropdown-toggle" class="dropbtn">&#128697;</label>
@@ -67,31 +63,6 @@
 <!--    &lt;!&ndash; Solo visible para usuarios autenticados &ndash;&gt;-->
 <!--    <th:block sec:authorize="isAuthenticated()">-->
 <!--      <li class="dropdown">-->
-<!--        <input type="checkbox" id="dropdown-toggle" class="dropdown-toggle">-->
-<!--        <label for="dropdown-toggle" class="dropbtn">&#128697;</label>-->
-<!--        <ul class="dropdown-content">-->
-<!--          <li>&#45;&#45; <span sec:authentication="name"></span> &#45;&#45;</li>-->
-<!--          <li><a href="/presentation/perfil/show">Perfil</a></li>-->
-<!--          <li><a href="/logout">Logout</a></li>-->
-<!--        </ul>-->
-<!--      </li>-->
-<!--    </th:block>-->
-<!--  </ul>-->
-<!--</nav>-->
-
-
-<!--<nav th:fragment="nav" xmlns:sec="http://www.w3.org/1999/xhtml">-->
-<!--  <ul class="Menu">-->
-<!--    <li><a href="/nadaAun">Algo</a></li>-->
-<!--    <th:block sec:authorize="hasAuthority('ADM')">-->
-<!--      <li><a href="/Algo">Perfil</a></li>-->
-<!--    </th:block>-->
-<!--    <th:block sec:authorize="isAnonymous()">-->
-<!--      <li><a th:href="@{/presentation/usuarios/login}">Login</a></li>-->
-<!--    </th:block>-->
-<!--    <th:block sec:authorize="isAuthenticated()">-->
-<!--      <li class="dropdown">-->
-<!--        &lt;!&ndash; El input es invisible pero usaremos su estado para mostrar el menú &ndash;&gt;-->
 <!--        <input type="checkbox" id="dropdown-toggle" class="dropdown-toggle">-->
 <!--        <label for="dropdown-toggle" class="dropbtn">&#128697;</label>-->
 <!--        <ul class="dropdown-content">-->

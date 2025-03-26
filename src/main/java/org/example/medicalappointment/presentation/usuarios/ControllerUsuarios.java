@@ -93,6 +93,8 @@ public class ControllerUsuarios {
         return "presentation/usuarios/login";
     }
 
+
+//Este metodo no sirve y deberia ser el spring que lo haga, o ver como logear bien
     @PostMapping("/login")
     public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password,
@@ -126,5 +128,6 @@ public class ControllerUsuarios {
         redirectAttributes.addFlashAttribute("error", "Rol no reconocido");
         return "redirect:/presentation/usuarios/login";
     }
+
 }
 
