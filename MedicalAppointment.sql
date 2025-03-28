@@ -119,3 +119,11 @@ insert into horarios_medicos (medico_id, dia)
 values (3, 'Sabado');
 insert into horarios_medicos (medico_id, dia) 
 values (3, 'Domingo');
+
+
+UPDATE usuarios SET clave = '$2a$10$Rg4.yW64RMNp/iwzsToyceC5soZsAPkXZ2oQBNin60rfqh6a0N6Ei' WHERE usuario = 'Admin';
+UPDATE usuarios SET clave = '$2a$10$qXBuV92uQ8HFZjDp.bAj3eJx5YCHOKBGYd97dgimjsjlL/llb4n/y' WHERE usuario = 'BBanner';
+UPDATE usuarios SET clave = '$2a$10$DD6lzGOjyOpbGha2JLtA6.qcM2c9ZXdYhiw5cdtXP/TTI7PRkeun2' WHERE usuario = 'JPerez';
+UPDATE usuarios SET clave = '$2a$10$DS6P0GShYYDmKY1yZgDq7.xzUMP1Jy4d5Myfr4HoMvERdCyXPciyC' WHERE usuario = 'LKjero';
+UPDATE usuarios SET clave = '$2a$10$R6dAhvex7HjMboP5o.5Z/O.PxeCC1FojuYdsnTFEemyVsaz4mDjC2' WHERE usuario = 'GLucas';
+UPDATE usuarios SET clave = '$2a$10$TrxOwOOjIqqK9NWLlrT1Uum5RHEvYOCLzebBa0L0sHEE/u9a24IeS' WHERE usuario = 'SLee';
