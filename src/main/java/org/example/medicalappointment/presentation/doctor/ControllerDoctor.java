@@ -39,7 +39,7 @@ public class ControllerDoctor {
     public String profile(@ModelAttribute("usuario") Usuario user, Model model) {
         Medico doctor = serviceDoctor.getDoctorbyUser(user);
         model.addAttribute("persona", doctor);
-        return "presentation/doctor/profile";
+        return "presentation/usuarios/profile";
     }
 
     @GetMapping("/presentation/patient/schedule/{id}")

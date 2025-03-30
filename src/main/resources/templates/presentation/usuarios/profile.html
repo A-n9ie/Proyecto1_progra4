@@ -9,7 +9,7 @@
 <body>
 <header th:replace="~{/presentation/fragments/fragments.html :: header}"></header>
 
-<div id="cuerpo_div_index" class="cuerpo">
+<div class="cuerpo">
     <div class="datos">
         <div class="col_datos">
 
@@ -17,58 +17,73 @@
 
             <div class="datos">
                 <div class="col_datos">
-                    <label>Username:</label>
-                    <p th:text="${persona.getUsuario().getUsername()}">Username</p>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" th:field="*{usuario.username}">
+                    <br><br>
                 </div>
             </div>
 
             <div class="datos">
                 <div class="col_datos">
-                    <label>ID:</label>
-                    <p th:text="${persona.cedula}">ID</p>
+                    <label for="id">ID:</label>
+                    <input type="text" id="id" name="id" th:field="*{persona.cedula}">
+                    <br><br>
                 </div>
                 <div class="col_datos">
-                    <label>Name:</label>
-                    <p th:text="${persona.nombre}">Nombre Completo</p>
+                    <label for="nombre">Name:</label>
+                    <input type="text" id="nombre" name="nombre" th:field="*{persona.nombre}">
+                    <br><br>
                 </div>
             </div>
 
             <div th:if="${persona.getUsuario().rol == 'Medico'}">
                 <div class="datos">
                     <div class="col_datos">
-                        <label>Speciality:</label>
-                        <p th:text="${persona.especialidad}">Especialidad</p>
+                        <label for="especialidad">Speciality:</label>
+                        <input type="text" id="especialidad" name="especialidad" th:field="*{persona.especialidad}">
+                        <br><br>
                     </div>
                     <div class="col_datos">
-                        <label>Consultation fee:</label>
-                        <p th:text="${persona.costoConsulta}">Costo</p>
+                        <label for="costo">Consultation fee:</label>
+                        <input type="text" id="costo" name="costo" th:field="*{persona.especialidad}">
+                        <br><br>
                     </div>
                 </div>
                 <div class="datos">
                     <div class="col_datos">
-                        <label>Location:</label>
-                        <p th:text="${persona.lugarAtencion}">Lugar</p>
+                        <label for="lugar">Location:</label>
+                        <input type="text" id="lugar" name="lugar" th:field="*{persona.lugarAtencion}">
+                        <br><br>
                     </div>
                 </div>
                 <div class="col_datos">
-                    <label>Service hours:</label>
+                    <label>Service hours</label>
                     <div class="datos">
                         <div class="col_datos">
-                            <label>Start time:</label>
-                            <p th:text="${persona.horarioInicio}">Inicio</p>
+                            <label for="inicio">Start time:</label>
+                            <input type="text" id="inicio" name="inicio" th:field="*{persona.horarioInicio}">
+                            <br><br>
                         </div>
                         <div class="col_datos">
-                            <label>End time:</label>
-                            <p th:text="${persona.horarioFin}">Fin</p>
+                            <label for="final">End time:</label>
+                            <input type="text" id="final" name="final" th:field="*{persona.horarioFin}">
+                            <br><br>
                         </div>
                     </div>
-                    <div class="datos">
-                        <label>Frequency:</label>
-                        <p th:text="${persona.frecuenciaCitas}">Frecuencia</p>
+                    <div class="col_datos">
+                        <label for="frecuencia">Frequency:</label>
+                        <input type="text" id="frecuencia" name="frecuencia" th:field="*{persona.frecuenciaCitas}">
+                        <br><br>
                     </div>
-                    <div class="datos">
-                        <label>Days:</label>
-                        <p> <!-- th:text="${p.diasTrabajo}" > --> Días</p>
+                    <div class="col_datos">
+                        <label for="dias">Days:</label>
+                        <input type="text" id="dias" name="dias" th:field="*{persona.aprobado}">
+                        <br><br>
+                    </div>
+                    <div class="col_datos">
+                        <label for="presentacion">Presentation:</label>
+                        <input type="text" id="presentacion" name="presentacion" th:field="*{persona.presentacion}">
+                        <br><br>
                     </div>
                 </div>
             </div>
@@ -76,12 +91,14 @@
             <div th:if="${persona.getUsuario().rol == 'Paciente'}">
                 <div class="datos">
                     <div class="col_datos">
-                        <label>Phone number:</label>
-                        <p th:text="${persona.telefono}">Teléfono</p>
+                        <label for="telefono">Phone Number:</label>
+                        <input type="text" id="telefono" name="telefono" th:field="*{persona.telefono}">
+                        <br><br>
                     </div>
                     <div class="col_datos">
-                        <label>Direction:</label>
-                        <p th:text="${persona.direccion}">Dirección</p>
+                        <label for="direccion">Address:</label>
+                        <input type="text" id="direccion" name="direccion" th:field="*{persona.direccion}">
+                        <br><br>
                     </div>
                 </div>
             </div>

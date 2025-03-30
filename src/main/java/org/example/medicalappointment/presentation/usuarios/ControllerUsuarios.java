@@ -79,9 +79,10 @@ public class ControllerUsuarios {
         return "/presentation/usuarios/login";
     }
 
-    @GetMapping("/presentation/usuarios/profile")
+    @GetMapping("/presentation/perfil/show")
     public String profile(RedirectAttributes redirect) {
-        Usuario usuario = serviceUser.getUser("BBanner");
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Usuario usuario = serviceUser.getUser(username);
         if (usuario.getRol().equals("Medico")) {
             redirect.addFlashAttribute("usuario", usuario);
             return "redirect:/presentation/doctor/profile";
