@@ -53,7 +53,7 @@
                                     <div th:classappend="${iter.index >= 2} ? 'oculto' : ''">
                                         <p th:text="${dia}"></p>
                                         <div class="citas_disponibles">
-                                            <form th:action="@{/presentation/patient/book/save}" method="get" >
+                                            <form th:action="@{/presentation/patient/book/save}" method="post" >
                                             <div th:each="hora : ${m.citasDisponibles()}">
                                                 <!--Agarrar la hora seleccionada-->
                                                 <button type="submit" th:name="hora" th:value="${hora}" th:text="${hora}"></button>

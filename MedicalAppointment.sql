@@ -127,3 +127,5 @@ UPDATE usuarios SET clave = '$2a$10$DD6lzGOjyOpbGha2JLtA6.qcM2c9ZXdYhiw5cdtXP/TT
 UPDATE usuarios SET clave = '$2a$10$DS6P0GShYYDmKY1yZgDq7.xzUMP1Jy4d5Myfr4HoMvERdCyXPciyC' WHERE usuario = 'LKjero';
 UPDATE usuarios SET clave = '$2a$10$R6dAhvex7HjMboP5o.5Z/O.PxeCC1FojuYdsnTFEemyVsaz4mDjC2' WHERE usuario = 'GLucas';
 UPDATE usuarios SET clave = '$2a$10$TrxOwOOjIqqK9NWLlrT1Uum5RHEvYOCLzebBa0L0sHEE/u9a24IeS' WHERE usuario = 'SLee';
+
+select * from citas;

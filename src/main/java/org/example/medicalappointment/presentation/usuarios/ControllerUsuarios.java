@@ -27,7 +27,7 @@ public class ControllerUsuarios {
     @GetMapping("/presentation/usuarios/show")
     public String show(Model model) {
         model.addAttribute("usuarios", serviceUser.usuariosFindAll());
-        return "presentation/usuarios/register";
+        return "/presentation/usuarios/register";
     }
 
     //Modelo vacio para colocar al inicio de la pagina
@@ -35,7 +35,7 @@ public class ControllerUsuarios {
     public String register(Model model) {
         model.addAttribute("usuario", new Usuario());
         model.addAttribute("persona", new Persona());
-        return "presentation/usuarios/register";
+        return "/presentation/usuarios/register";
     }
 
 
@@ -47,7 +47,7 @@ public class ControllerUsuarios {
                          Model model) {
         if (result.hasErrors()) {
             model.addAttribute("error", "Error in the input data");
-            return "presentation/usuarios/register";
+            return "/presentation/usuarios/register";
         }
 
         try {
@@ -74,9 +74,9 @@ public class ControllerUsuarios {
             }
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
-            return "presentation/usuarios/register";
+            return "/presentation/usuarios/register";
         }
-        return "presentation/usuarios/login";
+        return "/presentation/usuarios/login";
     }
 
     @GetMapping("/presentation/usuarios/profile")
@@ -98,11 +98,6 @@ public class ControllerUsuarios {
         return "/presentation/usuarios/login";
     }
 
-   /* @GetMapping("/login")
-    public String login() {
-        return "login";
-    }*/
-
     @GetMapping("/home")
     public String home(HttpSession session, Model model) {
         // Obtener el usuario autenticado desde SecurityContext
@@ -123,86 +118,6 @@ public class ControllerUsuarios {
         return "/presentation/fragments/fragments";
     }
 
-
-//Este metodo no sirve y deberia ser el spring que lo haga, o ver como logear bien
-//    @PostMapping("/login")
-//    public String login(@RequestParam("username") String username,
-//                        @RequestParam("password") String password,
-//                        RedirectAttributes redirectAttributes) {
-//
-//
-//        if (username == null || username.isEmpty()) {
-//            redirectAttributes.addFlashAttribute("error", "El campo de usuario no puede estar vacío");
-//            return "redirect:/presentation/usuarios/login";
-//        }
-//
-//        if (password == null || password.isEmpty()) {
-//            redirectAttributes.addFlashAttribute("error", "El campo de contraseña no puede estar vacío");
-//            return "redirect:/presentation/usuarios/login";
-//        }
-//
-//        Usuario usuario = serviceUser.getUser(username);
-//
-//
-//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//
-//        if (usuario == null || (!usuario.getClave().equals(password) && !passwordEncoder.matches(password, usuario.getClave()))) {
-//            redirectAttributes.addFlashAttribute("error", "Usuario o contraseña incorrectos");
-//            return "redirect:/presentation/usuarios/login";
-//        }
-//
-//
-//        if ("Medico".equals(usuario.getRol())) {
-//            return "redirect:/"; //Hay que ver a donde tiene que llevarlos
-//        } else if ("Paciente".equals(usuario.getRol())) {
-//            return "redirect:/"; //Hay que ver a donde tiene que llevarlos
-//        }
-//
-//        redirectAttributes.addFlashAttribute("error", "Rol no reconocido");
-//        return "redirect:/presentation/usuarios/login";
-//    }
-
-    /*
-    @Autowired
-    private AuthenticationManager authenticationManager;
-*/
-    /*
-    @PostMapping("/login")
-    public String login(@RequestParam("username") String username,
-                        @RequestParam("password") String password,
-                        RedirectAttributes redirectAttributes) {
-
-
-        if (username == null || username.isEmpty()) {
-            redirectAttributes.addFlashAttribute("error", "El campo de usuario no puede estar vacío");
-            return "redirect:/presentation/usuarios/login";
-        }
-
-        if (password == null || password.isEmpty()) {
-            redirectAttributes.addFlashAttribute("error", "El campo de contraseña no puede estar vacío");
-            return "redirect:/presentation/usuarios/login";
-        }
-
-        Usuario usuario = serviceUser.getUser(username);
-
-
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
-        if (usuario == null || (!usuario.getClave().equals(password) && !passwordEncoder.matches(password, usuario.getClave()))) {
-            redirectAttributes.addFlashAttribute("error", "Usuario o contraseña incorrectos");
-            return "redirect:/presentation/usuarios/login";
-        }
-
-
-        if ("Medico".equals(usuario.getRol())) {
-            return "redirect:/"; //Hay que ver a donde tiene que llevarlos
-        } else if ("Paciente".equals(usuario.getRol())) {
-            return "redirect:/"; //Hay que ver a donde tiene que llevarlos
-        }
-
-        redirectAttributes.addFlashAttribute("error", "Rol no reconocido");
-        return "redirect:/presentation/usuarios/login";
-    }*/
 
 }
 

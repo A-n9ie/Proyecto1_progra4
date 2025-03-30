@@ -10,7 +10,27 @@
 <header th:replace="~{/presentation/fragments/fragments.html :: header}"></header>
 
 <div class = "cuerpo" >
-confirma una cita
+    <div class="citas">
+        <h2>Citas programadas</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Médico</th>
+                <th>Paciente</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cita : ${citas}">
+                <td th:text="${cita.fechaCita}"></td>
+                <td th:text="${cita.horaCita}"></td>
+                <td th:text="${cita.medico.nombre}"></td>
+                <td th:text="${cita.paciente.nombre}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <footer th:replace="~{/presentation/fragments/fragments.html :: footer}"></footer>

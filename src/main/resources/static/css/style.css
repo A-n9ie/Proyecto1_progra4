@@ -714,6 +714,10 @@ input[type="text"], input[type="password"] {
     background-color: #0056b3;
 }
 
+.citas{
+    margin-top: 50px;
+}
+
 /*---------------------------------------------------------------------------- Fin Schedule ----------------------------------------------------------------------------*/
 
 /*<p>Appointments</p> <p>Profile</p> <p>Usuario</p>*/
