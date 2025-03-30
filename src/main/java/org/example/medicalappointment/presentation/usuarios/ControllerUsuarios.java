@@ -92,6 +92,22 @@ public class ControllerUsuarios {
         }
     }
 
+    @PostMapping("/presentation/perfil/edit")
+    public String edit(RedirectAttributes redirect,
+                       @ModelAttribute("medico") Medico medico,
+                       @ModelAttribute("paciente") Paciente paciente) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Usuario usuario = serviceUser.getUser(username);
+        redirect.addFlashAttribute("usuario", usuario);
+        if (usuario.getRol().equals("Medico")) {
+            redirect.addFlashAttribute("medico", medico);
+            return "redirect:/presentation/doctor/edit";
+        } else {
+            redirect.addFlashAttribute("paciente", paciente);
+            return "redirect:/presentation/patient/edit";
+        }
+    }
+
 //    Login
 
     @GetMapping("/presentation/usuarios/login")

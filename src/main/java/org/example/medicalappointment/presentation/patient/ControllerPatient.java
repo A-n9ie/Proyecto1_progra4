@@ -37,8 +37,14 @@ public class ControllerPatient {
     @GetMapping("/presentation/patient/profile")
     public String profile(@ModelAttribute("usuario") Usuario user, Model model) {
         Paciente patient = servicePatient.getPatientByUser(user);
-        model.addAttribute("persona", patient);
+        model.addAttribute("paciente", patient);
         return "presentation/usuarios/profile";
+    }
+
+    @GetMapping("/presentation/patient/edit")
+    public String edit(@ModelAttribute("usuario") Usuario user, @ModelAttribute("paciente") Paciente patient) {
+        servicePatient.editPatient(user, patient);
+        return "redirect:/presentation/perfil/show";
     }
 
     @PostMapping("/presentation/patient/book/save")

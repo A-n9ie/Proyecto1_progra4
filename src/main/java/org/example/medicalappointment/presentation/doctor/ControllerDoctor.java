@@ -38,8 +38,14 @@ public class ControllerDoctor {
     @GetMapping("/presentation/doctor/profile")
     public String profile(@ModelAttribute("usuario") Usuario user, Model model) {
         Medico doctor = serviceDoctor.getDoctorbyUser(user);
-        model.addAttribute("persona", doctor);
+        model.addAttribute("medico", doctor);
         return "presentation/usuarios/profile";
+    }
+
+    @GetMapping("/presentation/doctor/edit")
+    public String edit(@ModelAttribute("usuario") Usuario user, @ModelAttribute("medico") Medico doctor) {
+        serviceDoctor.editDoctor(user, doctor);
+        return "redirect:/presentation/perfil/show";
     }
 
     @GetMapping("/presentation/patient/schedule/{id}")

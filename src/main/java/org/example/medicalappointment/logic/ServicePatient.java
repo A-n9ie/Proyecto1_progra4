@@ -20,5 +20,14 @@ public class ServicePatient {
 
     public Paciente getPatientByUser(Usuario user){return patientRepository.findByUsuario(user);}
 
+    public void editPatient(Usuario user, Paciente patient){
+        Paciente u = getPatientByUser(user);
+        if (u != null){
+            u.setNombre(patient.getNombre());
+            u.setDireccion(patient.getDireccion());
+            u.setTelefono(patient.getTelefono());
 
+            patientRepository.save(u);
+        }
+    }
 }

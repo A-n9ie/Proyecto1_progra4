@@ -37,6 +37,22 @@ public class ServiceDoctor {
 
     public Medico getDoctorbyUser(Usuario usuario) {return doctorRepository.findByUsuario(usuario);}
 
+    public void editDoctor(Usuario user, Medico doctor){
+        Medico u = getDoctorbyUser(user);
+        if (u != null){
+            u.setNombre(doctor.getNombre());
+            u.setEspecialidad(doctor.getEspecialidad());
+            u.setCostoConsulta(doctor.getCostoConsulta());
+            u.setFrecuenciaCitas(doctor.getFrecuenciaCitas());
+            u.setHorarioInicio(doctor.getHorarioInicio());
+            u.setHorarioFin(doctor.getHorarioFin());
+            u.setLugarAtencion(doctor.getLugarAtencion());
+            u.setPresentacion(doctor.getPresentacion());
+
+            doctorRepository.save(u);
+        }
+    }
+
     public Iterable<HorariosMedico> horariosMedicosFindAll() {
         return horarioRepository.findAll();
     }
