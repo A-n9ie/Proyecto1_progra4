@@ -100,8 +100,7 @@ public class ControllerPatient {
 
     @GetMapping("/presentation/patient/book")
     public String book(Model model) {
-        List<Cita> citas = new ArrayList<>();
-
+        List<Cita> citas = serviceAppointment.citasFindAll();
         model.addAttribute("citas" , citas);
         return "presentation/patient/book";
     }

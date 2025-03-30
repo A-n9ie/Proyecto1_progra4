@@ -23,7 +23,7 @@
             </thead>
             <tbody>
             <tr th:each="cita : ${citas}">
-                <td th:text="${cita.fechaCita}"></td>
+                <td th:text="${cita.getFechaCita()}"></td>
                 <td th:text="${cita.horaCita}"></td>
                 <td th:text="${cita.medico.nombre}"></td>
                 <td th:text="${cita.paciente.nombre}"></td>
