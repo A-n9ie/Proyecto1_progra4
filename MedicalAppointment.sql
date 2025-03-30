@@ -94,9 +94,9 @@ insert into usuarios (usuario, clave, rol) values ('SLee', '555', 'Paciente');
 
  /*Pacientes*/
 insert into pacientes (usuario_id, cedula, nombre, telefono, direccion, foto_url)
- values (4, '4444444444', 'Georges Lucas', '555-1234', 'Alajuela', '');
+ values (5, '4444444444', 'Georges Lucas', '555-1234', 'Alajuela', '');
 insert into pacientes (usuario_id, cedula, nombre, telefono, direccion, foto_url)
- values (5, '5555555555', 'Stan Lee', '665-1245', 'San Jose', '');
+ values (6, '5555555555', 'Stan Lee', '665-1245', 'San Jose', '');
  
 
 insert into horarios_medicos (medico_id, dia) 

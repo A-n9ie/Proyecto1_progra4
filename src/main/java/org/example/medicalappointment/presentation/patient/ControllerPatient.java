@@ -70,7 +70,7 @@ public class ControllerPatient {
 
             if (pacientes == null || pacientes.isEmpty()) {
                 model.addAttribute("error", "No hay pacientes asociados al usuario.");
-                return "/presentation/patient/book";
+                return "/presentation/principal/index";
             }
             System.out.println("Pacientes encontrados: " + pacientes.size());
 
