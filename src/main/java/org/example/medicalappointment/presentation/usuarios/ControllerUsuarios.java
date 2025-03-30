@@ -95,7 +95,7 @@ public class ControllerUsuarios {
 
     @GetMapping("/presentation/usuarios/login")
     public String showLoginPage() {
-        return "presentation/usuarios/login";
+        return "/presentation/usuarios/login";
     }
 
    /* @GetMapping("/login")
@@ -162,9 +162,11 @@ public class ControllerUsuarios {
 //        return "redirect:/presentation/usuarios/login";
 //    }
 
+    /*
     @Autowired
     private AuthenticationManager authenticationManager;
-
+*/
+    /*
     @PostMapping("/login")
     public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password,
@@ -200,7 +202,7 @@ public class ControllerUsuarios {
 
         redirectAttributes.addFlashAttribute("error", "Rol no reconocido");
         return "redirect:/presentation/usuarios/login";
-    }
+    }*/
 
 }
 

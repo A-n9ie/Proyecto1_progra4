@@ -2,6 +2,7 @@ package org.example.medicalappointment.presentation.patient;
 
 import org.example.medicalappointment.logic.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.*;
@@ -19,6 +20,8 @@ public class ControllerPatient {
     private ServicePatient servicePatient;
     @Autowired
     private ServiceAppointment serviceAppointment;
+    @Autowired
+    private ServiceDoctor serviceDoctor;
 
     @GetMapping("/presentation/pacientes/show")
     public String show(Model model) {
@@ -33,10 +36,10 @@ public class ControllerPatient {
         return "presentation/usuarios/profile";
     }
 
-    @PostMapping("/presentation/patient/book/save")
+    @GetMapping("/presentation/patient/book/save")
     public String saveAppointment(@RequestParam("dia") String fecha_cita, @RequestParam("hora") String hora_cita,
                                   @RequestParam Integer medicoId, @ModelAttribute("usuario") Usuario usuario, Model model) {
-
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
         LocalDate fecha = LocalDate.parse(fecha_cita, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
         // Convertir hora_cita de String a LocalTime
@@ -45,6 +48,8 @@ public class ControllerPatient {
         Cita nuevaCita = new Cita();
         nuevaCita.setFechaCita(fecha);
         nuevaCita.setHoraCita(hora);
+        Medico medico = serviceDoctor.findDoctorById(medicoId);
+        nuevaCita.setMedico(medico);
 
         Paciente paciente = (Paciente) usuario.getPacientes();
         nuevaCita.setPaciente(paciente);
