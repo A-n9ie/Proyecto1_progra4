@@ -95,7 +95,7 @@ public class ControllerUsuarios {
     public String edit(RedirectAttributes redirect,
                        @ModelAttribute("medico") Medico medico,
                        @ModelAttribute("paciente") Paciente paciente,
-                       @RequestParam("days") List<String> selectedDays) {
+                       @RequestParam(value = "days", required = false) List<String> selectedDays) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         Usuario usuario = serviceUser.getUser(username);
         redirect.addFlashAttribute("usuario", usuario);
