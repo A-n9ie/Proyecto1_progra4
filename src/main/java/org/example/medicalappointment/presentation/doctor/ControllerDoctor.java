@@ -102,8 +102,7 @@ public class ControllerDoctor {
         if (cancel != null) {
             Cita citaSeleccionada = serviceAppointment.getCitaById(cancel);
             if (citaSeleccionada != null) {
-                citaSeleccionada.setEstado("Cancelada");
-                serviceAppointment.saveAppointment(citaSeleccionada);
+                serviceAppointment.deleteAppointment(citaSeleccionada);
             }
         }
 

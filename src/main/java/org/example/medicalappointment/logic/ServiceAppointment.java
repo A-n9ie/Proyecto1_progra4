@@ -19,6 +19,8 @@ public class ServiceAppointment {
         citaRepository.save(cita);
     }
 
+    public void deleteAppointment(Cita cita) {citaRepository.delete(cita);}
+
     public List<Cita> citasPaciente(Paciente paciente){return citaRepository.findCitaByPacienteOrderByFechaCitaDescHoraCitaDesc(paciente);}
 
     public List<Cita> citasMedico(Medico doctor){return citaRepository.findCitaByMedicoOrderByFechaCitaDescHoraCitaDesc(doctor);}

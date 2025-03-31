@@ -524,14 +524,6 @@ div.campo input {
 #Atendida {
     background: lightgreen;
 }
-
-#Cancelada {
-    background: lightcoral;
-}
-
-#Confirmada {
-    background: lavender;
-}
 /*--------------------FIN HISTORIAL----------------------------*/
 footer{
     background-color: #333;
