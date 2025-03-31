@@ -54,32 +54,6 @@ public class HorariosMedico {
                 '}';
     }
 
-    public int obtenerDiaDeLaSemana() {
-        try {
-            DayOfWeek dayOfWeek = DayOfWeek.valueOf(dia.toUpperCase());
-            return dayOfWeek.getValue();
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("Día inválido: " + dia);
-        }
-    }
-
-    public static LocalDate obtenerFechaDiaSemana(String diaSemana) {
-
-            LocalDate hoy = LocalDate.now();
-            int diaActual = hoy.getDayOfWeek().getValue();
-            DayOfWeek diaDeseado = DayOfWeek.valueOf(diaSemana.toUpperCase());
-            int diaDeseadoValor = diaDeseado.getValue();
-            int diasDiferencia = diaDeseadoValor - diaActual;
-            if (diasDiferencia <= 0) {
-                diasDiferencia += 7;
-            }
-            LocalDate fechaDeseada = hoy.plusDays(diasDiferencia);
-            return fechaDeseada;
-        }
-
-        public LocalDate getDiaDeLaSemanaDisponible(){
-        return obtenerFechaDiaSemana(dia);
-        }
 
 
 }

@@ -1,11 +1,13 @@
 package org.example.medicalappointment.logic;
 
 import jakarta.transaction.Transactional;
+import org.example.medicalappointment.data.CitaRepository;
 import org.example.medicalappointment.data.DoctorRepository;
 import org.example.medicalappointment.data.HorarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +21,8 @@ public class ServiceDoctor {
     private DoctorRepository doctorRepository;
     @Autowired
     private HorarioRepository horarioRepository;
+    @Autowired
+    private CitaRepository citaRepository;
 
     public Iterable<Medico> medicosFindAll() {
         return doctorRepository.findAll();
@@ -39,6 +43,7 @@ public class ServiceDoctor {
     public Medico getDoctorbyUser(Usuario usuario) {return doctorRepository.findByUsuario(usuario);}
 
     public List<HorariosMedico> horarioMdico(Integer id){return horarioRepository.findByMedicoId(id);}
+
 
     public void editDoctor(Usuario user, Medico doctor){
         Medico u = getDoctorbyUser(user);
@@ -73,9 +78,7 @@ public class ServiceDoctor {
     }
 
     public Map<Integer, List<String>> obtenerMedicosConHorarios() {
-        //Lista de horarios
         List<HorariosMedico> horarios = (List<HorariosMedico>) horariosMedicosFindAll();
-       //id, lista de horarios
         Map<Integer, List<String>> medicosConHorarios = new HashMap<>();
 
        //hoy
@@ -162,5 +165,8 @@ public class ServiceDoctor {
 
         return medicosConHorarios;
     }
+
+
+
 
 }

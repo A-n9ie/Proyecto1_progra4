@@ -3,10 +3,12 @@ package org.example.medicalappointment.logic;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import org.hibernate.annotations.ColumnDefault;
+import org.springframework.cglib.core.Local;
 
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
 
@@ -199,6 +201,7 @@ public class Medico {
                 '}';
     }
 
+    /*
     public List<LocalTime> citasDisponibles() {
         List<LocalTime> horasDisponibles = new ArrayList<>(); //lista de horas
         LocalTime horaActual = horarioInicio;
@@ -207,6 +210,37 @@ public class Medico {
 
         while (!horaActual.isAfter(horarioFin)) {
             horasDisponibles.add(horaActual);
+            horaActual = horaActual.plusMinutes(frecuenciaEnMinutos);
+        }
+
+        return horasDisponibles;
+    }
+     */
+
+    public List<LocalTime> citasDisponibles(LocalDate fechaConsulta) {
+        List<LocalTime> horasDisponibles = new ArrayList<>();
+        LocalTime horaActual = horarioInicio;
+
+        List<LocalDateTime> horarioOcupado = obtenerHorayFecha();
+        int frecuenciaEnMinutos = frecuenciaEnMinutos(this.frecuenciaCitas);//convertir
+
+        while (!horaActual.isAfter(horarioFin)) {
+          //fecha de consulta
+            LocalDateTime fechaHoraActual = LocalDateTime.of(fechaConsulta, horaActual);
+
+            boolean ocupada = false;
+            for (LocalDateTime fechaHoraOcupada : horarioOcupado) {
+
+                if (fechaHoraOcupada.equals(fechaHoraActual)) {
+                    ocupada = true; //Si la hora ya está ocupada en la fecha, la marcamos como ocupada
+                    break;
+                }
+            }
+
+
+            if (!ocupada) {
+                horasDisponibles.add(horaActual);
+            }
             horaActual = horaActual.plusMinutes(frecuenciaEnMinutos);
         }
 
@@ -222,5 +256,40 @@ public class Medico {
             return 30;
         }
     }
+
+    public List<Cita> obtenerCitas(){
+        List<Cita> citasMedico = new ArrayList<>();
+        for(Cita cita : citas){
+            if(cita.getMedico().equals(this)){
+                citasMedico.add(cita);
+            }
+        }
+        return citasMedico;
+    }
+
+//    public List<LocalTime> obtenerHora(){
+//        List<Cita> citas = obtenerCitas();
+//        List<LocalTime> horas = new ArrayList<>();
+//         for(Cita cita : citas){
+//             LocalTime hora = cita.getHoraCita();
+//             horas.add(hora);
+//         }
+//         return horas;
+//    }
+
+    public List<LocalDateTime> obtenerHorayFecha(){
+      List<Cita> citas = obtenerCitas();
+        List<LocalDateTime> horasyFechas = new ArrayList<>();
+         for(Cita cita : citas){
+             LocalTime hora = cita.getHoraCita();
+             LocalDate fecha = cita.getFechaCita();
+
+             LocalDateTime fechaHora = LocalDateTime.of(fecha, hora);
+             horasyFechas.add(fechaHora);
+         }
+         return horasyFechas;
+    }
+
+
 
 }

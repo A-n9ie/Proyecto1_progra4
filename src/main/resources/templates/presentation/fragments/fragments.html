@@ -20,28 +20,25 @@
 
     <div class="header-links">
       <p>About </p> <p>Search</p>
-<!--      <p><a th:href="@{/presentation/usuarios/login}">Login</a></p>-->
-      <th:block sec:authorize="isAnonymous()">
-        <p><a th:href="@{/presentation/usuarios/login}">Login</a></p>
-      </th:block>
-
-      <!-- Mostrar el nav si el usuario está autenticado -->
-      <th:block sec:authorize="isAuthenticated()">
-        <nav>
-          <ul class="Menu">
-              <li sec:authorize="isAuthenticated">
-                  <ul>
-                    <li>
-                        <span sec:authentication="name">
-                        </span>
-                    </li>
+      <nav>
+        <ul class="Menu">
+          <!--si no se ha registrado-->
+          <th:block sec:authorize="isAnonymous()">
+            <p><a th:href="@{/presentation/usuarios/login}">Login</a></p>
+          </th:block>
+          <!-- Mostrar el nav si el usuario está autenticado -->
+          <th:block sec:authorize="isAuthenticated()">
+            <li>
+              <a href="#"><span sec:authentication="name"></span> </a>
+              <ul>
+                <li><span sec:authentication="name"> </span> </li>
                 <li><a href="/presentation/perfil/show">Perfil</a></li>
                 <li><a href="/logout">Logout</a></li>
               </ul>
             </li>
-          </ul>
-        </nav>
-      </th:block>
+          </th:block>
+        </ul>
+      </nav>
     </div>
   </div>
 </header>
