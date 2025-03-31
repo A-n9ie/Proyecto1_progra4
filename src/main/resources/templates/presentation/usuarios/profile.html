@@ -104,12 +104,12 @@
                 <div class="datos">
                     <div class="col_datos">
                         <label for="id">ID:</label>
-                        <input type="text" id="idP" name="id" th:field="*{paciente.cedula}">
+                        <input type="text" id="idP" name="id" th:field="*{paciente.cedula}" readonly>
                         <br><br>
                     </div>
                     <div class="col_datos">
                         <label for="nombre">Name:</label>
-                        <input type="text" id="nombreP" name="nombre" th:field="*{paciente.nombre}">
+                        <input type="text" id="nombreP" name="nombre" th:field="*{paciente.nombre}" required>
                         <br><br>
                     </div>
                 </div>
