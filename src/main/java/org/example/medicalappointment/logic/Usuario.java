@@ -33,7 +33,7 @@ public class Usuario {
     @NotBlank(message = "Rol is required")
     private String rol;
 
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
     private Set<Medico> medicos = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "usuario")
