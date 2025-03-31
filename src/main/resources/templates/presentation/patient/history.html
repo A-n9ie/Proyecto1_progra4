@@ -9,9 +9,51 @@
 <body>
 <header th:replace="~{/presentation/fragments/fragments.html :: header}"></header>
 
-<div class = "cuerpo" >
-citas del paciente
-</div>
+<div class = "cuerpo historial_col" >
+    <div class="datos">
+            <h1>Patient </h1>
+            <h1> - username </h1>
+            <h1> - appointment history</h1>
+    </div>
+    <div class="datos"  id="fila_historial">
+            <div class="buscador">
+                <form class="buscar_especialidad_lugar">
+                    <span>Status</span>
+                    <input type="text" name="status" placeholder="All">
+                    <span>Doctor</span>
+                    <input type="text" name="doctor" placeholder="">
+                    <button type="submit" name="buscar">
+                        Search
+                    </button>
+                </form>
+            </div>
+    </div>
+        <div class="informacion_medico historial_col" id="historial_col" th:each="c : ${citas}">
+            <img th:src="${c.medico.getFotoUrl()}" alt="medico"/>
+            <div class="informacion_personal">
+                <div class="separacion">
+                    <h5 class="nombre_medico">
+                        <span th:text="${c.medico.getNombre()}"></span>
+                        <span class="id_medico" th:text="${c.medico.costoConsulta}"></span>
+                    </h5>
+                    <small class="especialidad_medico" th:text="${c.medico.getEspecialidad()}"></small>
+                </div>
+                <p class="lugar_atencion">
+                    <span th:text="${c.medico.getLugarAtencion()}"></span>
+                </p>
+            </div>
+            <div class="cada_cita">
+                <div class="dias">
+                    <p th:text="${c.getFechaCita()} + ' - ' + ${c.getHoraCita()}"></p>
+                </div>
+                <button name="estado_cita"
+                        th:text="${c.getEstado()}"
+                        th:id="${c.getEstado()}">
+                </button>
+
+            </div>
+        </div>
+    </div>
 
 <footer th:replace="~{/presentation/fragments/fragments.html :: footer}"></footer>
 </body>

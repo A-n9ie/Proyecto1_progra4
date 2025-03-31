@@ -283,7 +283,7 @@ header {
     text-align: center;
 }
 
-#cuerpo_div_index button{
+#cuerpo_div_index button, .historial_col button{
     background-color: #007bff;
     color: white;
     border: none;
@@ -293,7 +293,7 @@ header {
     margin: 5px;
 }
 
-#cuerpo_div_index button:hover{
+#cuerpo_div_index button:hover, .historial_col button:hover{
     background-color: lightslategrey ;
 }
 
@@ -468,7 +468,7 @@ div.campo input {
     margin-bottom: 5px;
 }
 .col_datos input {
-    padding: 5px;  /* Reduce el padding para que el input no sea tan alto */
+    padding: 5px;
     margin-bottom: 10px;
 }
 
@@ -478,6 +478,7 @@ div.campo input {
     /*border: 1px solid violet;*/
     padding: 0;
     margin: 0;
+    align-items: center;
 }
 
 .datos label {
@@ -493,6 +494,40 @@ div.campo input {
     object-fit: cover;
 }
 /*-------------------FIN PERFIL--------------------------------*/
+/*-------------------HISTORIAL---------------------------------*/
+#fila_historial{
+    box-shadow: 0 -2px 4px rgba(1, 0, 0, 0.1), 0 2px 4px rgba(1, 0, 0, 0.1);
+}
+
+.historial_col{
+    justify-content: space-evenly;
+    box-shadow: 0 -1px 4px rgba(1, 0, 0, 0.1), 0 1px 2px rgba(1, 0, 0, 0.1);
+    width: 100%;
+    font-size: 16px;
+}
+.historial_col button[name="estado_cita"]{
+    width: auto;
+    border-radius: 60%;
+    color: #777777;
+    cursor: default;
+}
+
+#Pendiente {
+    background: lightyellow;
+}
+
+#Atendida {
+    background: lightgreen;
+}
+
+#Cancelada {
+    background: lightcoral;
+}
+
+#Confirmada {
+    background: lavender;
+}
+/*--------------------FIN HISTORIAL----------------------------*/
 footer{
     background-color: #333;
     color: white;

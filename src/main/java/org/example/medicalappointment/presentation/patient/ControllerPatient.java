@@ -47,6 +47,16 @@ public class ControllerPatient {
         return "redirect:/presentation/perfil/show";
     }
 
+    @GetMapping("/presentation/patient/history/show")
+    public String historyShow(Model model) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Usuario usuario = serviceUser.getUser(username);
+        /*Paciente paciente = servicePatient.getPatientByUser(usuario);*/
+        Paciente paciente = servicePatient.findPatient("4444444444");
+        model.addAttribute("citas", serviceAppointment.citasPaciente(paciente));
+        return "/presentation/patient/history";
+    }
+
     @PostMapping("/presentation/patient/book/save")
     public String saveAppointment(@RequestParam("dia") String fecha_cita,
                                   @RequestParam("hora") String hora_cita,

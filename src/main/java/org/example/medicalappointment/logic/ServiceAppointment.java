@@ -17,4 +17,6 @@ public class ServiceAppointment {
     public void saveAppointment(Cita cita) {
         citaRepository.save(cita);
     }
+
+    public List<Cita> citasPaciente(Paciente paciente){return citaRepository.findCitaByPaciente(paciente);}
 }
