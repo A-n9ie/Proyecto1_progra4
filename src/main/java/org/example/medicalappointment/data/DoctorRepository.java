@@ -16,14 +16,12 @@ public interface DoctorRepository extends CrudRepository<Medico, Integer> {
     public Medico findByUsuario(Usuario usuario);
 //    public Iterable<Medico> findMedicoByLugar(String lugar);
 
-    @Query("SELECT m FROM Medico m WHERE LOWER(m.lugarAtencion) LIKE LOWER(CONCAT('%', :ciudad, '%'))")
-    Iterable<Medico> findByCiudad(@Param("ciudad") String ciudad);
+    // Buscar médicos por ciudad (búsqueda parcial)
+    Iterable<Medico> findByLugarAtencionContainingIgnoreCase(String ciudad);
 
     // Buscar médicos por especialidad (búsqueda parcial)
-    @Query("SELECT m FROM Medico m WHERE LOWER(m.especialidad) LIKE LOWER(CONCAT('%', :especialidad, '%'))")
-    Iterable<Medico> findByEspecialidad(@Param("especialidad") String especialidad);
+    Iterable<Medico> findByEspecialidadContainingIgnoreCase(String especialidad);
 
     // Buscar médicos por especialidad y ciudad (búsqueda parcial)
-    @Query("SELECT m FROM Medico m WHERE LOWER(m.especialidad) LIKE LOWER(CONCAT('%', :especialidad, '%')) AND LOWER(m.lugarAtencion) LIKE LOWER(CONCAT('%', :ciudad, '%'))")
-    Iterable<Medico> findByEspecialidadAndCiudad(@Param("especialidad") String especialidad, @Param("ciudad") String ciudad);
+    Iterable<Medico> findByEspecialidadContainingIgnoreCaseAndLugarAtencionContainingIgnoreCase(String especialidad, String ciudad);
 }

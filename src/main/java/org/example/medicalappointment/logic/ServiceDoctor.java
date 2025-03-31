@@ -176,12 +176,12 @@ public class ServiceDoctor {
         }
 
         if (speciality.isEmpty()) {
-            return doctorRepository.findByCiudad(city);
+            return doctorRepository.findByLugarAtencionContainingIgnoreCase(city);
         }
 
         if (city.isEmpty()) {
-            return doctorRepository.findByEspecialidad(speciality);
+            return doctorRepository.findByEspecialidadContainingIgnoreCase(speciality);
         }
-        return doctorRepository.findByEspecialidadAndCiudad(speciality, city);
+        return doctorRepository.findByEspecialidadContainingIgnoreCaseAndLugarAtencionContainingIgnoreCase(speciality, city);
     }
 }
