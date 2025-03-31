@@ -111,4 +111,15 @@ public class ControllerPatient {
         return "presentation/patient/book";
     }
 
+    @GetMapping("/search")
+    public String search(@RequestParam(value = "speciality", required = false) String speciality,
+                         @RequestParam(value = "city", required = false) String city, Model model) {
+
+        Iterable<Medico> doctorByLocation = serviceDoctor.obtenerMedicosPorLugarYEspecialidad(speciality, city);
+        model.addAttribute("medicos", doctorByLocation);
+        return "/presentation/principal/index";
+    }
+
+
+
 }

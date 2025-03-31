@@ -12,7 +12,7 @@
 <div id="cuerpo_div_index" class="cuerpoIndex">
     <div class="buscar_lugar_especialidad">
         <div class="buscador">
-            <form class="buscar_especialidad_lugar">
+            <form class="buscar_especialidad_lugar" th:action="@{/search}" method="get">
                 <span>Speciality</span>
                 <input type="text" name="speciality" placeholder="">
                 <span>City</span>

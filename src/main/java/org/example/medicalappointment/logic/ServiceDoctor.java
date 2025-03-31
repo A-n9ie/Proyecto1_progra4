@@ -123,10 +123,6 @@ public class ServiceDoctor {
         return fecha.plusDays(diasHastaDia);
     }
 
-    public void agregarHorario(HorariosMedico horariosMedico) {
-        horarioRepository.save(horariosMedico);
-    }
-
     public Map<Integer, List<String>> obtenerHorariosDeMedicoEspecifico(Integer medicoId) {
 
         List<HorariosMedico> horarios = (List<HorariosMedico>) horariosMedicosFindAll();
@@ -173,7 +169,19 @@ public class ServiceDoctor {
 
     }
 
+    public Iterable<Medico> obtenerMedicosPorLugarYEspecialidad(String speciality, String city) {
 
+        if (speciality.isEmpty() && city.isEmpty()) {
+            return doctorRepository.findAll();
+        }
 
+        if (speciality.isEmpty()) {
+            return doctorRepository.findByCiudad(city);
+        }
 
+        if (city.isEmpty()) {
+            return doctorRepository.findByEspecialidad(speciality);
+        }
+        return doctorRepository.findByEspecialidadAndCiudad(speciality, city);
+    }
 }
