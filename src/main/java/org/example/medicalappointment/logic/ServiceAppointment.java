@@ -19,7 +19,7 @@ public class ServiceAppointment {
         citaRepository.save(cita);
     }
 
-    public List<Cita> citasPaciente(Paciente paciente){return citaRepository.findCitaByPaciente(paciente);}
+    public List<Cita> citasPaciente(Paciente paciente){return citaRepository.findCitaByPacienteOrderByFechaCitaDesc(paciente);}
 
     public List<Cita> citasPacienteFiltradas(Paciente paciente, String estado, String doctor) {
         List<Cita> citasPaciente = citasPaciente(paciente);
