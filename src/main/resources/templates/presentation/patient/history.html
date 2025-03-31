@@ -17,7 +17,7 @@
     </div>
     <div class="datos"  id="fila_historial">
             <div class="buscador">
-                <form class="buscar_especialidad_lugar">
+                <form class="buscar_especialidad_lugar" action="/presentation/patient/history/filter" method="get">
                     <span>Status</span>
                     <input type="text" name="status" placeholder="All">
                     <span>Doctor</span>
@@ -47,8 +47,8 @@
                     <p th:text="${c.getFechaCita()} + ' - ' + ${c.getHoraCita()}"></p>
                 </div>
                 <button name="estado_cita"
-                        th:text="${c.getEstado()}"
-                        th:id="${c.getEstado()}">
+                        th:text="${c.estado}"
+                        th:id="${c.estado}">
                 </button>
 
             </div>

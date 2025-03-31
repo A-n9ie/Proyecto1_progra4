@@ -51,11 +51,29 @@ public class ControllerPatient {
     public String historyShow(Model model) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         Usuario usuario = serviceUser.getUser(username);
-        /*Paciente paciente = servicePatient.getPatientByUser(usuario);*/
-        Paciente paciente = servicePatient.findPatient("4444444444");
+        Paciente paciente = servicePatient.getPatientByUser(usuario);
         model.addAttribute("citas", serviceAppointment.citasPaciente(paciente));
         return "/presentation/patient/history";
     }
+
+    @GetMapping("/presentation/patient/history/filter")
+    public String historyEstado(
+            @RequestParam(value = "status", required = false, defaultValue = "All") String status,
+            @RequestParam(value = "doctor", required = false, defaultValue = "") String doctor,
+            Model model) {
+        if(status.equals("All") && doctor.isEmpty())
+            return "redirect:/presentation/patient/history/show";
+
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Usuario usuario = serviceUser.getUser(username);
+        Paciente paciente = servicePatient.getPatientByUser(usuario);
+
+        List<Cita> citasFiltradas = serviceAppointment.citasPacienteFiltradas(paciente, status, doctor);
+
+        model.addAttribute("citas", citasFiltradas);
+        return "/presentation/patient/history";
+    }
+
 
     @PostMapping("/presentation/patient/book/save")
     public String saveAppointment(@RequestParam("dia") String fecha_cita,
