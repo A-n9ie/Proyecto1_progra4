@@ -9,8 +9,83 @@
 <body>
 <header th:replace="~{/presentation/fragments/fragments.html :: header}"></header>
 
-<div class = "cuerpo" >
-citas del dotor
+<div class = "cuerpo historial_col" >
+    <div class="datos">
+        <h1>Doctor - </h1>
+        <h1 th:text="${nombre} "></h1>
+        <h1> - appointment history</h1>
+    </div>
+    <div class="datos"  id="fila_historial">
+        <div class="buscador">
+            <form class="buscar_especialidad_lugar" action="/presentation/doctor/history/filter" method="get">
+                <span>Status</span>
+                <input type="text" name="status" placeholder="All" th:value="${param.status}">
+                <span>Patient</span>
+                <input type="text" name="patient" placeholder="" th:value="${param.patient}">
+                <button type="submit" name="buscar">
+                    Search
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="informacion_medico historial_col" id="historial_col" th:each="c : ${citas}">
+        <img th:src="${c.paciente.nombre}" alt="paciente"/>
+        <div class="informacion_personal">
+            <div class="separacion">
+                <h5 class="nombre_medico">
+                    <span th:text="${c.paciente.nombre}"></span>
+                </h5>
+            </div>
+        </div>
+        <div class="cada_cita">
+            <div class="dias">
+                <p th:text="${c.getFechaCita()} + ' - ' + ${c.getHoraCita()}"></p>
+            </div>
+            <button name="estado_cita"
+                    th:text="${c.estado}"
+                    th:id="${c.estado}">
+            </button>
+            <!-- Ícono para aprobar (solo si la cita no ha sido aprobada) -->
+            <a th:if="${c.estado == 'Pendiente' && (citaAprovada == null || citaAprovada.getId() != c.getId())}"
+               th:href="@{/presentation/doctor/history/filter(status=${param.status}, patient=${param.patient}, approve=${c.id})}">
+                <i class="fas fa-check" style="color: green;"> Attend</i>
+            </a>
+
+            <div th:if="${citaAprovada != null && citaAprovada.getId() == c.getId()}" class="modal">
+                <div class="modal-content">
+                    <form th:action="@{/presentation/doctor/history/saveNote}" method="post">
+                        <input type="hidden" name="citaId" th:value="${citaAprovada.id}" />
+                        <label for="anotaciones">Note:</label>
+                        <textarea id="anotaciones" name="anotaciones" rows="4" maxlength="200" required></textarea>
+                        <button type="submit">Save</button>
+                    </form>
+                </div>
+            </div>
+
+            <a th:if="${c.estado == 'Pendiente'}"
+               th:href="@{/presentation/doctor/history/filter(status=${param.status}, patient=${param.patient}, cancel=${c.id})}">
+                <i class="fas fa-times" style="color: red;"> Cancel</i>
+            </a>
+
+            <a th:if="${c.estado == 'Atendida'}"
+               th:href="@{/presentation/doctor/history/filter(status=${param.status}, patient=${param.patient}, show=${c.id})}">
+                <i class="fas fa-eye"></i>
+            </a>
+            <div th:if="${citaSeleccionada != null && citaSeleccionada.getId() == c.getId()}" class="modal">
+                <div class="modal-content">
+                    <a th:href="@{/presentation/doctor/history/filter(status=${param.status}, patient=${param.patient})}" class="close">&times;</a>
+                    <h2>Appointment Details</h2>
+                    <p><strong>Date:</strong> <span th:text="${citaSeleccionada.getFechaCita()}"></span></p>
+                    <p><strong>Time:</strong> <span th:text="${citaSeleccionada.getHoraCita()}"></span></p>
+                    <p><strong>Patient:</strong> <span th:text="${citaSeleccionada.paciente.nombre}"></span></p>
+                    <p><strong>Doctor:</strong> <span th:text="${citaSeleccionada.medico.getNombre()}"></span></p>
+                    <p><strong>Status:</strong> <span th:text="${citaSeleccionada.estado}"></span></p>
+                    <p><strong>Annotations:</strong> <span th:text="${citaSeleccionada.anotaciones}"></span></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
 
 <footer th:replace="~{/presentation/fragments/fragments.html :: footer}"></footer>

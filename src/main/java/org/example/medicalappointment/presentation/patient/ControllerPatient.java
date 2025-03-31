@@ -57,32 +57,39 @@ public class ControllerPatient {
 
         List<Cita> citas = serviceAppointment.citasPaciente(paciente);
         model.addAttribute("citas", citas);
-        model.addAttribute("username", username);
+        model.addAttribute("nombre", paciente.getNombre());
 
         model.addAttribute("mostrarId", showId);
 
         return "/presentation/patient/history";
     }
 
-
     @GetMapping("/presentation/patient/history/filter")
     public String historyEstado(
             @RequestParam(value = "status", required = false, defaultValue = "All") String status,
             @RequestParam(value = "doctor", required = false, defaultValue = "") String doctor,
+            @RequestParam(value = "show", required = false) Integer show, // Mostrar cita seleccionada
             Model model) {
-        if(status.equals("All") && doctor.isEmpty())
-            return "redirect:/presentation/patient/history/show";
-
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         Usuario usuario = serviceUser.getUser(username);
         Paciente paciente = servicePatient.getPatientByUser(usuario);
 
+        // Filtrar las citas
         List<Cita> citasFiltradas = serviceAppointment.citasPacienteFiltradas(paciente, status, doctor);
-
+        if(status.equals("All") && doctor.isEmpty())
+            citasFiltradas = serviceAppointment.citasPaciente(paciente);
         model.addAttribute("citas", citasFiltradas);
-        model.addAttribute("username",username);
+        model.addAttribute("nombre", paciente.getNombre());
+
+        // Si se pasa el ID de la cita, obtener los detalles
+        if (show != null) {
+            Cita citaSeleccionada = serviceAppointment.getCitaById(show);
+            model.addAttribute("citaSeleccionada", citaSeleccionada);
+        }
+
         return "/presentation/patient/history";
     }
+
 
 
     @PostMapping("/presentation/patient/book/save")

@@ -19,7 +19,9 @@ public class ServiceAppointment {
         citaRepository.save(cita);
     }
 
-    public List<Cita> citasPaciente(Paciente paciente){return citaRepository.findCitaByPacienteOrderByFechaCitaDesc(paciente);}
+    public List<Cita> citasPaciente(Paciente paciente){return citaRepository.findCitaByPacienteOrderByFechaCitaDescHoraCitaDesc(paciente);}
+
+    public List<Cita> citasMedico(Medico doctor){return citaRepository.findCitaByMedicoOrderByFechaCitaDescHoraCitaDesc(doctor);}
 
     public List<Cita> citasPacienteFiltradas(Paciente paciente, String estado, String doctor) {
         List<Cita> citasPaciente = citasPaciente(paciente);
@@ -42,5 +44,29 @@ public class ServiceAppointment {
                 filtrada.add(c);
         return filtrada;
     }
+    public List<Cita> citasMedicoFiltradas(Medico medico, String estado, String paciente) {
+        List<Cita> citasPaciente = citasMedico(medico);
+        List<Cita> filtrada = new ArrayList<>();
+        if ("All".equalsIgnoreCase(estado) && !paciente.isEmpty()) {
+            for(Cita c: citasPaciente)
+                if(c.getPaciente().getNombre().toLowerCase().contains(paciente.toLowerCase()))
+                    filtrada.add(c);
+            return filtrada;
+        }
+        if (paciente.isEmpty() && !estado.isEmpty()){
+            for(Cita c: citasPaciente)
+                if(c.getEstado().toLowerCase().contains(estado.toLowerCase()))
+                    filtrada.add(c);
+            return filtrada;
+        }
+        for(Cita c: citasPaciente)
+            if(c.getPaciente().getNombre().toLowerCase().contains(paciente.toLowerCase()) &&
+                    c.getEstado().toLowerCase().contains(estado.toLowerCase()))
+                filtrada.add(c);
+        return filtrada;
+    }
 
+    public Cita getCitaById(Integer show) {
+        return citaRepository.getReferenceById(show);
+    }
 }

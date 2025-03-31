@@ -12,7 +12,7 @@
 <div class = "cuerpo historial_col" >
     <div class="datos">
             <h1>Patient - </h1>
-        <h1 th:text="${username} "></h1>
+        <h1 th:text="${nombre} "></h1>
         <h1> - appointment history</h1>
     </div>
     <div class="datos"  id="fila_historial">
@@ -50,22 +50,22 @@
                         th:text="${c.estado}"
                         th:id="${c.estado}">
                 </button>
-                <a th:if="${c.estado == 'Atendida'}" th:href="@{/presentation/patient/history/show(show=${c.id})}">
+                <a th:if="${c.estado == 'Atendida'}"
+                   th:href="@{/presentation/patient/history/filter(status=${param.status}, doctor=${param.doctor}, show=${c.id})}">
                     <i class="fas fa-eye"></i>
                 </a>
-                <div th:id="'detalle-' + ${c.id}" th:if="${mostrarId != null and mostrarId == c.id}" class="modal">
+                <div th:if="${citaSeleccionada != null && citaSeleccionada.getId() == c.getId()}" class="modal">
                     <div class="modal-content">
-                        <a th:href="@{/presentation/patient/history/filter}" class="close">&times;</a>
+                        <a th:href="@{/presentation/patient/history/filter(status=${param.status}, doctor=${param.doctor})}" class="close">&times;</a>
                         <h2>Appointment Details</h2>
-                        <p><strong>Date:</strong> <span th:text="${c.getFechaCita()}"></span></p>
-                        <p><strong>Time:</strong> <span th:text="${c.getHoraCita()}"></span></p>
-                        <p><strong>Patient:</strong> <span th:text="${c.paciente.nombre}"></span></p>
-                        <p><strong>Doctor:</strong> <span th:text="${c.medico.getNombre()}"></span></p>
-                        <p><strong>Status:</strong> <span th:text="${c.estado}"></span></p>
-                        <p><strong>Annotations:</strong> <span th:text="${c.anotaciones}"></span></p>
+                        <p><strong>Date:</strong> <span th:text="${citaSeleccionada.getFechaCita()}"></span></p>
+                        <p><strong>Time:</strong> <span th:text="${citaSeleccionada.getHoraCita()}"></span></p>
+                        <p><strong>Patient:</strong> <span th:text="${citaSeleccionada.paciente.nombre}"></span></p>
+                        <p><strong>Doctor:</strong> <span th:text="${citaSeleccionada.medico.getNombre()}"></span></p>
+                        <p><strong>Status:</strong> <span th:text="${citaSeleccionada.estado}"></span></p>
+                        <p><strong>Annotations:</strong> <span th:text="${citaSeleccionada.anotaciones}"></span></p>
                     </div>
                 </div>
-
 
             </div>
         </div>

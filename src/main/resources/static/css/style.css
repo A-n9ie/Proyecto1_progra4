@@ -508,7 +508,7 @@ div.campo input {
 .historial_col button[name="estado_cita"]{
     width: auto;
     border-radius: 60%;
-    color: #777777;
+    color: #323131;
     cursor: default;
 }
 

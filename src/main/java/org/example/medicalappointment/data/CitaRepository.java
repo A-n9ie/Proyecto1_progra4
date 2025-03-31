@@ -11,7 +11,8 @@ import java.util.List;
 public interface CitaRepository extends JpaRepository<Cita, Integer> {
 
     List<Cita> findCitaByMedico(Medico medico);
-    List<Cita> findCitaByPacienteOrderByFechaCitaDesc(Paciente paciente);
+    List<Cita> findCitaByPacienteOrderByFechaCitaDescHoraCitaDesc(Paciente paciente);
+    List<Cita> findCitaByMedicoOrderByFechaCitaDescHoraCitaDesc(Medico doctor);
     List<LocalTime> findLocalTimeByMedico(Medico medico);
 
 }

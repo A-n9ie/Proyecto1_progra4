@@ -3,11 +3,8 @@ package org.example.medicalappointment.presentation.usuarios;
 import jakarta.servlet.http.HttpSession;
 import org.example.medicalappointment.logic.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.*;
@@ -111,6 +108,20 @@ public class ControllerUsuarios {
             return "redirect:/presentation/patient/edit";
         }
     }
+
+    @GetMapping("/presentation/usuarios/history")
+    public String historyShow(
+            @RequestParam(value = "show", required = false) Long showId,
+            RedirectAttributes redirect) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Usuario usuario = serviceUser.getUser(username);
+        redirect.addFlashAttribute("usuario", usuario);
+        if(usuario.getRol().equals("Paciente"))
+            return "redirect:/presentation/patient/history/show";
+        else
+            return "redirect:/presentation/doctor/appointment/show";
+    }
+
 
 //    Login
 
