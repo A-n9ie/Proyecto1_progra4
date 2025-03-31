@@ -40,6 +40,7 @@ public class SecurityConfig {
                         .loginPage("/presentation/usuarios/login")
                         .loginProcessingUrl("/login")
                         .defaultSuccessUrl("/", true)
+                        .failureUrl("/presentation/usuarios/login?error=true")
                         .permitAll()
                 )
                 .logout(custumizer -> custumizer

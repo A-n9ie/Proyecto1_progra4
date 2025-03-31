@@ -1,5 +1,6 @@
 package org.example.medicalappointment.security;
 
+import org.example.medicalappointment.logic.Medico;
 import org.example.medicalappointment.logic.Usuario;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -37,7 +38,14 @@ public class UserDetailsImp implements UserDetails {
     @Override
     public boolean isCredentialsNonExpired() {return true;}
 
-    @Override
-    public boolean isEnabled() {return true;}
+    public boolean isEnabled() {
+
+        if ("Medico".equals(usuario.getRol())) {
+            return usuario.getMedicos() != null &&
+                    usuario.getMedicos().stream().anyMatch(Medico::getAprobado);
+        }
+        return true;
+    }
+
 
 }
