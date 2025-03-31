@@ -80,15 +80,20 @@
                         <br><br>
                     </div>
                     <div class="col_datos">
-                        <label for="dias">Days:</label>
-                        <input type="text" id="dias" name="dias" th:field="*{medico.aprobado}">
+                        <label>Days:</label>
+                        <div class="datos">
+                            <label th:each="day : ${days}">
+                                <input type="checkbox" name="days" th:value="${day}"
+                                       th:checked="${#lists.contains(selectedDays, day)}">
+                                <span th:text="${day}"></span>
+                            </label>
                         <br><br>
+                    </div>
                     </div>
                     <div class="col_datos">
                         <div id="perfil_in">
                         <label for="presentacion">Presentation:</label>
                             <textarea id="presentacion" name="presentacion" th:field="*{medico.presentacion}"></textarea>
-
                             <br><br>
                         </div>
                     </div>

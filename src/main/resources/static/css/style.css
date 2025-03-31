@@ -413,8 +413,8 @@ div.campo input {
 .col_datos {
     display: flex;
     flex-direction: column;
-    border: 1px solid blue;
-    width: 90%;
+   /* border: 1px solid blue;*/
+    width: 100%;
     height: auto;
     padding: 0;
     margin: 0;
@@ -454,7 +454,7 @@ div.campo input {
 }
 
 .col_datos textarea {
-    width: 100%;
+    width: 95%;
     min-height: 40px;
     padding: 8px;
     font-size: 16px;
@@ -474,9 +474,15 @@ div.campo input {
 .datos {
     display: flex;
     flex-direction: row;
-    border: 1px solid violet;
+    /*border: 1px solid violet;*/
     padding: 0;
     margin: 0;
+}
+
+.datos label {
+    display: flex;
+    align-items: center;  /* Alinea verticalmente el contenido (checkbox y texto) */
+    margin: 2%;
 }
 
 .datos img{

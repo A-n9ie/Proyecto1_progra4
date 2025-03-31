@@ -1,6 +1,7 @@
 package org.example.medicalappointment.presentation.doctor;
 
 import org.example.medicalappointment.data.HorarioRepository;
+import org.example.medicalappointment.logic.HorariosMedico;
 import org.example.medicalappointment.logic.Medico;
 import org.example.medicalappointment.logic.ServiceDoctor;
 import org.example.medicalappointment.logic.Usuario;
@@ -38,13 +39,25 @@ public class ControllerDoctor {
     @GetMapping("/presentation/doctor/profile")
     public String profile(@ModelAttribute("usuario") Usuario user, Model model) {
         Medico doctor = serviceDoctor.getDoctorbyUser(user);
+
+        List<String> horarios =
+                horarioRepository.findByMedicoId(doctor.getId()).stream()
+                .map(HorariosMedico::getDia)
+                .collect(Collectors.toList());
+        String[] days = {"Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"};
+
+        model.addAttribute("days", days);
         model.addAttribute("medico", doctor);
+        model.addAttribute("selectedDays", horarios);
         return "presentation/usuarios/profile";
     }
 
     @GetMapping("/presentation/doctor/edit")
-    public String edit(@ModelAttribute("usuario") Usuario user, @ModelAttribute("medico") Medico doctor) {
+    public String edit(@ModelAttribute("usuario") Usuario user,
+                       @ModelAttribute("medico") Medico doctor,
+                       @ModelAttribute("days") List<String> selectedDays) {
         serviceDoctor.editDoctor(user, doctor);
+        serviceDoctor.editDays(doctor, selectedDays);
         return "redirect:/presentation/perfil/show";
     }
 

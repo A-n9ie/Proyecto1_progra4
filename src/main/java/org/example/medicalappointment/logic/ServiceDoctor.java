@@ -1,5 +1,6 @@
 package org.example.medicalappointment.logic;
 
+import jakarta.transaction.Transactional;
 import org.example.medicalappointment.data.DoctorRepository;
 import org.example.medicalappointment.data.HorarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,8 @@ public class ServiceDoctor {
 
     public Medico getDoctorbyUser(Usuario usuario) {return doctorRepository.findByUsuario(usuario);}
 
+    public List<HorariosMedico> horarioMdico(Integer id){return horarioRepository.findByMedicoId(id);}
+
     public void editDoctor(Usuario user, Medico doctor){
         Medico u = getDoctorbyUser(user);
         if (u != null){
@@ -50,6 +53,18 @@ public class ServiceDoctor {
             u.setPresentacion(doctor.getPresentacion());
 
             doctorRepository.save(u);
+        }
+    }
+
+    @Transactional
+    public void editDays(Medico doctor, List<String> dias){
+        Medico u = findDoctor(doctor.getCedula());
+        horarioRepository.deleteAllByMedico(u);
+        for(String d: dias) {
+            HorariosMedico horario = new HorariosMedico();
+            horario.setMedico(u);
+            horario.setDia(d);
+            horarioRepository.save(horario);
         }
     }
 

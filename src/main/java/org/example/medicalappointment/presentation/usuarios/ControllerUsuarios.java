@@ -14,6 +14,8 @@ import jakarta.validation.*;
 import org.springframework.validation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+
 @org.springframework.stereotype.Controller("usuarios")
 
 public class ControllerUsuarios {
@@ -95,12 +97,14 @@ public class ControllerUsuarios {
     @PostMapping("/presentation/perfil/edit")
     public String edit(RedirectAttributes redirect,
                        @ModelAttribute("medico") Medico medico,
-                       @ModelAttribute("paciente") Paciente paciente) {
+                       @ModelAttribute("paciente") Paciente paciente,
+                       @RequestParam("days") List<String> selectedDays) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         Usuario usuario = serviceUser.getUser(username);
         redirect.addFlashAttribute("usuario", usuario);
         if (usuario.getRol().equals("Medico")) {
             redirect.addFlashAttribute("medico", medico);
+            redirect.addFlashAttribute("days", selectedDays);
             return "redirect:/presentation/doctor/edit";
         } else {
             redirect.addFlashAttribute("paciente", paciente);

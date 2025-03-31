@@ -10,6 +10,7 @@ import java.util.List;
 public interface HorarioRepository extends CrudRepository<HorariosMedico, Integer> {
 
     List<HorariosMedico> findByMedicoId(Integer idMedico);
+    void deleteAllByMedico(Medico medico);
 }
 
 
