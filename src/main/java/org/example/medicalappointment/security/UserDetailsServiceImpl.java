@@ -41,20 +41,23 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println("Cargando usuario: " + username);
-        Usuario user = usuarioRepository.findByUsuario(username);
-        Medico medico = doctorRepository.findByUsuario(user);
-        System.out.println(medico.getAprobado());
-
         try {
+            System.out.println("Cargando usuario: " + username);
+            Usuario user = usuarioRepository.findByUsuario(username);
+
             if (user == null) {
                 System.out.println("Usuario no encontrado: " + username);
                 throw new UsernameNotFoundException("Username " + username + " not found");
             }
 
-            if (!medico.getAprobado()) {
-                throw new UsernameNotFoundException("Su usuario no está aprobado, comuníquese con el administrador");
+            if(user.getRol() == "Medico") {
+                Medico medico = doctorRepository.findByUsuario(user);
+                if (!medico.getAprobado()) {
+                    throw new UsernameNotFoundException("Su usuario no está aprobado, comuníquese con el administrador");
+                }
+                System.out.println(medico.getAprobado());
             }
+
             return new UserDetailsImp(user);
 
         } catch (Exception e) {
