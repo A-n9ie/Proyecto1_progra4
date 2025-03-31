@@ -156,6 +156,7 @@ header {
     margin: 120px auto;
     padding: 5px;
     width: 80%;
+    border-radius: 10px;
 }
 
 .busca_lugar_especialidad {

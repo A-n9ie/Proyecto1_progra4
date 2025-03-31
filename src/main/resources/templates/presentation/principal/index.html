@@ -9,10 +9,6 @@
 <body id="cuerpo_index">
 <header th:replace="~{/presentation/fragments/fragments.html :: header}"></header>
 
-
-<!--<nav th:replace="~{/presentation/fragments/fragments.html :: nav}"></nav>-->
-
-
 <div id="cuerpo_div_index" class="cuerpoIndex">
     <div class="buscar_lugar_especialidad">
         <div class="buscador">
@@ -49,7 +45,7 @@
                         <div th:if="${medicoEntry.key == m.getId()}">
                             <div th:id="'ver-mas-' + ${m.getId()}" class="dias">
                                 <div th:each="dia, iter : ${medicoEntry.value}">
-                                    <div th:classappend="${iter.index >= 2} ? 'oculto' : ''">
+                                    <div th:classappend="${iter.index >= 3} ? 'oculto' : ''">
                                         <p th:text="${dia}"></p>
                                         <div class="citas_disponibles">
                                             <form th:action="@{/presentation/patient/book/save}" method="post" >
@@ -74,7 +70,6 @@
                         </div>
                     </div>
                 </div>
-
                 </div>
             </div>
         </div>

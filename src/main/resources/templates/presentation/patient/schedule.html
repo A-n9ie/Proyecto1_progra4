@@ -3,47 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <title>Schedule Appointment</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
-<body class="ScheduleBody">
+<body id="cuerpo_index">
 
 <header th:replace="~{/presentation/fragments/fragments.html :: header}"></header>
 
-<div class="cuerpoSchedule">
+<div id="cuerpo_div_index" class="cuerpoIndex">
 
-  <a th:if="${page > 0}" th:href="@{/presentation/patient/schedule/{id}(id=${medico.getId()}, page=${page - 1})}" class="Prev">Prev</a>
-
-  <div class="FotoDoc">Aqui va una foto</div>
-
-  <div class="InfoGeneral">
-
-    <div class="InfoDoc">
-      <h3><span th:text="${medico.getNombre()}"></span></h3>
-      <p><span th:text="${medico.getEspecialidad()}"></span></p>
-    </div>
-
-    <div class="InfoDoc2"><p><span th:text="${medico.getLugarAtencion()}"></span></p></div>
-
+  <div class="medicos">
+    <div class="cada_medico">
+      <div class="info_citas">
+  <div class="informacion_medico">
+    <a th:if="${page > 0}" th:href="@{/presentation/patient/schedule/{id}(id=${medico.getId()}, page=${page - 1})}" class="Prev">Prev</a>
+    <img th:src="${medico.getFotoUrl()}" alt="medico"/>
+    <div class="informacion_personal">
+      <div class="separacion">
+        <h5 class="nombre_medico">
+          <span th:text="${medico.getNombre()}"></span>
+          <span class="id_medico" th:text="${medico.getId()}"></span>
+        </h5>
+        <small class="especialidad_medico" th:text="${medico.getEspecialidad()}"></small>
+      </div>
+      <p class="lugar_atencion">
+        <span th:text="${medico.getLugarAtencion()}"></span>
+      </p>
   </div>
-  <div class="ScheduleHorario">
-    <div th:each="horario : ${medicoHorarios}">
-      <div class="DiaHorario">
-        <p class="FechaSchedule" th:text="${horario}"></p>
-        <div class="HorasDeExtendido">
-          <div th:each="hora : ${medico.citasDisponibles()}">
-            <button class="ScheduleButton2" th:text="${hora}"></button>
+    <div class="cada_cita">
+      <div class = "dias_disponibles" th:each="medicoEntry : ${medicosHorarios}">
+        <div th:if="${medicoEntry.key == medico.getId()}">
+          <div th:id="'ver-mas-' + ${medico.getId()}" class="dias">
+            <div th:each="dia, iter : ${medicoEntry.value}">
+              <div th:classappend="${iter.index >= 3} ? 'oculto' : ''">
+                <p th:text="${dia}"></p>
+                <div class="citas_disponibles">
+                  <form th:action="@{/presentation/patient/book/save}" method="post" >
+                    <div th:each="hora : ${medico.citasDisponibles(dia)}">
+                      <!--Agarrar la hora seleccionada-->
+                      <button type="submit" th:name="hora" th:value="${hora}" th:text="${hora}"></button>
+                    </div>
+                    <!--Agarrar el dia-->
+                    <input type="hidden" th:name="dia" th:value="${dia}" />
+                    <!--Agarrar el id medico-->
+                    <input type="hidden" th:name="medicoId" th:value="${medico.getId()}"/>
+                  </form>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <a th:if="${(page + 1) * pageSize < totalDias}"
+       th:href="@{/presentation/patient/schedule/{id}(id=${medico.getId()}, page=${page + 1})}"
+       class="Prev">Next</a>
   </div>
-
-  <a th:if="${(page + 1) * pageSize < totalDias}"
-     th:href="@{/presentation/patient/schedule/{id}(id=${medico.getId()}, page=${page + 1})}"
-     class="Prev">Next</a>
-
+      </div>
+    </div>
+  </div>
 </div>
 <footer th:replace="~{/presentation/fragments/fragments.html :: footer}"></footer>
 </body>

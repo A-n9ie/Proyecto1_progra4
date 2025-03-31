@@ -105,10 +105,9 @@ public class ServiceDoctor {
             List<String> diasDelMedico = medicosConHorarios.get(medicoId);
 
             if (!diasDelMedico.contains(fechaDia.toString())) {
-                diasDelMedico.add(fechaDia.toString());  // Guardamos la fecha como un String (formato ISO)
+                diasDelMedico.add(fechaDia.toString());
             }
         }
-
         return medicosConHorarios;
     }
 
@@ -131,7 +130,6 @@ public class ServiceDoctor {
     public Map<Integer, List<String>> obtenerHorariosDeMedicoEspecifico(Integer medicoId) {
 
         List<HorariosMedico> horarios = (List<HorariosMedico>) horariosMedicosFindAll();
-
         Map<Integer, List<String>> medicosConHorarios = new HashMap<>();
 
         LocalDate fechaBase = LocalDate.now();
@@ -163,7 +161,16 @@ public class ServiceDoctor {
             }
         }
 
+        List<String> fechasDelMedico = medicosConHorarios.get(medicoId);
+        if (fechasDelMedico != null && fechasDelMedico.size() > 3) {
+            List<String> fechasFiltradas = fechasDelMedico.stream()
+                    .skip(3)
+                    .collect(Collectors.toList());
+            medicosConHorarios.put(medicoId, fechasFiltradas);
+        }
+
         return medicosConHorarios;
+
     }
 
 

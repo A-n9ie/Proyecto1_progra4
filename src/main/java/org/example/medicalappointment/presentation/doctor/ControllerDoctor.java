@@ -21,7 +21,6 @@ import java.util.stream.Collectors;
 
 @org.springframework.stereotype.Controller("medicos")
 
-//@RequestMapping("/")
 public class ControllerDoctor {
     @Autowired
     private ServiceDoctor serviceDoctor;
@@ -72,10 +71,14 @@ public class ControllerDoctor {
 
         List<String> fechas = horarios.get(medico.getId());
         if (fechas == null) {
-            return "redirect:/error";  // Redirige a una página de error si no tiene horarios
+            return "redirect:/error";
         }
 
-        int pageSize = 2;
+        List<String> diasApartirDelTercerDia = fechas.stream()
+                .skip(2) // Saltamos los dos primeros días
+                .collect(Collectors.toList());
+
+        int pageSize = 3;
         int totalDias = fechas.size();
 
         List<String> diasPaginados = fechas.stream()
@@ -88,6 +91,7 @@ public class ControllerDoctor {
         model.addAttribute("page", page);
         model.addAttribute("totalDias", totalDias);
         model.addAttribute("pageSize", pageSize);
+        model.addAttribute("medicosHorarios", horarios);
 
         return "/presentation/patient/schedule";
     }
