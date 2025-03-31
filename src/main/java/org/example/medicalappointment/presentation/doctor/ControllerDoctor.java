@@ -96,6 +96,11 @@ public class ControllerDoctor {
         return "/presentation/patient/schedule";
     }
 
+    @GetMapping("/presentation/administrador/management")
+    public String showDocsForApproval(Model model) {
+        model.addAttribute("Doctors", serviceDoctor.medicosFindAll());
+        return "/presentation/administrator/management";
+    }
 
 
 

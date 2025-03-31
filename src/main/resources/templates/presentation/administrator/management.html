@@ -9,9 +9,46 @@
 <body>
 <header th:replace="~{/presentation/fragments/fragments.html :: header}"></header>
 
-<div class = "cuerpo" >
-  aprovacion de usuarios medicos
+<div class = "cuerpoAdmin" >
+
+    <div id="cuerpo_div_index" class="cuerpoIndex">
+        <div class="buscar_lugar_especialidad">
+            <div class="buscador">
+                <form class="buscar_especialidad_lugar" th:action="@{/search}" method="get">
+                    <span>Speciality</span>
+                    <input type="text" name="speciality" placeholder="">
+                    <span>City</span>
+                    <input type="text" name="city" placeholder="">
+                    <button type="submit" name="buscar">
+                        Search
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+        <div class="medicos" th:each="m : ${Doctors}">
+            <h5 class="nombre_medico">
+                <span th:text="${m.getNombre()}"></span>
+                <span class="id_medico" th:text="${m.getId()}"></span>
+            </h5>
+
+            <span th:if="${m.getAprobado()} == true" th:text="'Aprobado'"></span>
+
+            <div th:if="${m.getAprobado()} == false">
+                <button th:text="'Aprobar'"></button>
+                <button th:text="'Desaprobar'"></button>
+            </div>
+            
+        </div>
+
+
+
+
+
 </div>
+
 
 <footer th:replace="~{/presentation/fragments/fragments.html :: footer}"></footer>
 </body>
