@@ -19,7 +19,7 @@
             <div class="datos">
                 <div class="col_datos">
                     <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" th:field="*{usuario.username}">
+                    <input type="text" id="username" name="username" th:field="*{usuario.username}" readonly>
                     <br><br>
                 </div>
             </div>
@@ -29,31 +29,31 @@
                 <div class="datos">
                     <div class="col_datos">
                         <label for="id">ID:</label>
-                        <input type="text" id="id" name="id" th:field="*{medico.cedula}">
+                        <input type="text" id="id" name="id" th:field="*{medico.cedula}" readonly>
                         <br><br>
                     </div>
                     <div class="col_datos">
                         <label for="nombre">Name:</label>
-                        <input type="text" id="nombre" name="nombre" th:field="*{medico.nombre}">
+                        <input type="text" id="nombre" name="nombre" th:field="*{medico.nombre}" required>
                         <br><br>
                     </div>
                 </div>
                 <div class="datos">
                     <div class="col_datos">
                         <label for="especialidad">Speciality:</label>
-                        <input type="text" id="especialidad" name="especialidad" th:field="*{medico.especialidad}">
+                        <input type="text" id="especialidad" name="especialidad" th:field="*{medico.especialidad}" required>
                         <br><br>
                     </div>
                     <div class="col_datos">
                         <label for="costo">Consultation fee:</label>
-                        <input type="text" id="costo" name="costo" th:field="*{medico.costoConsulta}">
+                        <input type="text" id="costo" name="costo" th:field="*{medico.costoConsulta}" required>
                         <br><br>
                     </div>
                 </div>
                 <div class="datos">
                     <div class="col_datos">
                         <label for="lugar">Location:</label>
-                        <input type="text" id="lugar" name="lugar" th:field="*{medico.lugarAtencion}">
+                        <input type="text" id="lugar" name="lugar" th:field="*{medico.lugarAtencion}" required>
                         <br><br>
                     </div>
                 </div>
@@ -62,12 +62,12 @@
                     <div class="datos">
                         <div class="col_datos">
                             <label for="inicio">Start time:</label>
-                            <input type="text" id="inicio" name="inicio" th:field="*{medico.horarioInicio}">
+                            <input type="text" id="inicio" name="inicio" th:field="*{medico.horarioInicio}" required>
                             <br><br>
                         </div>
                         <div class="col_datos">
                             <label for="final">End time:</label>
-                            <input type="text" id="final" name="final" th:field="*{medico.horarioFin}">
+                            <input type="text" id="final" name="final" th:field="*{medico.horarioFin}" required>
                             <br><br>
                         </div>
                     </div>
@@ -75,7 +75,7 @@
                         <label for="frecuencia">Frequency:</label>
                         <div class="input-container">
                             <span class="prefix">Every  </span>
-                            <input type="text" id="frecuencia" name="frecuencia" th:field="*{medico.frecuenciaCitas}">
+                            <input type="text" id="frecuencia" name="frecuencia" th:field="*{medico.frecuenciaCitas}" required>
                         </div>
                         <br><br>
                     </div>
@@ -93,7 +93,7 @@
                     <div class="col_datos">
                         <div id="perfil_in">
                         <label for="presentacion">Presentation:</label>
-                            <textarea id="presentacion" name="presentacion" th:field="*{medico.presentacion}"></textarea>
+                            <textarea id="presentacion" name="presentacion" th:field="*{medico.presentacion}" required></textarea>
                             <br><br>
                         </div>
                     </div>
