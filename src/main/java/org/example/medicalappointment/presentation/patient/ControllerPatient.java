@@ -48,13 +48,22 @@ public class ControllerPatient {
     }
 
     @GetMapping("/presentation/patient/history/show")
-    public String historyShow(Model model) {
+    public String historyShow(
+            @RequestParam(value = "show", required = false) Long showId,
+            Model model) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         Usuario usuario = serviceUser.getUser(username);
         Paciente paciente = servicePatient.getPatientByUser(usuario);
-        model.addAttribute("citas", serviceAppointment.citasPaciente(paciente));
+
+        List<Cita> citas = serviceAppointment.citasPaciente(paciente);
+        model.addAttribute("citas", citas);
+        model.addAttribute("username", username);
+
+        model.addAttribute("mostrarId", showId);
+
         return "/presentation/patient/history";
     }
+
 
     @GetMapping("/presentation/patient/history/filter")
     public String historyEstado(
@@ -71,6 +80,7 @@ public class ControllerPatient {
         List<Cita> citasFiltradas = serviceAppointment.citasPacienteFiltradas(paciente, status, doctor);
 
         model.addAttribute("citas", citasFiltradas);
+        model.addAttribute("username",username);
         return "/presentation/patient/history";
     }
 
