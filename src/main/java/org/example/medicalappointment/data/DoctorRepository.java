@@ -15,6 +15,7 @@ public interface DoctorRepository extends CrudRepository<Medico, Integer> {
     public Medico findByCedula(String cedula);
     public Medico findByUsuario(Usuario usuario);
 //    public Iterable<Medico> findMedicoByLugar(String lugar);
+public Medico findById(int id);
 
     // Buscar médicos por ciudad (búsqueda parcial)
     Iterable<Medico> findByLugarAtencionContainingIgnoreCase(String ciudad);

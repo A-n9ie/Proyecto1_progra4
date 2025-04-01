@@ -892,3 +892,98 @@ input[type="text"], input[type="password"] {
 .confirmar_cita i{
     color: darkcyan;
 }
+
+/*                                                                    Administrador*                                                                       */
+
+/* Centrar todo el contenido general */
+
+.cuerpoAdmin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+/* Estilos para cada tarjeta de médico */
+.medicosAdmin {
+    display: flex;
+    align-items: center;
+    background: white;
+    width: 60%;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Imagen del médico */
+
+.imagenAqui {
+    flex: 0 0 120px;
+    margin-right: 15px;
+}
+
+.SolicitanteFoto {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ccc;
+}
+
+/* Información del médico */
+.nombreSolicitante {
+    flex-grow: 1;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Sección de botones y estado de aprobación */
+.BotonesAprobar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.BotonesAprobar span {
+    font-size: 16px;
+    font-weight: bold;
+    color: green;
+}
+
+.BotonesAprobar div {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+button:nth-child(2) {
+    background: #dc3545;
+}
+
+button:nth-child(2):hover {
+    background: #a71d2a;
+}
+
+
+/*                                                                    Administrador*                        */

@@ -166,6 +166,19 @@ public class ControllerDoctor {
         return "/presentation/administrator/management";
     }
 
+    @PostMapping("/aprobar")
+    public String aprobarDoctor(@RequestParam("id") int id, Model model) {
+        serviceDoctor.cambiarEstado(id, true);
+        model.addAttribute("Doctors", serviceDoctor.medicosFindAll());
+        return "/presentation/administrator/management";
+    }
+
+    @PostMapping("/desaprobar")
+    public String desaprobarDoctor(@RequestParam("id") int id, Model model) {
+        serviceDoctor.cambiarEstado(id, false);
+        model.addAttribute("Doctors", serviceDoctor.medicosFindAll());
+        return "/presentation/administrator/management";
+    }
 
 
 }

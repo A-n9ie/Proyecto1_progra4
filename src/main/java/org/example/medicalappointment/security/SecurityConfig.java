@@ -37,19 +37,39 @@ public class SecurityConfig {
                                 .requestMatchers("/","/css/**", "/images/**","/presentation/usuarios/**","/presentation/patient/schedule/{id}").permitAll()
                                 .requestMatchers("/presentation/patient/**").hasAuthority("Paciente")
                                 .requestMatchers("/presentation/doctor/**").hasAuthority("Medico")
-                                .requestMatchers("/presentation/administrador/**").hasAuthority("Admin")
+                                .requestMatchers("/presentation/administrador/management","/presentation/administrador/**").hasAuthority("Administrador")
 
-                        .anyRequest().authenticated()
+                                .anyRequest().authenticated()
                 )
                 .formLogin(custumizer -> custumizer
-                        .loginPage("/presentation/usuarios/login")
-                        .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/", true)
-                        .failureUrl("/presentation/usuarios/login?error=true")
-                        .permitAll()
+                                .loginPage("/presentation/usuarios/login")
+                                .loginProcessingUrl("/login")
+                                .defaultSuccessUrl("/", true)
+                                .failureUrl("/presentation/usuarios/login?error=true")
+                                .permitAll()
+                                .successHandler((request, response, authentication) -> {
+                                    // Verificar roles
+                                    boolean isAdmin = authentication.getAuthorities().stream()
+                                            .anyMatch(authority -> authority.getAuthority().equals("Administrador"));
+                            boolean isPaciente = authentication.getAuthorities().stream()
+                                    .anyMatch(authority -> authority.getAuthority().equals("Paciente"));
+                            boolean isMedico = authentication.getAuthorities().stream()
+                                    .anyMatch(authority -> authority.getAuthority().equals("Medico"));
+
+                                    // Redirigir según el rol
+                                    if (isAdmin) {
+                                        response.sendRedirect("/presentation/administrador/management");
+                            } else if (isPaciente) {
+                                response.sendRedirect("/"); // O la URL que desees para paciente
+                            } else if (isMedico) {
+                                response.sendRedirect("/"); // O la URL que desees para médico
+                            } else {
+                                response.sendRedirect("/"); // Redirigir a la página principal por defecto
+                                    }
+                                })
                 )
                 .logout(custumizer -> custumizer
-                                .permitAll()
+                        .permitAll()
                         .logoutSuccessUrl("/")
 
                 )

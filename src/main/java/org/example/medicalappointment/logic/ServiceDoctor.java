@@ -196,4 +196,11 @@ public class ServiceDoctor {
         }
         return doctorRepository.findByEspecialidadContainingIgnoreCaseAndLugarAtencionContainingIgnoreCase(speciality, city);
     }
+
+    public void cambiarEstado(int id, boolean aprobado) {
+     Medico medico =  doctorRepository.findById(id);
+     medico.setAprobado(aprobado);
+     doctorRepository.save(medico);
+    }
+
 }
