@@ -11,13 +11,15 @@
 
 <div class = "cuerpoAdmin" >
 
+<!--    Ya tiene style-->
     <div id="cuerpo_div_index" class="cuerpoIndex">
         <div class="buscar_lugar_especialidad">
             <div class="buscador">
-                <form class="buscar_especialidad_lugar" th:action="@{/search}" method="get">
-                    <span>Speciality</span>
+<!--                falta metodo para buscar por nombre o ID-->
+                <form class="buscar_especialidad_lugar" th:action="@{/filtrarDocs}" method="get">
+                    <span>Id</span>
                     <input type="text" name="speciality" placeholder="">
-                    <span>City</span>
+                    <span>Estado</span>
                     <input type="text" name="city" placeholder="">
                     <button type="submit" name="buscar">
                         Search
@@ -26,24 +28,34 @@
             </div>
         </div>
     </div>
+<!--     Ya tiene style-->
 
 
-        <div class="medicos" th:each="m : ${Doctors}">
-            <h5 class="nombre_medico">
+
+        <div class="medicosAdmin" th:each="m : ${Doctors}">
+              <div class="imagenAqui">
+                <img  class="SolicitanteFoto" th::src="${m.getFotoUrl()}" height="512" width="512"/>
+              </div>
+            <h5 class="nombreSolicitante">
                 <span th:text="${m.getNombre()}"></span>
-                <span class="id_medico" th:text="${m.getId()}"></span>
+                <span th:text="${m.getId()}"></span>
             </h5>
+            <div class="BotonesAprobar">
+                <span th:if="${m.getAprobado()}" th:text="'Aprobado'" style="color: green;"></span>
 
-            <span th:if="${m.getAprobado()} == true" th:text="'Aprobado'"></span>
-
-            <div th:if="${m.getAprobado()} == false">
-                <button th:text="'Aprobar'"></button>
-                <button th:text="'Desaprobar'"></button>
+                <div th:if="${!m.getAprobado()}">
+                    <form th:action="@{/aprobar}" method="post">
+                        <input type="hidden" name="id" th:value="${m.getId()}">
+                        <button type="submit">Aprobar</button>
+                    </form>
+                    <form th:action="@{/desaprobar}" method="post">
+                        <input type="hidden" name="id" th:value="${m.getId()}">
+                        <button type="submit">Desaprobar</button>
+                    </form>
+                </div>
             </div>
-            
         </div>
-
-
+</div>
 
 
 
