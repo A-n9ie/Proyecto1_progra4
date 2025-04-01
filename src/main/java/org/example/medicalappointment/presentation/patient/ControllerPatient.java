@@ -188,6 +188,7 @@ public class ControllerPatient {
                 nuevaCita.setHoraCita(hora);
                 nuevaCita.setMedico(medico);
                 nuevaCita.setPaciente(paciente);
+                nuevaCita.setEstado("Pendiente");
 
                 // Guardar la cita
                 serviceAppointment.saveAppointment(nuevaCita);
