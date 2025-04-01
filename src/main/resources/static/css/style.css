@@ -426,7 +426,7 @@ div.campo input {
     width: 15%;
     height: auto;
     color: white;
-    background: lightskyblue;
+    background: #00b8f4;
     border-radius: 8px;
     border: none;
     margin: 1%;
@@ -435,7 +435,7 @@ div.campo input {
 }
 
 .col_datos button:hover {
-    background: deepskyblue;
+    background: #1ec0ca;
 }
 
 .input-container {

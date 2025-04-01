@@ -4,6 +4,7 @@ import jakarta.transaction.Transactional;
 import org.example.medicalappointment.data.CitaRepository;
 import org.example.medicalappointment.data.DoctorRepository;
 import org.example.medicalappointment.data.HorarioRepository;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
