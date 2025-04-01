@@ -985,5 +985,7 @@ button:nth-child(2):hover {
     background: #a71d2a;
 }
 
-
+#error{
+    box-shadow:none;
+}
 /*                                                                    Administrador*                        */

@@ -23,6 +23,12 @@ public class ControllerUsuarios {
     @Autowired
     private ServicePatient servicePatient;
 
+    @PostMapping("/notAuthorized")
+    public String error(Model model) {
+        model.addAttribute("error", "Acceso NO autorizado");
+        return "/presentation/error";
+    }
+
     @GetMapping("/presentation/usuarios/show")
     public String show(Model model) {
         model.addAttribute("usuarios", serviceUser.usuariosFindAll());
