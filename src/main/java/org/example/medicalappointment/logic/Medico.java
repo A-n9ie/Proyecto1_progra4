@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.springframework.cglib.core.Local;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.time.Duration;
@@ -52,9 +53,11 @@ public class Medico {
     private String lugarAtencion;
 
     @Column(name = "horario_inicio")
+    @DateTimeFormat(pattern = "HH:mm")
     private LocalTime horarioInicio;
 
     @Column(name = "horario_fin")
+    @DateTimeFormat(pattern = "HH:mm")
     private LocalTime horarioFin;
 
     @Size(max = 20)

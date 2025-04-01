@@ -65,6 +65,7 @@ public class ControllerUsuarios {
 
             if ("Medico".equals(usuario.getRol())) {
                 Medico doctor = new Medico(persona.getNombre(), persona.getCedula(), persona.getUsuario());
+                doctor.setAprobado(false);
                 serviceDoctor.addDoctor(doctor);
             } else {
                 Paciente patient = new Paciente(persona.getNombre(), persona.getCedula(), persona.getUsuario());
