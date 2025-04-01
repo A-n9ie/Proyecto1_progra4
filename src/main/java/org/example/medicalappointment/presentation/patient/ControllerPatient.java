@@ -58,6 +58,7 @@ public class ControllerPatient {
         List<Cita> citas = serviceAppointment.citasPaciente(paciente);
         model.addAttribute("citas", citas);
         model.addAttribute("nombre", paciente.getNombre());
+
         model.addAttribute("mostrarId", showId);
 
         return "/presentation/patient/history";
@@ -89,14 +90,6 @@ public class ControllerPatient {
         return "/presentation/patient/history";
     }
 
-    @GetMapping("/search")
-    public String search(@RequestParam(value = "speciality", required = false) String speciality,
-                         @RequestParam(value = "city", required = false) String city, Model model) {
-
-        Iterable<Medico> doctorByLocation = serviceDoctor.obtenerMedicosPorLugarYEspecialidad(speciality, city);
-        model.addAttribute("medicos", doctorByLocation);
-        return "/presentation/principal/index";
-    }
 
 
     @PostMapping("/presentation/patient/book/save")
@@ -108,6 +101,7 @@ public class ControllerPatient {
             // Obtener usuario autenticado
             String username = SecurityContextHolder.getContext().getAuthentication().getName();
             Usuario usuario = serviceUser.getUser(username);
+            System.out.println("Usuario autenticado: " + username);
             // Convertir fecha y hora
             LocalDate fecha = LocalDate.parse(fecha_cita, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             LocalTime hora = LocalTime.parse(hora_cita, DateTimeFormatter.ofPattern("HH:mm"));
@@ -117,9 +111,12 @@ public class ControllerPatient {
             Medico medico = serviceDoctor.findDoctorById(medicoId);
             if (medico == null) {
                 model.addAttribute("error", "Médico no encontrado.");
-                return "/presentation/principal/index";
+                return "/presentation/patient/book";
             }
+            System.out.println("Médico encontrado: " + medico);
+
             // Obtener pacientes del usuario
+
             Set<Paciente> pacientes = usuario.getPacientes();
 
             if (pacientes == null || pacientes.isEmpty()) {
@@ -130,78 +127,44 @@ public class ControllerPatient {
 
             Paciente paciente = pacientes.iterator().next();
 
-            model.addAttribute("fecha", fecha);
-            model.addAttribute("hora", hora);
-            model.addAttribute("medico", medico);
-            model.addAttribute("paciente", paciente);
+            // Crear la cita
+            Cita nuevaCita = new Cita();
+            nuevaCita.setFechaCita(fecha);
+            nuevaCita.setHoraCita(hora);
+            nuevaCita.setMedico(medico);
+            nuevaCita.setPaciente(paciente);
 
-            return "/presentation/patient/book";
+            // Guardar la cita
+            serviceAppointment.saveAppointment(nuevaCita);
+            System.out.println("Cita guardada: " + nuevaCita);
+            // Mensaje de éxito
+            model.addAttribute("mensaje", "Cita agendada exitosamente para el día " + fecha_cita + " a las " + hora_cita);
 
         } catch (DateTimeParseException e) {
             model.addAttribute("error", "Formato de fecha u hora incorrecto.");
         } catch (Exception e) {
             model.addAttribute("error", "Ocurrió un error al guardar la cita.");
         }
+
         return "redirect:/presentation/patient/book";
     }
 
-    @PostMapping("/confirmar")
-    public String confirmarCita(@RequestParam(value = "si", required = false) String confirmar,
-                                @RequestParam(value = "no", required = false) String rechazar,
-                                @RequestParam("dia") String fecha_cita,
-                                @RequestParam("hora") String hora_cita,
-                                @RequestParam("medicoId") Integer medicoId,
-                                Model model) {
-
-        if (rechazar != null) {
-            return "redirect:";
-        }
-
-        if(confirmar != null) {
-            try {
-                String username = SecurityContextHolder.getContext().getAuthentication().getName();
-                Usuario usuario = serviceUser.getUser(username);
-
-                // Convertir fecha y hora
-                LocalDate fecha = LocalDate.parse(fecha_cita, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                LocalTime hora = LocalTime.parse(hora_cita, DateTimeFormatter.ofPattern("HH:mm"));
-
-                // Buscar el médico
-                Medico medico = serviceDoctor.findDoctorById(medicoId);
-                if (medico == null) {
-                    model.addAttribute("error", "Médico no encontrado.");
-                    return "redirect:";
-                }
-
-                // Obtener pacientes del usuario
-                Set<Paciente> pacientes = usuario.getPacientes();
-                if (pacientes == null || pacientes.isEmpty()) {
-                    model.addAttribute("error", "No hay pacientes asociados al usuario.");
-                    return "redirect:";
-                }
-
-                Paciente paciente = pacientes.iterator().next();
-
-                // Crear la cita
-                Cita nuevaCita = new Cita();
-                nuevaCita.setFechaCita(fecha);
-                nuevaCita.setHoraCita(hora);
-                nuevaCita.setMedico(medico);
-                nuevaCita.setPaciente(paciente);
-
-                // Guardar la cita
-                serviceAppointment.saveAppointment(nuevaCita);
-
-                return "redirect:/presentation/patient/history/show";
-
-            } catch (DateTimeParseException e) {
-                model.addAttribute("error", "Formato de fecha u hora incorrecto.");
-            } catch (Exception e) {
-                model.addAttribute("error", "Ocurrió un error al confirmar la cita.");
-            }
-        }
-
-        return "redirect:";
+    @GetMapping("/presentation/patient/book")
+    public String book(Model model) {
+        List<Cita> citas = serviceAppointment.citasFindAll();
+        model.addAttribute("citas" , citas);
+        return "presentation/patient/book";
     }
+
+    @GetMapping("/search")
+    public String search(@RequestParam(value = "speciality", required = false) String speciality,
+                         @RequestParam(value = "city", required = false) String city, Model model) {
+
+        Iterable<Medico> doctorByLocation = serviceDoctor.obtenerMedicosPorLugarYEspecialidad(speciality, city);
+        model.addAttribute("medicos", doctorByLocation);
+        return "/presentation/principal/index";
+    }
+
+
 
 }
