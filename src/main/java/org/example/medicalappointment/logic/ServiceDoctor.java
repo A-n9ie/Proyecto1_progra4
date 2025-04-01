@@ -81,29 +81,33 @@ public class ServiceDoctor {
 
        //hoy
         LocalDate fechaBase = LocalDate.now();
+        LocalDate fechaLimite = fechaBase.plusDays(14);
         //dia, id
         Map<String, Integer> diasDeLaSemana = new HashMap<>();
         diasDeLaSemana.put("Lunes", 1);
         diasDeLaSemana.put("Martes", 2);
-        diasDeLaSemana.put("Miercoles", 3);
+        diasDeLaSemana.put("Miércoles", 3);
         diasDeLaSemana.put("Jueves", 4);
         diasDeLaSemana.put("Viernes", 5);
-        diasDeLaSemana.put("Sabado", 6);
+        diasDeLaSemana.put("Sábado", 6);
         diasDeLaSemana.put("Domingo", 7);
 
-        for (HorariosMedico horario : horarios) {
-            //sacr el id del medico
-            Integer medicoId = horario.getMedico().getId();
-            String dia = horario.getDia();
+        for (LocalDate fecha = fechaBase; !fecha.isAfter(fechaLimite); fecha = fecha.plusDays(1)) {
+            String nombreDia = fecha.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.forLanguageTag("es"));
 
-            LocalDate fechaDia = calcularFechaParaDiaSemana(fechaBase, diasDeLaSemana.get(dia));
+            for (HorariosMedico horario : horarios) {
+                if (horario.getDia().toLowerCase().equals(nombreDia.toLowerCase())) {
+                    Integer medicoId = horario.getMedico().getId();
 
-            // Agregar la fecha al mapa
-            medicosConHorarios.putIfAbsent(medicoId, new ArrayList<>());
-            List<String> diasDelMedico = medicosConHorarios.get(medicoId);
+                    // Agregar al mapa
+                    medicosConHorarios.putIfAbsent(medicoId, new ArrayList<>());
+                    List<String> diasDelMedico = medicosConHorarios.get(medicoId);
 
-            if (!diasDelMedico.contains(fechaDia.toString())) {
-                diasDelMedico.add(fechaDia.toString());
+                    // Solo agregar si no está repetido
+                    if (!diasDelMedico.contains(fecha.toString())) {
+                        diasDelMedico.add(fecha.toString());
+                    }
+                }
             }
         }
         return medicosConHorarios;
@@ -132,10 +136,10 @@ public class ServiceDoctor {
         Map<String, Integer> diasDeLaSemana = new HashMap<>();
         diasDeLaSemana.put("Lunes", 1);
         diasDeLaSemana.put("Martes", 2);
-        diasDeLaSemana.put("Miercoles", 3);
+        diasDeLaSemana.put("Miércoles", 3);
         diasDeLaSemana.put("Jueves", 4);
         diasDeLaSemana.put("Viernes", 5);
-        diasDeLaSemana.put("Sabado", 6);
+        diasDeLaSemana.put("Sábado", 6);
         diasDeLaSemana.put("Domingo", 7);
 
 //        for (HorariosMedico horario : horarios) {

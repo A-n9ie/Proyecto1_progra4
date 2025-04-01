@@ -104,7 +104,7 @@ values (1, 'Lunes');
 insert into horarios_medicos (medico_id, dia) 
 values (1, 'Martes');
 insert into horarios_medicos (medico_id, dia) 
-values (1, 'Miercoles');
+values (1, 'Miércoles');
 insert into horarios_medicos (medico_id, dia) 
 values (1, 'Jueves');
 insert into horarios_medicos (medico_id, dia) 
@@ -116,7 +116,7 @@ insert into horarios_medicos (medico_id, dia)
 values (2, 'Jueves');
 
 insert into horarios_medicos (medico_id, dia) 
-values (3, 'Sabado');
+values (3, 'Sábado');
 insert into horarios_medicos (medico_id, dia) 
 values (3, 'Domingo');
 
