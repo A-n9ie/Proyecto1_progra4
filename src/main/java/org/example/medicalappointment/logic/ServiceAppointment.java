@@ -21,9 +21,9 @@ public class ServiceAppointment {
 
     public void deleteAppointment(Cita cita) {citaRepository.delete(cita);}
 
-    public List<Cita> citasPaciente(Paciente paciente){return citaRepository.findCitaByPacienteOrderByFechaCitaDescHoraCitaDesc(paciente);}
+    public List<Cita> citasPaciente(Paciente paciente){return citaRepository.findCitaByPacienteOrderByFechaCitaDescHoraCitaAsc(paciente);}
 
-    public List<Cita> citasMedico(Medico doctor){return citaRepository.findCitaByMedicoOrderByFechaCitaDescHoraCitaDesc(doctor);}
+    public List<Cita> citasMedico(Medico doctor){return citaRepository.findCitaByMedicoOrderByFechaCitaDescHoraCitaAsc(doctor);}
 
     public List<Cita> citasPacienteFiltradas(Paciente paciente, String estado, String doctor) {
         List<Cita> citasPaciente = citasPaciente(paciente);

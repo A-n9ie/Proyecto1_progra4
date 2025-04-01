@@ -139,7 +139,6 @@ public class ControllerDoctor {
             return "redirect:/error";
         }
 
-        int pageSize = 3;
         Map<Integer, List<String>> horarios = serviceDoctor.obtenerHorariosDeMedicoEspecifico(id);
 
         List<String> fechas = horarios.get(medico.getId());
@@ -147,11 +146,20 @@ public class ControllerDoctor {
             return "redirect:/error";
         }
 
+        List<String> diasApartirDelTercerDia = fechas.stream()
+                .skip(2) // Saltamos los dos primeros días
+                .collect(Collectors.toList());
+
+        int pageSize = 3;
         int totalDias = fechas.size();
-        int totalPages = (int) Math.ceil((double) totalDias / pageSize);
+
+        List<String> diasPaginados = fechas.stream()
+                .skip(page * pageSize)
+                .limit(pageSize)
+                .collect(Collectors.toList());
 
         model.addAttribute("medico", medico);
-        model.addAttribute("medicoHorarios", fechas);
+        model.addAttribute("medicoHorarios", diasPaginados);
         model.addAttribute("page", page);
         model.addAttribute("totalDias", totalDias);
         model.addAttribute("pageSize", pageSize);

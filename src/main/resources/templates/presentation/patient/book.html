@@ -5,25 +5,32 @@
     <title>Title</title>
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 <header th:replace="~{/presentation/fragments/fragments.html :: header}"></header>
 
-<div class = "confirmar_cita">
-    <h2>Confirmar Cita</h2>
-    <img th:src="${medico.getFotoUrl()}" alt="medico"/>
-    <p><i class="fa-solid fa-user"></i><span th:text="${medico.getNombre()}"> </span></p>
-    <p><i class="fa-solid fa-calendar"></i>  <span th:text="${fecha} + '' + ${hora} "></span></p>
-    <p><i class="fa-solid fa-location-dot"></i><span th:text="${medico.getLugarAtencion()}"></span></p>
-
-    <form action="/confirmar" method="post">
-        <input type="hidden" name="dia" th:value="${fecha}">
-        <input type="hidden" name="hora" th:value="${hora}">
-        <input type="hidden" name="medicoId" th:value="${medico.id}">
-        <button type="submit" name="si" value="confirmar"> Confirm</button>
-        <button type="submit" name="no" value="rechazar"> Cancel</button>
-    </form>
+<div class = "cuerpo" >
+    <div class="citas">
+        <h2>Citas programadas</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Médico</th>
+                <th>Paciente</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cita : ${citas}">
+                <td th:text="${cita.getFechaCita()}"></td>
+                <td th:text="${cita.horaCita}"></td>
+                <td th:text="${cita.medico.nombre}"></td>
+                <td th:text="${cita.paciente.nombre}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <footer th:replace="~{/presentation/fragments/fragments.html :: footer}"></footer>
