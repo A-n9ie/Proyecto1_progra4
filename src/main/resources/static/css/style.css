@@ -153,10 +153,10 @@ header {
 
 #cuerpo_div_index{
     background-color: #ccc;
-    margin: 120px auto;
     padding: 5px;
     width: 80%;
     border-radius: 10px;
+    margin: 7% auto;
 }
 
 .busca_lugar_especialidad {
@@ -861,4 +861,34 @@ input[type="text"], input[type="password"] {
     display: flex;
     align-items: center;
     margin-right: 5%;
+}
+/*------------------------CONFIRMAR CITA----------------------*/
+.confirmar_cita{
+    margin: 7% auto;
+    text-align: center;
+    width: 30%;
+    padding: 10px;
+    box-shadow: #cccccc 1px 1px 1px 1px;
+    font-family: "Segoe UI";
+}
+
+.confirmar_cita button:hover{
+    background-color: lightslategrey;
+}
+
+.confirmar_cita button{
+    color: white;
+    background-color: darkcyan;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.confirmar_cita img{
+    border-radius: 30%;
+}
+
+.confirmar_cita i{
+    color: darkcyan;
 }
