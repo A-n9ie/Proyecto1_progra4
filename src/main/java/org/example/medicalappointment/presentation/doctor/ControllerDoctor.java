@@ -150,6 +150,7 @@ public class ControllerDoctor {
         int totalDias = fechas.size();
         int totalPages = (int) Math.ceil((double) totalDias / pageSize);
 
+
         model.addAttribute("medico", medico);
         model.addAttribute("medicoHorarios", fechas);
         model.addAttribute("page", page);
