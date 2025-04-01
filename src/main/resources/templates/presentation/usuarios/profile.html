@@ -13,9 +13,12 @@
     <form action="/presentation/perfil/edit" method="POST">
     <div class="datos">
         <div class="col_datos">
-
+            <div class="datos">
             <img src="/images/3756698.png" height="512" width="512"/>
-
+                <div th:if="${error}" class="error-message">
+                    <p th:text="${error}"></p>
+                </div>
+            </div>
             <div class="datos">
                 <div class="col_datos">
                     <label for="username">Username:</label>

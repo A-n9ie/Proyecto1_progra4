@@ -56,7 +56,19 @@ public class ControllerDoctor {
     @GetMapping("/presentation/doctor/edit")
     public String edit(@ModelAttribute("usuario") Usuario user,
                        @ModelAttribute("medico") Medico doctor,
-                       @ModelAttribute("days") List<String> selectedDays) {
+                       @ModelAttribute("days") List<String> selectedDays,
+                       Model model) {
+        if (selectedDays == null || selectedDays.isEmpty()) {
+            model.addAttribute("error", "You must select at least one day to work.");
+            String[] days = {"Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"};
+            List<String> horarios =
+                    horarioRepository.findByMedicoId(doctor.getId()).stream()
+                            .map(HorariosMedico::getDia)
+                            .collect(Collectors.toList());
+            model.addAttribute("days", days);
+            model.addAttribute("selectedDays", horarios);
+            return "/presentation/usuarios/profile";
+        }
         serviceDoctor.editDoctor(user, doctor);
         serviceDoctor.editDays(doctor, selectedDays);
         return "redirect:/presentation/perfil/show";
