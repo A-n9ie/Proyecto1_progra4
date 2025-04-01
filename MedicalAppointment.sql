@@ -33,7 +33,7 @@ CREATE TABLE medicos (
 CREATE TABLE horarios_medicos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     medico_id INT,
-    dia ENUM('Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'),
+    dia ENUM('Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'),
     FOREIGN KEY (medico_id) REFERENCES medicos(id)
 );
 
@@ -104,7 +104,7 @@ values (1, 'Lunes');
 insert into horarios_medicos (medico_id, dia) 
 values (1, 'Martes');
 insert into horarios_medicos (medico_id, dia) 
-values (1, 'Miércoles');
+values (1, 'Miercoles');
 insert into horarios_medicos (medico_id, dia) 
 values (1, 'Jueves');
 insert into horarios_medicos (medico_id, dia) 
@@ -116,7 +116,7 @@ insert into horarios_medicos (medico_id, dia)
 values (2, 'Jueves');
 
 insert into horarios_medicos (medico_id, dia) 
-values (3, 'Sábado');
+values (3, 'Sabado');
 insert into horarios_medicos (medico_id, dia) 
 values (3, 'Domingo');
 
