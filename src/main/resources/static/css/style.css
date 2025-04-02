@@ -7,10 +7,10 @@ body{
 }
 
 header {
-    background-color: lightcyan;
+    background-color: #4E598C;
     justify-content: space-between;
     text-align: center;
-    color: lightslategrey;
+    color: #FCAF58;
     padding-top: 1%;
     padding-bottom: 1%;
     width: 100%;
@@ -38,7 +38,7 @@ header {
     /*border: blueviolet solid 1px;*/
     font-family: Cambria, serif;
     font-style: italic;
-    color:darkcyan;
+    color:#F9C784;
     text-align: start;
 }
 
@@ -88,7 +88,7 @@ header {
     margin: 0;
     text-align: center;
     font-size: 18px;
-    color: darkcyan;
+    color: #F9C784;
 }
 
 .telefono{
@@ -97,6 +97,10 @@ header {
     flex-grow: 1; /* Ocupa el espacio disponible */
     text-align: center; /* Centra el texto */
     white-space: nowrap;
+}
+
+.telefono p{
+   color: #F9C784
 }
 
 .dropdown {
@@ -112,7 +116,7 @@ header {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: #FCAF58;
     min-width: 160px;
     z-index: 1;
     list-style-type: none;
@@ -152,7 +156,7 @@ header {
 /*------------------PRINCIPAL----------------------------*/
 
 #cuerpo_div_index{
-    background-color: #ccc;
+    background-color: #FCAF58;
     padding: 5px;
     width: 80%;
     border-radius: 10px;
@@ -179,7 +183,7 @@ header {
 
 .buscar_especialidad_lugar input {
     background-color: white;
-    border: 1px solid #ccc;
+    border: 1px solid #FCAF58;
     border-radius: 50px;
     padding: 10px;
     width: 200px;
@@ -404,7 +408,7 @@ div.campo input {
     padding: 0;
     margin: 5% auto;
     margin-top: 9%;
-    box-shadow: 0 -4px 8px rgba(1, 0, 0, 0.1), 0 4px 8px rgba(1, 0, 0, 0.1);
+    box-shadow: 0 -4px 8px rgba(149, 89, 5, 0.1), 0 4px 8px rgba(9, 9, 215, 0.1);
 }
 
 .cuerpo :first-child{
@@ -418,6 +422,7 @@ div.campo input {
     height: auto;
     padding: 0;
     margin: 0;
+    background-color: whitesmoke;
 }
 
 .col_datos button{
@@ -425,7 +430,7 @@ div.campo input {
     width: 15%;
     height: auto;
     color: white;
-    background: #00b8f4;
+    background: #4E598C;
     border-radius: 8px;
     border: none;
     margin: 1%;
@@ -460,7 +465,7 @@ div.campo input {
     padding: 8px;
     font-size: 16px;
     font-family: Arial, sans-serif;
-    border: 1px solid #ccc;
+    border: 1px solid #4E598C;
     resize: none;
 }
 
@@ -478,11 +483,13 @@ div.campo input {
     /*border: 1px solid violet;*/
     padding: 0;
     margin: 0;
+    color: black;
+    font-family: "Arial Black";
     align-items: center;
 }
 
 .datos label {
-    display: flex;
+    display: inline-flex;
     align-items: center;  /* Alinea verticalmente el contenido (checkbox y texto) */
     margin: 2%;
 }
@@ -493,6 +500,18 @@ div.campo input {
     border-radius: 40%;
     object-fit: cover;
 }
+
+/* Estilo de los títulos (etiquetas) */
+.col_datos label {
+    margin-bottom: 5px;
+    background-color: #FF8C42;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+
 /*-------------------FIN PERFIL--------------------------------*/
 /*-------------------HISTORIAL---------------------------------*/
 #fila_historial{
@@ -532,7 +551,7 @@ div.campo input {
 }
 /*--------------------FIN HISTORIAL----------------------------*/
 footer{
-    background-color: #333;
+    background-color: #FF8C42;
     color: white;
     text-align: center;
     padding: 20px 0;
