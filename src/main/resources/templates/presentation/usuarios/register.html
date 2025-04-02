@@ -11,7 +11,7 @@
 
 <div class="LoginBody">
 
-<form action="/presentation/usuarios/create" method="POST">
+<form action="/presentation/usuarios/create" method="POST" enctype="multipart/form-data">
 
     <div class="register">
       <div>
@@ -87,8 +87,8 @@
       <div class="campo">
         <div><i class="fas fa-folder"></i></div>
         <div>
-        <label for="file-upload" class="upload">Photo</label>
-        <input type="file" id="file-upload" name="photo" style="display:none;">
+          <label for="file-upload" class="upload">Photo</label>
+          <input type="file" id="file-upload" name="photo" required>
         </div>
       </div>
 

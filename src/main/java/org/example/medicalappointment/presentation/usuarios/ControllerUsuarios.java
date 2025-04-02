@@ -9,9 +9,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.*;
 import org.springframework.validation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 @org.springframework.stereotype.Controller("usuarios")
 
@@ -44,46 +47,73 @@ public class ControllerUsuarios {
     }
 
 
+
     @PostMapping("/presentation/usuarios/create")
     public String create(@Valid @ModelAttribute Usuario usuario,
                          @Valid @ModelAttribute Persona persona,
                          BindingResult result,
                          @RequestParam("password_c") String passwordConfirm,
+                         @RequestParam("photo") MultipartFile photo,
                          Model model) {
+
         if (result.hasErrors()) {
-            model.addAttribute("error", "Error in the input data");
+            model.addAttribute("error", "Error en los datos de entrada");
             return "/presentation/usuarios/register";
         }
 
         try {
             if ("Medico".equals(usuario.getRol()) && serviceDoctor.findDoctor(persona.getCedula()) != null) {
-                throw new IllegalArgumentException("Doctor already exists");
+                throw new IllegalArgumentException("Doctor ya existe");
             }
 
             if ("Paciente".equals(usuario.getRol()) && servicePatient.findPatient(persona.getCedula()) != null) {
-                throw new IllegalArgumentException("Patient already exists");
+                throw new IllegalArgumentException("Paciente ya existe");
             }
 
             serviceUser.addUser(usuario, passwordConfirm);
-
             usuario = serviceUser.getLastUser();
             persona.setUsuario(usuario);
 
+            // **Guardar en una carpeta dentro del proyecto llamada "uploads/fotosPerfil"**
+            String directoryPath = new File("uploads/fotosPerfil").getAbsolutePath();
+
+            // Crear la carpeta si no existe
+            File directory = new File(directoryPath);
+            if (!directory.exists()) {
+                directory.mkdirs();  // Crear directorio si no existe
+            }
+
+            // Generar un nombre único para evitar sobrescribir archivos
+            String fileName = UUID.randomUUID().toString() + "_" + photo.getOriginalFilename();
+            String photoPath = directoryPath + "/" + fileName;
+
+            // Guardar la foto en la carpeta
+            photo.transferTo(new File(photoPath));
+
+            // Guardamos solo el nombre del archivo en la base de datos
             if ("Medico".equals(usuario.getRol())) {
                 Medico doctor = new Medico(persona.getNombre(), persona.getCedula(), persona.getUsuario());
                 doctor.setAprobado(false);
+                doctor.setFotoUrl(fileName);
                 serviceDoctor.addDoctor(doctor);
             } else {
                 Paciente patient = new Paciente(persona.getNombre(), persona.getCedula(), persona.getUsuario());
-                System.out.println(patient.getCedula());
+                patient.setFotoUrl(fileName);
                 servicePatient.addPatient(patient);
             }
+
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
             return "/presentation/usuarios/register";
         }
+
         return "/presentation/usuarios/login";
     }
+
+
+
+
+
 
     @GetMapping("/presentation/perfil/show")
     public String profile(RedirectAttributes redirect) {
@@ -156,6 +186,11 @@ public class ControllerUsuarios {
         model.addAttribute("username", username);
         return "/presentation/fragments/fragments";
     }
+
+
+
+
+
 
 
 }
