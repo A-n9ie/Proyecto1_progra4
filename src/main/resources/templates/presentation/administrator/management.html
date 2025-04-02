@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Medical Appointment</title>
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
@@ -13,7 +13,7 @@
 
         <div class="medicosAdmin" th:each="m : ${Doctors}">
               <div class="imagenAqui">
-                <img  class="SolicitanteFoto" th::src="${m.getFotoUrl()}" height="512" width="512"/>
+                  <img th:src="@{'/fotosPerfil/' + ${m.fotoUrl}}" height="512" width="512" alt="Foto de perfil"/>
               </div>
             <h5 class="nombreSolicitante">
                 <span th:text="${m.getNombre()}"></span>

@@ -232,9 +232,8 @@ header {
 }
 
 .medicos img{
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
+    width: 10%;
+    height: 10%;
     border-radius: 50%;
     margin-right: 10px;
 }
@@ -505,6 +504,12 @@ div.campo input {
     width: 100%;
     font-size: 16px;
 }
+.historial_col img{
+   border-radius: 50%;
+    width: 10%;
+    height: 10%;
+}
+
 .historial_col button[name="estado_cita"]{
     width: auto;
     border-radius: 60%;
@@ -887,6 +892,9 @@ input[type="text"], input[type="password"] {
 
 .confirmar_cita img{
     border-radius: 30%;
+    width: 40%;
+    height: 40%;
+
 }
 
 .confirmar_cita i{
@@ -923,7 +931,6 @@ input[type="text"], input[type="password"] {
 
 
 .imagenAqui {
-    flex: 0 0 120px;
     margin-right: 15px;
 }
 
@@ -949,8 +956,21 @@ input[type="text"], input[type="password"] {
 .BotonesAprobar {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 0;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.BotonesAprobar button {
+    margin: 20px;
+}
+
+.imagenAqui img {
+    width: 20%;
+    height: 20%;
+    max-width: 20%;
+    max-height: 20%;
+    border-radius: 50%;
+    overflow: hidden;
 }
 
 .BotonesAprobar span {

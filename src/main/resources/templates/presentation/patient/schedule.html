@@ -17,7 +17,7 @@
       <div class="info_citas">
   <div class="informacion_medico">
     <a th:if="${page > 0}" th:href="@{/presentation/patient/schedule/{id}(id=${medico.getId()}, page=${page - 1})}" class="Prev">Prev</a>
-    <img th:src="${medico.getFotoUrl()}" alt="medico"/>
+    <img th:src="@{'/fotosPerfil/' + ${medico.fotoUrl}}" height="512" width="512" alt="Foto de perfil"/>
     <div class="informacion_personal">
       <div class="separacion">
         <h5 class="nombre_medico">

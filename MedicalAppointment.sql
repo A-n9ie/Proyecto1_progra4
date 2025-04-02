@@ -78,15 +78,15 @@ values ('LKjero', '333', 'Medico');
 insert into medicos (usuario_id, cedula, nombre, aprobado, especialidad, 
 costo_consulta, lugar_atencion, horario_inicio, horario_fin, frecuencia_citas,
  foto_url, presentacion) values (2, '111111111', 'Bruce Branner', true, 'Dermatology', 50000, 'Cima Hospital, San Jose',
- '08:00:00', '16:00:00', '30 minutos',  '', 'Médico altamente capacitado');
+ '08:00:00', '16:00:00', '30 minutos',  'BBanner.jpg', 'Médico altamente capacitado');
 insert into medicos (usuario_id, cedula, nombre, aprobado, especialidad, 
 costo_consulta, lugar_atencion, horario_inicio, horario_fin, frecuencia_citas,
  foto_url, presentacion) values (3, '222222222', 'Juan José Perez', true, 'Cardiology', 60800, 'Medical Center, Alajuela',
- '08:00:00', '16:00:00', '1 horas',  '', 'Médico altamente capacitado en cirugía cardiovascular');
+ '08:00:00', '16:00:00', '1 horas',  'JPerez.jpg', 'Médico altamente capacitado en cirugía cardiovascular');
 insert into medicos (usuario_id, cedula, nombre, aprobado, especialidad, 
 costo_consulta, lugar_atencion, horario_inicio, horario_fin, frecuencia_citas,
  foto_url, presentacion) values (4, '333333333', 'Luis Alfoncso Kajero', true, 'Cardiology', 70000, 'Heart Care Center, Alajuela',
- '11:00:00', '19:00:00', '1 horas',  '', 'Profesional dedicado a la atención');
+ '11:00:00', '19:00:00', '1 horas',  'LKjero.jpg', 'Profesional dedicado a la atención');
  
  /* usuarios pacientes */
 insert into usuarios (usuario, clave, rol) values ('GLucas', '444', 'Paciente');
@@ -94,9 +94,9 @@ insert into usuarios (usuario, clave, rol) values ('SLee', '555', 'Paciente');
 
  /*Pacientes*/
 insert into pacientes (usuario_id, cedula, nombre, telefono, direccion, foto_url)
- values (5, '4444444444', 'Georges Lucas', '555-1234', 'Alajuela', '');
+ values (5, '4444444444', 'Georges Lucas', '555-1234', 'Alajuela', 'GLucas.jpg');
 insert into pacientes (usuario_id, cedula, nombre, telefono, direccion, foto_url)
- values (6, '5555555555', 'Stan Lee', '665-1245', 'San Jose', '');
+ values (6, '5555555555', 'Stan Lee', '665-1245', 'San Jose', 'Slee.jpg');
  
 
 insert into horarios_medicos (medico_id, dia) 
