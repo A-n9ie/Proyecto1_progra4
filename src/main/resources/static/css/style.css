@@ -950,6 +950,7 @@ input[type="text"], input[type="password"] {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 0;
 }
 
 .BotonesAprobar span {
@@ -962,6 +963,7 @@ input[type="text"], input[type="password"] {
     display: flex;
     gap: 10px;
 }
+
 
 button {
     background: #007bff;
@@ -979,10 +981,13 @@ button:hover {
 
 button:nth-child(2) {
     background: #dc3545;
+    padding: 7px;
+    margin: 9%;
 }
 
 button:nth-child(2):hover {
     background: #a71d2a;
+
 }
 
 #error{

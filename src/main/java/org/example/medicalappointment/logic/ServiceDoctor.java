@@ -4,15 +4,12 @@ import jakarta.transaction.Transactional;
 import org.example.medicalappointment.data.CitaRepository;
 import org.example.medicalappointment.data.DoctorRepository;
 import org.example.medicalappointment.data.HorarioRepository;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.format.TextStyle;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @org.springframework.stereotype.Service("serviceDoctor")
 public class ServiceDoctor {
@@ -206,6 +203,15 @@ public class ServiceDoctor {
      Medico medico =  doctorRepository.findById(id);
      medico.setAprobado(aprobado);
      doctorRepository.save(medico);
+    }
+
+    public List<Medico> medicosAdmin(String doctor) {
+        List<Medico> medicos = new ArrayList<>();
+        for(Medico d: doctorRepository.findAll())
+            if(d.getNombre().toLowerCase().equals(doctor.toLowerCase())
+                    || d.getCedula().toLowerCase().equals(doctor.toLowerCase()))
+                medicos.add(d);
+        return medicos;
     }
 
 }

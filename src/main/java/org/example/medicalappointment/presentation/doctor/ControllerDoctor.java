@@ -45,7 +45,7 @@ public class ControllerDoctor {
                 horarioRepository.findByMedicoId(doctor.getId()).stream()
                 .map(HorariosMedico::getDia)
                 .collect(Collectors.toList());
-        String[] days = {"Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"};
+        String[] days = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"};
 
         model.addAttribute("days", days);
         model.addAttribute("medico", doctor);
@@ -60,7 +60,7 @@ public class ControllerDoctor {
                        Model model) {
         if (selectedDays == null || selectedDays.isEmpty()) {
             model.addAttribute("error", "You must select at least one day to work.");
-            String[] days = {"Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"};
+            String[] days = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"};
             List<String> horarios =
                     horarioRepository.findByMedicoId(doctor.getId()).stream()
                             .map(HorariosMedico::getDia)
@@ -190,7 +190,7 @@ public class ControllerDoctor {
     public String desaprobarDoctor(@RequestParam("id") int id, Model model) {
         serviceDoctor.cambiarEstado(id, false);
         model.addAttribute("Doctors", serviceDoctor.medicosFindAll());
-        return "/presentation/administrator/management";
+        return "redirect: /filtrarDocs";
     }
 
 

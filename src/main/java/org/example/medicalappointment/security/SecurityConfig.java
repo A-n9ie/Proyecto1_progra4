@@ -62,7 +62,7 @@ public class SecurityConfig {
                             } else if (isPaciente) {
                                 response.sendRedirect("/"); // O la URL que desees para paciente
                             } else if (isMedico) {
-                                response.sendRedirect("/"); // O la URL que desees para médico
+                                response.sendRedirect("/presentation/perfil/show"); // O la URL que desees para médico
                             } else {
                                 response.sendRedirect("/"); // Redirigir a la página principal por defecto
                                     }

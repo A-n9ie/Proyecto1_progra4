@@ -17,10 +17,10 @@
             <div class="buscador">
 <!--                falta metodo para buscar por nombre o ID-->
                 <form class="buscar_especialidad_lugar" th:action="@{/filtrarDocs}" method="get">
-                    <span>Id</span>
-                    <input type="text" name="speciality" placeholder="">
-                    <span>Estado</span>
-                    <input type="text" name="city" placeholder="">
+                    <span>Doctor</span>
+                    <input type="text" name="doctor" placeholder="">
+                    <span>Status</span>
+                    <input type="text" name="status" placeholder="">
                     <button type="submit" name="buscar">
                         Search
                     </button>
@@ -48,11 +48,11 @@
                         <input type="hidden" name="id" th:value="${m.getId()}">
                         <button type="submit">Aprobar</button>
                     </form>
-                    <form th:action="@{/desaprobar}" method="post">
-                        <input type="hidden" name="id" th:value="${m.getId()}">
-                        <button type="submit">Desaprobar</button>
-                    </form>
                 </div>
+                <form th:action="@{/desaprobar}" method="post">
+                    <input type="hidden" name="desaprobar" th:value="${m.getId()}">
+                    <button type="submit">Desautorizar</button>
+                </form>
             </div>
         </div>
 </div>

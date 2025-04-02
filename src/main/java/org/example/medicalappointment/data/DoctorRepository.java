@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Repository
 public interface DoctorRepository extends CrudRepository<Medico, Integer> {
@@ -25,4 +26,11 @@ public Medico findById(int id);
 
     // Buscar médicos por especialidad y ciudad (búsqueda parcial)
     Iterable<Medico> findByEspecialidadContainingIgnoreCaseAndLugarAtencionContainingIgnoreCase(String especialidad, String ciudad);
+
+    //Iterable<Medico> findByNombreOrCedula(String medico);
+
+    List<Medico> findAll();
+
+    //Iterable<Medico> findByAprobado(boolean aprovado);
+
 }
