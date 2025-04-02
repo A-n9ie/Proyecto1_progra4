@@ -111,6 +111,10 @@ public class ControllerUsuarios {
     }
 
 
+
+
+
+
     @GetMapping("/presentation/perfil/show")
     public String profile(RedirectAttributes redirect) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -128,12 +132,16 @@ public class ControllerUsuarios {
     public String edit(RedirectAttributes redirect,
                        @ModelAttribute("medico") Medico medico,
                        @ModelAttribute("paciente") Paciente paciente,
-                       @RequestParam(value = "days", required = false) List<String> selectedDays) {
+                       @RequestParam(value = "days", required = false) List<String> selectedDays,
+                       @RequestParam(value = "numero", required = false) Integer numero,
+                       @RequestParam(value = "frecuencia", required = false) String frecuencia) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         Usuario usuario = serviceUser.getUser(username);
         redirect.addFlashAttribute("usuario", usuario);
         if (usuario.getRol().equals("Medico")) {
             redirect.addFlashAttribute("medico", medico);
+            redirect.addFlashAttribute("numero", numero);
+            redirect.addFlashAttribute("frecuencia", frecuencia);
             redirect.addFlashAttribute("days", selectedDays);
             return "redirect:/presentation/doctor/edit";
         } else {
@@ -190,4 +198,3 @@ public class ControllerUsuarios {
 
 
 }
-

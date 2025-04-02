@@ -37,11 +37,31 @@ public class ControllerDoctor {
     public String profile(@ModelAttribute("usuario") Usuario user, Model model) {
         Medico doctor = serviceDoctor.getDoctorbyUser(user);
 
+        if(doctor.getFrecuenciaCitas() != null) {
+            int numero = 0;
+            numero = Integer.parseInt(doctor.getFrecuenciaCitas().split(" ")[0]);
+            String frecuencia = "horas";
 
+            try {
+                String[] parts = doctor.getFrecuenciaCitas().split(" ");
+                if (parts.length == 2) {
+                    numero = Integer.parseInt(parts[0]);
+                    frecuencia = parts[1];
+                } else {
+                    numero = 1;
+                    frecuencia = "horas";
+                }
+            } catch (NumberFormatException e) {
+                numero = 1;
+                frecuencia = "horas";
+            }
+            model.addAttribute("numero", numero);
+            model.addAttribute("frecuencia", frecuencia);
+        }
         List<String> horarios =
                 horarioRepository.findByMedicoId(doctor.getId()).stream()
-                .map(HorariosMedico::getDia)
-                .collect(Collectors.toList());
+                        .map(HorariosMedico::getDia)
+                        .collect(Collectors.toList());
         String[] days = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"};
 
         model.addAttribute("days", days);
@@ -54,19 +74,29 @@ public class ControllerDoctor {
     public String edit(@ModelAttribute("usuario") Usuario user,
                        @ModelAttribute("medico") Medico doctor,
                        @ModelAttribute("days") List<String> selectedDays,
+                       @ModelAttribute("numero") Integer numero,
+                       @ModelAttribute("frecuencia") String frecuencia,
                        Model model) {
+
         if (selectedDays == null || selectedDays.isEmpty()
+                || numero < 1
                 || doctor.getCostoConsulta().compareTo(BigDecimal.ZERO) <= 0) {
+            String username = SecurityContextHolder.getContext().getAuthentication().getName();
+            user = serviceUser.getUser(username);
+            doctor = serviceDoctor.getDoctorbyUser(user);
             model.addAttribute("error", "All fields must be filled out and contain positive values");
             String[] days = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"};
             List<String> horarios =
                     horarioRepository.findByMedicoId(doctor.getId()).stream()
                             .map(HorariosMedico::getDia)
                             .collect(Collectors.toList());
+            model.addAttribute("numero", numero);
+            model.addAttribute("frecuencia", frecuencia);
             model.addAttribute("days", days);
             model.addAttribute("selectedDays", horarios);
             return "/presentation/usuarios/profile";
         }
+        doctor.setFrecuenciaCitas(numero + " " + frecuencia);
         serviceDoctor.editDoctor(user, doctor);
         serviceDoctor.editDays(doctor, selectedDays);
         return "redirect:/presentation/perfil/show";
@@ -75,7 +105,7 @@ public class ControllerDoctor {
 
     @GetMapping("/presentation/doctor/appointment/show")
     public String historyShow(@ModelAttribute("usuario") Usuario user,
-            Model model) {
+                              Model model) {
         Medico medico = serviceDoctor.getDoctorbyUser(user);
 
         List<Cita> citas = serviceAppointment.citasMedico(medico);
@@ -183,13 +213,6 @@ public class ControllerDoctor {
         serviceDoctor.cambiarEstado(id, true);
         model.addAttribute("Doctors", serviceDoctor.medicosFindAll());
         return "/presentation/administrator/management";
-    }
-
-    @PostMapping("/desaprobar")
-    public String desaprobarDoctor(@RequestParam("id") int id, Model model) {
-        serviceDoctor.cambiarEstado(id, false);
-        model.addAttribute("Doctors", serviceDoctor.medicosFindAll());
-        return "redirect:/filtrarDocs";
     }
 
 
