@@ -210,12 +210,5 @@ public class ControllerDoctor {
         return "/presentation/administrator/management";
     }
 
-    @PostMapping("/desaprobar")
-    public String desaprobarDoctor(@RequestParam("id") int id, Model model) {
-        serviceDoctor.cambiarEstado(id, false);
-        model.addAttribute("Doctors", serviceDoctor.medicosFindAll());
-        return "redirect: /filtrarDocs";
-    }
-
 
 }
