@@ -895,7 +895,7 @@ input[type="text"], input[type="password"] {
 
 /*                                                                    Administrador*                                                                       */
 
-/* Centrar todo el contenido general */
+
 
 .cuerpoAdmin {
     display: flex;
@@ -908,7 +908,7 @@ input[type="text"], input[type="password"] {
     background-color: #f5f5f5;
 }
 
-/* Estilos para cada tarjeta de médico */
+
 .medicosAdmin {
     display: flex;
     align-items: center;
@@ -920,7 +920,7 @@ input[type="text"], input[type="password"] {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Imagen del médico */
+
 
 .imagenAqui {
     flex: 0 0 120px;
@@ -935,7 +935,7 @@ input[type="text"], input[type="password"] {
     border: 2px solid #ccc;
 }
 
-/* Información del médico */
+
 .nombreSolicitante {
     flex-grow: 1;
     font-size: 18px;
@@ -945,7 +945,7 @@ input[type="text"], input[type="password"] {
     align-items: flex-start;
 }
 
-/* Sección de botones y estado de aprobación */
+
 .BotonesAprobar {
     display: flex;
     align-items: center;
@@ -965,8 +965,8 @@ input[type="text"], input[type="password"] {
 }
 
 
-button {
-    background: #007bff;
+.aprobar{
+    background: dodgerblue;
     color: white;
     border: none;
     padding: 8px 12px;
@@ -975,22 +975,68 @@ button {
     transition: background 0.3s;
 }
 
-button:hover {
-    background: #0056b3;
+.desaprobar{
+    background: indianred;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
 }
 
-button:nth-child(2) {
-    background: #dc3545;
-    padding: 7px;
-    margin: 9%;
+/* Efecto hover para el botón Aprobar */
+.aprobar:hover {
+    background: #0056b3; /* Un azul más oscuro */
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño */
 }
 
-button:nth-child(2):hover {
-    background: #a71d2a;
-
+/* Efecto hover para el botón Desaprobar */
+.desaprobar:hover {
+    background: darkred; /* Un rojo más oscuro */
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño */
 }
 
 #error{
     box-shadow:none;
 }
 /*                                                                    Administrador*                        */
+
+/* Error */
+
+
+
+.errorbody {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: ghostwhite;
+}
+
+
+.cuerpoError {
+    margin-top: 3%;
+    text-align: center;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+}
+
+
+.cuerpoError::before {
+    content: "\f071";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-right: 10px;
+    font-size: 40px;
+}
+
+
+/* Error */

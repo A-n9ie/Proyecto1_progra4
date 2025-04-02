@@ -11,27 +11,6 @@
 
 <div class = "cuerpoAdmin" >
 
-<!--    Ya tiene style-->
-    <div id="cuerpo_div_index" class="cuerpoIndex">
-        <div class="buscar_lugar_especialidad">
-            <div class="buscador">
-<!--                falta metodo para buscar por nombre o ID-->
-                <form class="buscar_especialidad_lugar" th:action="@{/filtrarDocs}" method="get">
-                    <span>Doctor</span>
-                    <input type="text" name="doctor" placeholder="">
-                    <span>Status</span>
-                    <input type="text" name="status" placeholder="">
-                    <button type="submit" name="buscar">
-                        Search
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-<!--     Ya tiene style-->
-
-
-
         <div class="medicosAdmin" th:each="m : ${Doctors}">
               <div class="imagenAqui">
                 <img  class="SolicitanteFoto" th::src="${m.getFotoUrl()}" height="512" width="512"/>
@@ -46,21 +25,16 @@
                 <div th:if="${!m.getAprobado()}">
                     <form th:action="@{/aprobar}" method="post">
                         <input type="hidden" name="id" th:value="${m.getId()}">
-                        <button type="submit">Aprobar</button>
+                        <button class="aprobar" type="submit">Aprobar</button>
                     </form>
                 </div>
                 <form th:action="@{/desaprobar}" method="post">
                     <input type="hidden" name="desaprobar" th:value="${m.getId()}">
-                    <button type="submit">Desautorizar</button>
+                    <button  class="desaprobar" type="submit">Desautorizar</button>
                 </form>
             </div>
         </div>
 </div>
-
-
-
-</div>
-
 
 <footer th:replace="~{/presentation/fragments/fragments.html :: footer}"></footer>
 </body>
