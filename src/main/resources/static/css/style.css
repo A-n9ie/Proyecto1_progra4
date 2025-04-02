@@ -438,15 +438,16 @@ div.campo input {
 }
 
 .input-container {
-     position: relative;
- }
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    bottom: 20%;
+}
 
-.prefix {
-    position: absolute;
-    left: 10px;
-    top: 25%;
-    transform: translateY(-50%);
-    color: black;
+#numero {
+    width: 60px;
+    position: relative;
+    top: 5px;
 }
 
 .col_datos input[id="frecuencia"] {
