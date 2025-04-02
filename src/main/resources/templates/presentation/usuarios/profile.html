@@ -78,15 +78,10 @@
                     <div class="col_datos">
                         <label for="frecuencia">Frequency:</label>
                         <div class="input-container">
-                            <span class="prefix">Every</span>
-                            <input type="number" id="numero" name="numero" th:value="${numero}" required>
-                            <br><br>
-
-                            <select id="frecuencia" name="frecuencia" th:value="${param.frecuencia}" required>
-                                <option value="horas" th:selected="${frecuencia == 'horas'}">horas</option>
-                                <option value="minutos" th:selected="${frecuencia == 'minutos'}">minutos</option>
-                            </select>
+                            <span class="prefix">Every  </span>
+                            <input type="text" id="frecuencia" name="frecuencia" th:field="*{medico.frecuenciaCitas}" required>
                         </div>
+                        <br><br>
                     </div>
                     <div class="col_datos">
                         <label>Days:</label>
