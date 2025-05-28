@@ -41,9 +41,16 @@ public class ControllerUsuarios {
     //Modelo vacio para colocar al inicio de la pagina
     @GetMapping("/presentation/usuarios/registerSys")
     public String register(Model model) {
-        model.addAttribute("usuario", new Usuario());
-        model.addAttribute("persona", new Persona());
-        return "/presentation/usuarios/register";
+        System.out.println("aaaaaaaaaaaaaaaaaaa");
+        System.out.println("aaaaaaaaaaaaaaaaaaa");
+        System.out.println("aaaaaaaaaaaaaaaaaaa");
+        System.out.println("aaaaaaaaaaaaaaaaaaa");
+        System.out.println("aaaaaaaaaaaaaaaaaaa");
+        System.out.println("aaaaaaaaaaaaaaaaaaa");
+        System.out.println("aaaaaaaaaaaaaaaaaaa");
+        System.out.println("aaaaaaaaaaaaaaaaaaa");
+        System.out.println("aaaaaaaaaaaaaaaaaaa");
+        return "aaaaa";
     }
 
 
