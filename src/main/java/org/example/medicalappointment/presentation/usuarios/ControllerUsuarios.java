@@ -44,6 +44,16 @@ public class ControllerUsuarios {
         model.addAttribute("usuario", new Usuario());
         model.addAttribute("persona", new Persona());
         model.addAttribute("contraseña", new Medico());
+
+        System.out.println("aaaaaaaaaaaaaaaaaaa");
+        System.out.println("aaaaaaaaaaaaaaaaaaa");
+        System.out.println("aaaaaaaaaaaaaaaaaaa");
+        System.out.println("aaaaaaaaaaaaaaaaaaa");
+        System.out.println("aaaaaaaaaaaaaaaaaaa");
+        System.out.println("aaaaaaaaaaaaaaaaaaa");
+        System.out.println("aaaaaaaaaaaaaaaaaaa");
+        System.out.println("aaaaaaaaaaaaaaaaaaa");
+        System.out.println("aaaaaaaaaaaaaaaaaaa");
         return "/presentation/usuarios/register";
     }
 
